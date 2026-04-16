@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>American Christian Institutions & Civil Rights - A Historical Analysis</title>
+<meta name="description" content="A data-driven historical analysis of how three major American Christian traditions positioned themselves on 14 major civil rights struggles over 250 years.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+:root {
+  --green: #2d6a4f;
+  --green-light: #40916c;
+  --red: #c1121f;
+  --red-light: #e5383b;
+  --amber: #e09f3e;
+  --amber-light: #f0b756;
+  --gray: #6c757d;
+  --navy: #1b263b;
+  --bg: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-callout: #f0f4f0;
+  --border: #dee2e6;
+  --text: #1b263b;
+  --text-muted: #6c757d;
+  --text-light: #adb5bd;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --bg-callout: #1a2332;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --text-light: #484f58;
+    --navy: #e6edf3;
+  }
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding: 32px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+h1 { font-size: 22px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.3px; line-height: 1.3; }
+.subtitle { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; line-height: 1.5; }
+h2 { font-size: 15px; font-weight: 600; margin: 36px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+h3 { font-size: 14px; font-weight: 600; margin: 16px 0 8px; }
+p { margin-bottom: 10px; }
+.intro-section { margin-bottom: 28px; font-size: 14px; line-height: 1.7; }
+.intro-section p { margin-bottom: 12px; }
+.callout {
+  background: var(--bg-callout); border-left: 3px solid var(--green);
+  padding: 14px 18px; border-radius: 0 6px 6px 0; margin: 16px 0;
+  font-size: 13px; line-height: 1.7;
+}
+.callout-warn { border-left-color: var(--amber); }
+.callout strong { font-weight: 600; }
+details { margin: 12px 0; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+details summary {
+  padding: 10px 16px; font-size: 13px; font-weight: 600; cursor: pointer;
+  background: var(--bg-card); color: var(--text); list-style: none;
+  display: flex; align-items: center; gap: 8px;
+}
+details summary::-webkit-details-marker { display: none; }
+details summary::before { content: '\25B6'; font-size: 10px; transition: transform 0.2s; color: var(--text-muted); }
+details[open] summary::before { transform: rotate(90deg); }
+details .details-content {
+  padding: 16px; font-size: 12px; line-height: 1.6; background: var(--bg);
+  border-top: 1px solid var(--border); max-height: 500px; overflow-y: auto;
+}
+details .details-content pre {
+  white-space: pre-wrap; word-wrap: break-word;
+  font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+  font-size: 11px; line-height: 1.5; color: var(--text-muted);
+}
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+.legend span { display: flex; align-items: center; gap: 4px; }
+.legend .swatch { width: 12px; height: 12px; border-radius: 2px; flex-shrink: 0; }
+.scorecard { width: 100%; border-collapse: collapse; font-size: 12px; }
+.scorecard th {
+  text-align: left; padding: 6px 8px; font-weight: 600; font-size: 11px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted);
+  border-bottom: 2px solid var(--border); white-space: nowrap;
+}
+.scorecard td { padding: 5px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.scorecard tr:last-child td { border-bottom: 2px solid var(--border); font-weight: 600; }
+.scorecard .struggle-name { font-weight: 500; max-width: 180px; font-size: 12px; }
+.scorecard .cell {
+  border-radius: 3px; padding: 3px 6px; font-size: 10.5px; font-weight: 500;
+  text-align: center; display: inline-block; min-width: 80px; color: #fff;
+}
+.cell-right { background: var(--green); }
+.cell-wrong { background: var(--red); }
+.cell-mixed { background: var(--amber); color: #1b263b; }
+.totals-row { background: var(--bg); }
+.totals-row td { font-size: 11px; }
+.timeline-container { overflow-x: auto; }
+.tl-label {
+  padding: 2px 8px 2px 0; font-weight: 500; text-align: right;
+  border-right: 1px solid var(--border); display: flex; align-items: center;
+  justify-content: flex-end; white-space: nowrap;
+}
+.tl-row { display: flex; align-items: center; padding: 2px 0; position: relative; min-height: 18px; }
+.tl-bar {
+  position: absolute; height: 14px; border-radius: 2px; font-size: 9px; color: #fff;
+  display: flex; align-items: center; padding: 0 4px; overflow: hidden;
+  white-space: nowrap; font-weight: 500;
+}
+.tl-header {
+  display: flex; justify-content: space-between; padding: 0; font-size: 10px;
+  color: var(--text-muted); border-bottom: 1px solid var(--border); margin-bottom: 2px;
+}
+.group-header {
+  grid-column: 1 / -1; font-weight: 600; font-size: 12px; padding: 8px 0 2px;
+  border-bottom: 1px solid var(--border); color: var(--text);
+}
+.chart-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+@media (max-width: 700px) { .chart-row { grid-template-columns: 1fr; } }
+.chart-box { position: relative; }
+.chart-box canvas { width: 100% !important; }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+.card-name { font-weight: 600; font-size: 13px; }
+.card-affil { font-size: 11px; color: var(--text-muted); }
+.card-struggle { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin: 6px 0 4px; font-weight: 500; }
+.card-desc { font-size: 12px; line-height: 1.5; }
+.div-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+.div-table th {
+  text-align: left; padding: 4px 6px; font-size: 10px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted);
+  border-bottom: 2px solid var(--border);
+}
+.div-table td { padding: 3px 6px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.div-bar-wrap { display: flex; height: 12px; border-radius: 2px; overflow: hidden; width: 100%; }
+.div-bar-seg { height: 100%; }
+.div-label { font-size: 10px; color: var(--text-muted); white-space: nowrap; min-width: 50px; text-align: right; }
+.footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+.footer p { margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<h1>American Christian institutions and the arc of civil rights</h1>
+<p class="subtitle">A data-driven historical analysis of how three major American Christian traditions positioned themselves - institutionally - on 14 major civil rights struggles across 250 years of American history.</p>
+
+<div class="intro-section">
+
+<h3>What this is</h3>
+<p>This is a research project that asks a simple, uncomfortable question: <strong>When history called on American Christians to stand for the rights of the marginalized, which institutions stood up, which stayed silent, and which actively resisted?</strong></p>
+<p>The analysis examines three traditions - Roman Catholics, mainline Protestants, and evangelical/Pentecostal Protestants - across every major civil rights struggle in U.S. history, from the American Revolution through COVID-19 public health. It evaluates the <em>dominant institutional position</em> of each group based on denominational resolutions, leadership statements, organizational actions, and adherent polling data.</p>
+
+<h3>What this is not</h3>
+<p>This is not an attack on anyone's faith. Christian theology has inspired some of the most courageous acts of moral leadership in American history - the abolitionist movement, the civil rights movement, the labor movement. Many of those leaders came from the very traditions that, at an institutional level, opposed those same movements. Individual conscience and institutional position are not the same thing, and this analysis makes that distinction explicit.</p>
+
+<div class="callout">
+<strong>A note on "evangelical":</strong> This analysis focuses on <em>white evangelical institutions</em> and their dominant positions. It is critical to distinguish this from Black evangelical and Pentecostal traditions (such as the Church of God in Christ), which have a fundamentally different history - often <em>leading</em> the very movements that white evangelical institutions opposed. When this dashboard says "evangelical," it refers to the institutional positions of predominantly white denominations and organizations: the SBC, Assemblies of God, NAE, and the political organizations of the Christian Right (Moral Majority, Focus on the Family, Family Research Council).
+</div>
+
+<div class="callout callout-warn">
+<strong>On the counter-examples:</strong> Every tradition produced heroes who broke from their institution's dominant position. Billy Graham desegregated his crusades in 1953. Mark Hatfield opposed Vietnam from within the evangelical movement. Francis Collins championed vaccination while his co-religionists refused it. These individuals matter enormously - they prove that nothing about evangelical theology <em>requires</em> being on the wrong side. The problem is institutional, not theological. Scroll to Section 6 for their stories.
+</div>
+
+<h3>How "wrong side of history" is defined</h3>
+<p>A group is judged to have been on the "wrong side" of a struggle if its dominant institutional position opposed the extension of rights or protections to a marginalized group, where that extension was subsequently codified in a constitutional amendment, enacted into federal law, established by landmark Supreme Court ruling, or accepted by overwhelming historical and scholarly consensus as a moral advance. Where a group was genuinely divided, it is scored "Mixed." Where a group changed its position over time, the timeline and lag are documented.</p>
+
+<h3>Why this matters now</h3>
+<p>If you are part of an evangelical community, this data is not meant to make you feel defensive. It is meant to prompt a question: <em>What structural and institutional patterns have consistently placed our tradition on the wrong side of these struggles, and what can we learn from the individuals within our own tradition who got it right?</em> The pattern is not destiny. Understanding it is the first step toward changing it.</p>
+
+</div>
+
+<details>
+  <summary>View the research prompt that generated the underlying report</summary>
+  <div class="details-content">
+    <pre>Deep Research Prompt: American Christian Institutions and Major Civil Rights Struggles
+
+Instructions to the AI: You are a doctoral-level historian specializing in American religious history and civil rights. Produce a rigorous, dispassionate research report analyzing how three major American Christian traditions positioned themselves - institutionally and through their prominent leaders - on each major civil rights struggle in U.S. history.
+
+This is not an opinion piece. This is a historical analysis grounded in documented institutional positions, denominational resolutions, published statements by leadership, and voting patterns of adherents.
+
+The Three Groups:
+1. Roman Catholics - USCCB, papal encyclicals as applied domestically, prominent Catholic leaders
+2. Mainline Protestants - Episcopalians, Presbyterians (PCUSA), United Methodists, ELCA, UCC, American Baptists, Disciples of Christ, NCC/FCC
+3. Evangelical/Pentecostal - SBC, Assemblies of God, COGIC, Churches of Christ, NAE, and the broader movement represented by Graham, Falwell, Robertson, Dobson, and the Christian Right/Moral Majority era
+
+"Wrong Side of History" - Operational Definition: A group is judged to have been on the "wrong side" if its dominant institutional position opposed the extension of rights or protections to a marginalized group, where that extension was subsequently codified in a constitutional amendment, enacted into federal law, established by landmark Supreme Court ruling, or accepted by overwhelming historical and scholarly consensus as a moral advance.
+
+Important nuance rules: If internally divided, note the division but identify the dominant institutional position. If a group changed its position over time, note the timeline. If formally neutral but adherents overwhelmingly supported one side, note the gap. Acknowledge exceptions and counter-examples.
+
+The 14 Struggles Analyzed:
+1. American Independence (1765-1783)
+2. Abolition of Slavery (1830s-1865)
+3. Women's Suffrage (1848-1920)
+4. Labor Rights and the New Deal (1890s-1940s)
+5. Civil Rights Movement (1954-1968)
+6. Vietnam War Opposition (1965-1975)
+7. Women's Liberation / ERA (1960s-1982)
+8. LGBTQ+ Rights (1969-present)
+9. Environmental Protection / Climate Change (1970-present)
+10. Immigration Rights / Refugee Protection (1980s-present)
+11. COVID-19 Public Health Measures (2020-2023)
+12. Black Lives Matter / Police Reform (2013-present)
+13. Indigenous Rights (ongoing)
+14. Disability Rights (1970s-1990)
+
+Standards: Dispassionate and scholarly. No advocacy. Specificity over generality. Name names, cite dates. Intellectual honesty. No false balance.</pre>
+  </div>
+</details>
+
+<details>
+  <summary>View the visualization prompt that generated this dashboard</summary>
+  <div class="details-content">
+    <pre>Visual Rendering Pass - Follow-Up Prompt
+
+Using the research report, create a comprehensive visual dashboard with 6 required visualizations:
+
+1. Master Scorecard Heat Map - Grid with rows for each struggle, columns for each tradition, cells color-coded green/red/amber with position labels and totals.
+
+2. Timeline Heat Map - Gantt-style chart showing each struggle as a horizontal bar spanning its active period, color-coded per group, across 1770-2025.
+
+3. "Lag Time to Correction" Bar Chart - For every instance where a group was initially wrong but later reversed, show the number of years between resolution and reversal.
+
+4. "Right Side" Batting Average Over Time - Line chart showing percentage of struggles each group was on the right side, by historical era.
+
+5. Internal Division Indicator - Split bars showing how internally divided each group was on each struggle.
+
+6. Counter-Example Spotlight Cards - The most significant individuals who broke from their tradition's dominant position.
+
+Design specs: Dense and information-rich. No filler. Every pixel carries information. Green/red/amber/gray color scheme. Clean typography.</pre>
+  </div>
+</details>
+
+<details>
+  <summary>View methodology and sources</summary>
+  <div class="details-content">
+    <p style="font-size:13px; margin-bottom:10px;"><strong>Sources relied upon:</strong></p>
+    <p style="font-size:12px; margin-bottom:8px;">Denominational archives and official resolutions (SBC resolutions database, NCC/FCC statements, papal encyclicals including Rerum Novarum, Quadragesimo Anno, Laudato Si'). PRRI American Values Atlas (annual surveys of 22,000+ adults, 2014-2024). Pew Research Center religious landscape surveys. Gallup historical polling. Historical monographs including: Findlay, <em>Church People in the Struggle</em> (1993); Noll, <em>God and Race in American Politics</em> (2008); McGreevy, <em>Catholicism and American Freedom</em> (2003). Primary source reporting from Christianity Today, National Catholic Reporter, Baptist Press, NPR.</p>
+    <p style="font-size:13px; margin-bottom:10px;"><strong>Where evidence is strongest:</strong></p>
+    <p style="font-size:12px; margin-bottom:8px;">Civil rights movement (extensively documented in denominational records and contemporaneous journalism). LGBTQ+ rights (robust PRRI data spanning 10+ years with religious group breakdowns). Slavery and abolition (denominational founding documents, formal apologies with specific dates).</p>
+    <p style="font-size:13px; margin-bottom:10px;"><strong>Where evidence requires inference:</strong></p>
+    <p style="font-size:12px; margin-bottom:8px;">American Independence (pre-denominational records; proto-evangelical is an analytical construct). Women's suffrage (fewer formal denominational positions). Disability rights (least studied; most denominations did not take formal positions).</p>
+    <p style="font-size:13px; margin-bottom:10px;"><strong>Acknowledged biases in the framework:</strong></p>
+    <p style="font-size:12px; margin-bottom:8px;">The "wrong side of history" framework inherently privileges a progressive arc of expanding rights, which some scholars contest. The three-group taxonomy obscures internal diversity, particularly within the "evangelical" category (white vs. Black, urban vs. rural). The analysis focuses on institutional positions which may not reflect individual adherents. The struggles selected skew toward issues where progressive positions have prevailed.</p>
+    <p style="font-size:12px;"><strong>AI disclosure:</strong> This analysis was produced using Claude (Anthropic) as a research tool. The AI synthesized publicly available historical data, denominational records, and polling data. The research prompt, scoring methodology, and editorial framing were authored by a human researcher. The underlying data was verified against web search results from primary sources including SBC.net, the Vatican, NCC archives, PRRI, and Pew Research.</p>
+  </div>
+</details>
+
+<div class="legend" style="margin-top: 20px;">
+  <span><span class="swatch" style="background:var(--green)"></span> Right side of history</span>
+  <span><span class="swatch" style="background:var(--red)"></span> Wrong side of history</span>
+  <span><span class="swatch" style="background:var(--amber)"></span> Mixed / internally divided</span>
+</div>
+
+<h2>1. Master scorecard</h2>
+<p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">The core finding at a glance. Each cell shows the dominant institutional position based on denominational resolutions, leadership statements, and adherent data.</p>
+<div style="overflow-x:auto;"><table class="scorecard" id="scorecard"></table></div>
+
+<h2>2. Timeline heat map</h2>
+<p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Each bar spans the active period of a struggle, color-coded by each group's position. Read left to right for trajectory over 250 years.</p>
+<div class="timeline-container" id="timeline"></div>
+
+<h2>3. Lag time to correction (years after resolution)</h2>
+<p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">When a group was on the wrong side and later reversed, how long did it take? Zero-height bars with a colored outline = positions <strong>never formally reversed</strong>.</p>
+<div style="position:relative;height:440px;"><canvas id="lagChart"></canvas></div>
+
+<h2>4. "Right side" trajectory by era</h2>
+<p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Is each group getting better or worse over time? Mixed scores count as half. Donut rings: outer = Catholic, middle = mainline, inner = evangelical.</p>
+<div class="chart-row">
+<div class="chart-box" style="height:300px;"><canvas id="battingChart"></canvas></div>
+<div class="chart-box" style="height:300px;"><canvas id="donutChart"></canvas></div>
+</div>
+
+<h2>5. Internal division indicator</h2>
+<p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">The scorecard's "Mixed" label hides important variation. Green = estimated % on right side; red = estimated % on wrong side.</p>
+<div style="overflow-x:auto;"><table class="div-table" id="divTable"></table></div>
+
+<h2>6. Counter-example spotlights: the ones who got it right</h2>
+<p style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">Nothing about any tradition's theology <em>required</em> being on the wrong side. These individuals prove it. They broke from their institution's dominant position, often at great personal cost, and history vindicated them.</p>
+<div class="cards" id="cards"></div>
+
+<div class="footer">
+  <p><strong>About this analysis:</strong> Produced in April 2026 using Claude (Anthropic) as a doctoral-level research assistant. The AI synthesized historical data from denominational archives, PRRI and Pew Research polling, and primary source journalism. Research prompts, methodology, and editorial framing by a human researcher. Full underlying report with citations available on request.</p>
+  <p>This is a living document. If you see an error in the historical record or believe a position has been mischaracterized, the prompts above are fully transparent - you can see exactly what was asked and how the methodology was defined. Corrections are welcome.</p>
+  <p style="color:var(--text-light); font-size:11px; margin-top:12px;">Proverbs 27:6 - "Faithful are the wounds of a friend; profuse are the kisses of an enemy."</p>
+</div>
+
+<script>
+const GREEN='#2d6a4f',RED='#c1121f',AMBER='#e09f3e',GRAY='#6c757d';
+const GREEN_L='#52b788',RED_L='#ff6b6b',AMBER_L='#ffd166';
+const isDark=matchMedia('(prefers-color-scheme:dark)').matches;
+const txtColor=isDark?'#e6edf3':'#1b263b';
+const gridColor=isDark?'#30363d':'#dee2e6';
+
+const struggles=[
+{name:'American independence',years:'1765-83',start:1765,end:1783,cat:{pos:'Mixed',side:'M',label:'Mostly neutral',pctRight:40},main:{pos:'Right',side:'R',label:'Led ideology',pctRight:85},evan:{pos:'Right',side:'R',label:'Pro-revolution',pctRight:75}},
+{name:'Abolition of slavery',years:'1830-65',start:1830,end:1865,cat:{pos:'Wrong',side:'W',label:'Accommodated',pctRight:15},main:{pos:'Mixed',side:'M',label:'Split North/South',pctRight:55},evan:{pos:'Wrong',side:'W',label:'Defended slavery',pctRight:10}},
+{name:"Women's suffrage",years:'1848-1920',start:1848,end:1920,cat:{pos:'Wrong',side:'W',label:'Hierarchy opposed',pctRight:20},main:{pos:'Mixed',side:'M',label:'Quakers led; others slow',pctRight:60},evan:{pos:'Wrong',side:'W',label:'Gender roles cited',pctRight:20}},
+{name:'Labor rights / New Deal',years:'1890s-1940s',start:1890,end:1945,cat:{pos:'Right',side:'R',label:'Rerum Novarum',pctRight:85},main:{pos:'Right',side:'R',label:'Social Gospel',pctRight:80},evan:{pos:'Mixed',side:'M',label:'Anti-union lean',pctRight:30}},
+{name:'Civil rights movement',years:'1954-68',start:1954,end:1968,cat:{pos:'Mixed',side:'M',label:'Bishops yes; laity split',pctRight:60},main:{pos:'Right',side:'R',label:'NCC led support',pctRight:80},evan:{pos:'Wrong',side:'W',label:'"Last bastion of seg."',pctRight:15}},
+{name:'Vietnam war opposition',years:'1965-75',start:1965,end:1975,cat:{pos:'Mixed',side:'M',label:'Spellman to Berrigans',pctRight:50},main:{pos:'Right',side:'R',label:'NCC opposed by 1965',pctRight:75},evan:{pos:'Wrong',side:'W',label:'Pro-war / anti-communist',pctRight:15}},
+{name:'ERA / feminism',years:'1960s-82',start:1963,end:1982,cat:{pos:'Wrong',side:'W',label:'Schlafly-led opposition',pctRight:30},main:{pos:'Right',side:'R',label:'Endorsed ERA',pctRight:80},evan:{pos:'Wrong',side:'W',label:'STOP ERA backbone',pctRight:10}},
+{name:'LGBTQ+ rights',years:'1969-now',start:1969,end:2025,cat:{pos:'Wrong',side:'W',label:'Doctrine unchanged',pctRight:35},main:{pos:'Right',side:'R',label:'Denominations affirmed',pctRight:75},evan:{pos:'Wrong',side:'W',label:'38% support (PRRI 2024)',pctRight:15}},
+{name:'Environment / climate',years:'1970-now',start:1970,end:2025,cat:{pos:'Right',side:'R',label:"Laudato Si' (2015)",pctRight:80},main:{pos:'Right',side:'R',label:'Consistent advocacy',pctRight:80},evan:{pos:'Wrong',side:'W',label:'Cornwall Alliance skeptics',pctRight:20}},
+{name:'Immigration / refugees',years:'1980s-now',start:1980,end:2025,cat:{pos:'Right',side:'R',label:'USCCB advocacy',pctRight:80},main:{pos:'Right',side:'R',label:'Sanctuary movement',pctRight:75},evan:{pos:'Mixed',side:'M',label:'Leaders vs. laity gap',pctRight:35}},
+{name:'COVID public health',years:'2020-23',start:2020,end:2023,cat:{pos:'Right',side:'R',label:'Pope endorsed vaccines',pctRight:75},main:{pos:'Right',side:'R',label:'Complied and advocated',pctRight:85},evan:{pos:'Wrong',side:'W',label:'Highest vax refusal rate',pctRight:20}},
+{name:'BLM / police reform',years:'2013-now',start:2013,end:2025,cat:{pos:'Mixed',side:'M',label:'Hierarchy spoke; laity split',pctRight:50},main:{pos:'Right',side:'R',label:'Denominations supported',pctRight:75},evan:{pos:'Wrong',side:'W',label:'80% said "isolated incidents"',pctRight:15}},
+{name:'Indigenous rights',years:'Ongoing',start:1492,end:2025,cat:{pos:'Wrong',side:'W',label:'Mission system; 2023 shift',pctRight:25},main:{pos:'Wrong',side:'W',label:'Boarding schools; apologies',pctRight:30},evan:{pos:'Wrong',side:'W',label:'Minimal reckoning',pctRight:10}},
+{name:'Disability rights',years:'1970s-90',start:1970,end:1990,cat:{pos:'Right',side:'R',label:'Dignity doctrine',pctRight:75},main:{pos:'Mixed',side:'M',label:'Supportive; some complicity',pctRight:60},evan:{pos:'Mixed',side:'M',label:'Mixed; healing theology',pctRight:45}}
+];
+
+function sideColor(s){return s==='R'?GREEN:s==='W'?RED:AMBER;}
+function sideClass(s){return s==='R'?'cell-right':s==='W'?'cell-wrong':'cell-mixed';}
+
+// 1. SCORECARD
+(function(){
+const t=document.getElementById('scorecard');
+let html='<thead><tr><th style="width:180px;">Struggle</th><th style="width:60px;">Years</th><th>Roman Catholic</th><th>Mainline Protestant</th><th>Evangelical / Pentecostal</th></tr></thead><tbody>';
+let counts={cat:{R:0,W:0,M:0},main:{R:0,W:0,M:0},evan:{R:0,W:0,M:0}};
+struggles.forEach(s=>{
+['cat','main','evan'].forEach(g=>counts[g][s[g].side]++);
+html+=`<tr><td class="struggle-name">${s.name}</td><td style="font-size:10px;color:var(--text-muted);">${s.years}</td><td><span class="cell ${sideClass(s.cat.side)}">${s.cat.label}</span></td><td><span class="cell ${sideClass(s.main.side)}">${s.main.label}</span></td><td><span class="cell ${sideClass(s.evan.side)}">${s.evan.label}</span></td></tr>`;
+});
+html+=`<tr class="totals-row"><td colspan="2" style="font-weight:600;">TOTALS</td><td><span style="color:${GREEN};font-weight:700">${counts.cat.R}R</span> / <span style="color:${RED};font-weight:700">${counts.cat.W}W</span> / <span style="color:${AMBER};font-weight:700">${counts.cat.M}M</span></td><td><span style="color:${GREEN};font-weight:700">${counts.main.R}R</span> / <span style="color:${RED};font-weight:700">${counts.main.W}W</span> / <span style="color:${AMBER};font-weight:700">${counts.main.M}M</span></td><td><span style="color:${GREEN};font-weight:700">${counts.evan.R}R</span> / <span style="color:${RED};font-weight:700">${counts.evan.W}W</span> / <span style="color:${AMBER};font-weight:700">${counts.evan.M}M</span></td></tr></tbody>`;
+t.innerHTML=html;
+})();
+
+// 2. TIMELINE
+(function(){
+const c=document.getElementById('timeline');
+const minY=1770,maxY=2025,span=maxY-minY;
+function pct(yr){return((yr-minY)/span*100).toFixed(1)+'%';}
+function w(s,e){return(((e-s)/span)*100).toFixed(1)+'%';}
+const groups=[{name:'Mainline Protestant',key:'main'},{name:'Roman Catholic',key:'cat'},{name:'Evangelical / Pentecostal',key:'evan'}];
+let html='<div style="display:grid;grid-template-columns:140px 1fr;min-width:700px;">';
+html+='<div style="border-right:1px solid var(--border);"></div><div class="tl-header">';
+for(let d=1780;d<=2020;d+=20){html+=`<span style="margin-left:${pct(d)}">${d}</span>`;}
+html+='</div>';
+groups.forEach(g=>{
+html+=`<div class="group-header">${g.name}</div>`;
+struggles.forEach(s=>{
+const d=s[g.key];const start=Math.max(s.start,minY);const end=Math.min(s.end,maxY);
+const bg=sideColor(d.side);const short=s.name.length>20?s.name.substring(0,18)+'..':s.name;
+html+=`<div class="tl-label">${short}</div><div class="tl-row"><div class="tl-bar" style="left:${pct(start)};width:${w(start,end)};background:${bg};" title="${s.name}: ${d.label}">${d.pos[0]}</div></div>`;
+});
+});
+html+='</div>';c.innerHTML=html;
+})();
+
+// 3. LAG TIME
+(function(){
+const lagData=[
+{group:'Catholic',items:[
+{label:'Slavery (1865)',lag:100,note:'~1960s engagement'},
+{label:'Suffrage (1920)',lag:15,note:'Quiet acceptance'},
+{label:'ERA (1982)',lag:null,note:'Ongoing - partial'},
+{label:'LGBTQ (2015)',lag:null,note:'Ongoing - tone shift only'},
+{label:'Indigenous (ongoing)',lag:null,note:'2023 Doctrine of Discovery'}
+]},
+{group:'Mainline Prot.',items:[
+{label:'Suffrage (1920)',lag:5,note:'Quick acceptance'},
+{label:'Indigenous (ongoing)',lag:35,note:'1990s-2020s apologies'}
+]},
+{group:'Evangelical',items:[
+{label:'Slavery (1865)',lag:130,note:'SBC 1995 apology'},
+{label:'Suffrage (1920)',lag:null,note:'Never formally addressed'},
+{label:'Civil rights (1964)',lag:31,note:'SBC 1995 apology'},
+{label:'Vietnam (1975)',lag:null,note:'Never addressed'},
+{label:'ERA (1982)',lag:null,note:'No reversal'},
+{label:'LGBTQ (2015)',lag:null,note:'Majority still opposed'},
+{label:'Environment',lag:null,note:'No reversal'},
+{label:'COVID (2023)',lag:null,note:'No reversal'},
+{label:'BLM',lag:null,note:'No reversal'},
+{label:'Indigenous',lag:null,note:'Not addressed'}
+]}
+];
+const labels=[],data=[],bgColors=[],borderColors=[];
+const groupColors={'Catholic':'#5e6ad2','Mainline Prot.':GREEN,'Evangelical':RED};
+lagData.forEach(g=>{g.items.forEach(item=>{
+labels.push(g.group+': '+item.label);
+data.push(item.lag!==null?item.lag:0);
+const c=groupColors[g.group];
+bgColors.push(item.lag!==null?c:'transparent');
+borderColors.push(c);
+});});
+new Chart(document.getElementById('lagChart'),{
+type:'bar',data:{labels:labels,datasets:[{data:data,backgroundColor:bgColors,borderColor:borderColors,borderWidth:1.5,barPercentage:0.7}]},
+options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){
+let flat=[];lagData.forEach(g=>g.items.forEach(i=>flat.push(i)));
+const item=flat[ctx.dataIndex];
+return item.lag!==null?item.lag+' years - '+item.note:'No reversal - '+item.note;
+}}}},
+scales:{x:{title:{display:true,text:'Years after legal/moral resolution',color:txtColor,font:{size:11}},grid:{color:gridColor},ticks:{color:txtColor,font:{size:10}},max:140},y:{ticks:{color:txtColor,font:{size:10},autoSkip:false},grid:{display:false}}}}
+});
+})();
+
+// 4. BATTING AVERAGE
+(function(){
+const eras=['Pre-1865','1865-1920','1920-1965','1965-2000','2000-now'];
+function calcPct(indices,key){
+let right=0,total=indices.length;
+indices.forEach(i=>{if(struggles[i][key].side==='R')right++;else if(struggles[i][key].side==='M')right+=0.5;});
+return Math.round(right/total*100);
+}
+const eraIndices=[[0,1],[2],[3,4],[5,6,7,8],[9,10,11,12,13]];
+const catPct=eraIndices.map(e=>calcPct(e,'cat'));
+const mainPct=eraIndices.map(e=>calcPct(e,'main'));
+const evanPct=eraIndices.map(e=>calcPct(e,'evan'));
+new Chart(document.getElementById('battingChart'),{
+type:'line',data:{labels:eras,datasets:[
+{label:'Mainline Prot.',data:mainPct,borderColor:GREEN,fill:false,tension:0.3,pointRadius:4,borderWidth:2.5},
+{label:'Catholic',data:catPct,borderColor:'#5e6ad2',fill:false,tension:0.3,pointRadius:4,borderWidth:2.5},
+{label:'Evangelical',data:evanPct,borderColor:RED,fill:false,tension:0.3,pointRadius:4,borderWidth:2.5}
+]},options:{responsive:true,maintainAspectRatio:false,
+plugins:{legend:{labels:{color:txtColor,font:{size:11},usePointStyle:true,pointStyle:'line'}}},
+scales:{y:{min:0,max:100,title:{display:true,text:'% right side',color:txtColor,font:{size:11}},ticks:{color:txtColor,callback:v=>v+'%'},grid:{color:gridColor}},x:{ticks:{color:txtColor,font:{size:10}},grid:{color:gridColor}}}}
+});
+const totals={cat:{R:0,W:0,M:0},main:{R:0,W:0,M:0},evan:{R:0,W:0,M:0}};
+struggles.forEach(s=>{['cat','main','evan'].forEach(g=>totals[g][s[g].side]++);});
+new Chart(document.getElementById('donutChart'),{
+type:'doughnut',data:{labels:['Right','Wrong','Mixed'],datasets:[
+{label:'Catholic',data:[totals.cat.R,totals.cat.W,totals.cat.M],backgroundColor:[GREEN,RED,AMBER],borderWidth:2,borderColor:isDark?'#161b22':'#fff'},
+{label:'Mainline',data:[totals.main.R,totals.main.W,totals.main.M],backgroundColor:[GREEN,RED,AMBER],borderWidth:2,borderColor:isDark?'#161b22':'#fff'},
+{label:'Evangelical',data:[totals.evan.R,totals.evan.W,totals.evan.M],backgroundColor:[GREEN,RED,AMBER],borderWidth:2,borderColor:isDark?'#161b22':'#fff'}
+]},options:{responsive:true,maintainAspectRatio:false,cutout:'35%',
+plugins:{legend:{display:false},tooltip:{callbacks:{label:function(ctx){
+return['Catholic','Mainline','Evangelical'][ctx.datasetIndex]+': '+ctx.raw+' '+['Right','Wrong','Mixed'][ctx.dataIndex];
+}}}}}
+});
+})();
+
+// 5. INTERNAL DIVISION
+(function(){
+const t=document.getElementById('divTable');
+let html='<thead><tr><th style="width:160px;">Struggle</th><th>Catholic</th><th></th><th>Mainline Prot.</th><th></th><th>Evangelical</th><th></th></tr></thead><tbody>';
+function bar(p){return`<div class="div-bar-wrap"><div class="div-bar-seg" style="width:${p}%;background:${GREEN_L};"></div><div class="div-bar-seg" style="width:${100-p}%;background:${RED_L};"></div></div>`;}
+function lbl(p){return`<span class="div-label">${p}/${100-p}</span>`;}
+struggles.forEach(s=>{
+html+=`<tr><td style="font-size:11px;font-weight:500;">${s.name}</td><td style="width:90px;">${bar(s.cat.pctRight)}</td><td>${lbl(s.cat.pctRight)}</td><td style="width:90px;">${bar(s.main.pctRight)}</td><td>${lbl(s.main.pctRight)}</td><td style="width:90px;">${bar(s.evan.pctRight)}</td><td>${lbl(s.evan.pctRight)}</td></tr>`;
+});
+html+='</tbody>';t.innerHTML=html;
+})();
+
+// 6. COUNTER-EXAMPLE CARDS
+(function(){
+const examples=[
+{name:'Billy Graham',affil:'Southern Baptist / Evangelical',struggle:'Civil rights',sideClass:'cell-right',desc:'Desegregated his crusades starting 1953 - a decade before the Civil Rights Act. Invited MLK to pray at his 1957 New York crusade. Personally removed the ropes separating white and Black sections. A rare evangelical leader ahead of his own movement.'},
+{name:'Mark Hatfield',affil:'Evangelical (Republican senator, Oregon)',struggle:'Vietnam war',sideClass:'cell-right',desc:'Among the most prominent anti-war voices in Congress while the NAE and Billy Graham supported the war effort. Proved that evangelical conviction and principled opposition to militarism were not mutually exclusive.'},
+{name:'Francis Collins',affil:'Evangelical Protestant',struggle:'COVID public health',sideClass:'cell-right',desc:'NIH Director and outspoken evangelical Christian. Became one of the most visible pro-vaccination voices in the country while 24% of white evangelicals refused the vaccine. Showed that rigorous science and sincere faith can coexist.'},
+{name:'Jim Wallis & Sojourners',affil:'Post-evangelical / Evangelical left',struggle:'Multiple (Vietnam, poverty, race)',sideClass:'cell-right',desc:'Founded Sojourners magazine (1971) to articulate a progressive evangelical position on war, poverty, and race. The "Chicago Declaration of Evangelical Social Concern" (1973) explicitly critiqued evangelical complicity in militarism and racism.'},
+{name:'Katharine Hayhoe',affil:'Evangelical Protestant / Climate scientist',struggle:'Environment / climate',sideClass:'cell-right',desc:'One of the most prominent climate scientists in the world and an outspoken evangelical Christian. Has worked tirelessly to build bridges between the scientific community and evangelical churches on climate action.'},
+{name:'Will D. Campbell',affil:'Southern Baptist minister, Mississippi',struggle:'Civil rights',sideClass:'cell-right',desc:'One of only four white people present at the founding of the Southern Christian Leadership Conference. Escorted the Little Rock Nine into Central High School. Paid severe professional and personal costs for breaking with his tradition.'},
+{name:'Catholic sisters at Selma',affil:'Roman Catholic religious orders',struggle:'Civil rights',sideClass:'cell-right',desc:'Nuns in full habits on the Edmund Pettus Bridge became one of the iconic images of 1965. Catholic women religious frequently led where the hierarchy hesitated - a recurring pattern across multiple struggles.'},
+{name:'Society of Friends (Quakers)',affil:'Proto-mainline Protestant',struggle:'Abolition of slavery',sideClass:'cell-right',desc:'First denomination to formally oppose slavery (1776) - 89 years before the 13th Amendment. Set the template for how a religious community can lead on moral questions long before the broader culture catches up.'}
+];
+const c=document.getElementById('cards');
+let html='';
+examples.forEach(e=>{
+html+=`<div class="card"><div class="card-name">${e.name}</div><div class="card-affil">${e.affil}</div><span class="card-struggle ${e.sideClass}">${e.struggle}</span><div class="card-desc">${e.desc}</div></div>`;
+});
+c.innerHTML=html;
+})();
+</script>
+</body>
+</html>
