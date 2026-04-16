@@ -148,6 +148,11 @@ details .details-content pre {
 <h1>American Christian institutions and the arc of civil rights</h1>
 <p class="subtitle">A data-driven historical analysis of how three major American Christian traditions positioned themselves - institutionally - on 14 major civil rights struggles across 250 years of American history.</p>
 
+<blockquote style="margin: 28px 0; padding: 24px 32px; border-left: 4px solid var(--green); background: var(--bg-callout); border-radius: 0 8px 8px 0; font-size: 18px; line-height: 1.6; font-style: italic; color: var(--text);">
+"Truly I tell you, whatever you did for one of the least of these brothers and sisters of mine, you did for me."
+<span style="display: block; font-size: 13px; font-style: normal; font-weight: 600; color: var(--text-muted); margin-top: 8px;">- Jesus, Matthew 25:40 (NIV)</span>
+</blockquote>
+
 <details>
   <summary>About this project - what it is, what it isn't, and why it matters</summary>
   <div class="details-content" style="font-size: 14px; line-height: 1.7; max-height: none;">
@@ -299,20 +304,20 @@ const txtColor=isDark?'#e6edf3':'#1b263b';
 const gridColor=isDark?'#30363d':'#dee2e6';
 
 const struggles=[
-{name:'American independence',years:'1765-83',start:1765,end:1783,cat:{pos:'Mixed',side:'M',label:'Mostly neutral',pctRight:40},main:{pos:'Right',side:'R',label:'Led ideology',pctRight:85},evan:{pos:'Right',side:'R',label:'Pro-revolution',pctRight:75}},
-{name:'Abolition of slavery',years:'1830-65',start:1830,end:1865,cat:{pos:'Wrong',side:'W',label:'Accommodated',pctRight:15},main:{pos:'Mixed',side:'M',label:'Split North/South',pctRight:55},evan:{pos:'Wrong',side:'W',label:'Defended slavery',pctRight:10}},
-{name:"Women's suffrage",years:'1848-1920',start:1848,end:1920,cat:{pos:'Wrong',side:'W',label:'Hierarchy opposed',pctRight:20},main:{pos:'Mixed',side:'M',label:'Quakers led; others slow',pctRight:60},evan:{pos:'Wrong',side:'W',label:'Gender roles cited',pctRight:20}},
-{name:'Labor rights / New Deal',years:'1890s-1940s',start:1890,end:1945,cat:{pos:'Right',side:'R',label:'Rerum Novarum',pctRight:85},main:{pos:'Right',side:'R',label:'Social Gospel',pctRight:80},evan:{pos:'Mixed',side:'M',label:'Anti-union lean',pctRight:30}},
-{name:'Civil rights movement',years:'1954-68',start:1954,end:1968,cat:{pos:'Mixed',side:'M',label:'Bishops yes; laity split',pctRight:60},main:{pos:'Right',side:'R',label:'NCC led support',pctRight:80},evan:{pos:'Wrong',side:'W',label:'"Last bastion of seg."',pctRight:15}},
-{name:'Vietnam war opposition',years:'1965-75',start:1965,end:1975,cat:{pos:'Mixed',side:'M',label:'Spellman to Berrigans',pctRight:50},main:{pos:'Right',side:'R',label:'NCC opposed by 1965',pctRight:75},evan:{pos:'Wrong',side:'W',label:'Pro-war / anti-communist',pctRight:15}},
-{name:'ERA / feminism',years:'1960s-82',start:1963,end:1982,cat:{pos:'Wrong',side:'W',label:'Schlafly-led opposition',pctRight:30},main:{pos:'Right',side:'R',label:'Endorsed ERA',pctRight:80},evan:{pos:'Wrong',side:'W',label:'STOP ERA backbone',pctRight:10}},
-{name:'LGBTQ+ rights',years:'1969-now',start:1969,end:2025,cat:{pos:'Wrong',side:'W',label:'Doctrine unchanged',pctRight:35},main:{pos:'Right',side:'R',label:'Denominations affirmed',pctRight:75},evan:{pos:'Wrong',side:'W',label:'38% support (PRRI 2024)',pctRight:15}},
-{name:'Environment / climate',years:'1970-now',start:1970,end:2025,cat:{pos:'Right',side:'R',label:"Laudato Si' (2015)",pctRight:80},main:{pos:'Right',side:'R',label:'Consistent advocacy',pctRight:80},evan:{pos:'Wrong',side:'W',label:'Cornwall Alliance skeptics',pctRight:20}},
-{name:'Immigration / refugees',years:'1980s-now',start:1980,end:2025,cat:{pos:'Right',side:'R',label:'USCCB advocacy',pctRight:80},main:{pos:'Right',side:'R',label:'Sanctuary movement',pctRight:75},evan:{pos:'Mixed',side:'M',label:'Leaders vs. laity gap',pctRight:35}},
-{name:'COVID public health',years:'2020-23',start:2020,end:2023,cat:{pos:'Right',side:'R',label:'Pope endorsed vaccines',pctRight:75},main:{pos:'Right',side:'R',label:'Complied and advocated',pctRight:85},evan:{pos:'Wrong',side:'W',label:'Highest vax refusal rate',pctRight:20}},
-{name:'BLM / police reform',years:'2013-now',start:2013,end:2025,cat:{pos:'Mixed',side:'M',label:'Hierarchy spoke; laity split',pctRight:50},main:{pos:'Right',side:'R',label:'Denominations supported',pctRight:75},evan:{pos:'Wrong',side:'W',label:'80% said "isolated incidents"',pctRight:15}},
-{name:'Indigenous rights',years:'Ongoing',start:1492,end:2025,cat:{pos:'Wrong',side:'W',label:'Mission system; 2023 shift',pctRight:25},main:{pos:'Wrong',side:'W',label:'Boarding schools; apologies',pctRight:30},evan:{pos:'Wrong',side:'W',label:'Minimal reckoning',pctRight:10}},
-{name:'Disability rights',years:'1970s-90',start:1970,end:1990,cat:{pos:'Right',side:'R',label:'Dignity doctrine',pctRight:75},main:{pos:'Mixed',side:'M',label:'Supportive; some complicity',pctRight:60},evan:{pos:'Mixed',side:'M',label:'Mixed; healing theology',pctRight:45}}
+{num:1,name:'American independence',years:'1765-83',start:1765,end:1783,cat:{pos:'Mixed',side:'M',label:'Mostly neutral',pctRight:40},main:{pos:'Right',side:'R',label:'Led ideology',pctRight:85},evan:{pos:'Right',side:'R',label:'Pro-revolution',pctRight:75}},
+{num:2,name:'Abolition of slavery',years:'1830-65',start:1830,end:1865,cat:{pos:'Wrong',side:'W',label:'Accommodated',pctRight:15},main:{pos:'Mixed',side:'M',label:'Split North/South',pctRight:55},evan:{pos:'Wrong',side:'W',label:'Defended slavery',pctRight:10}},
+{num:3,name:"Women's suffrage",years:'1848-1920',start:1848,end:1920,cat:{pos:'Wrong',side:'W',label:'Hierarchy opposed',pctRight:20},main:{pos:'Mixed',side:'M',label:'Quakers led; others slow',pctRight:60},evan:{pos:'Wrong',side:'W',label:'Gender roles cited',pctRight:20}},
+{num:4,name:'Labor rights / New Deal',years:'1890s-1940s',start:1890,end:1945,cat:{pos:'Right',side:'R',label:'Rerum Novarum',pctRight:85},main:{pos:'Right',side:'R',label:'Social Gospel',pctRight:80},evan:{pos:'Mixed',side:'M',label:'Anti-union lean',pctRight:30}},
+{num:5,name:'Civil rights movement',years:'1954-68',start:1954,end:1968,cat:{pos:'Mixed',side:'M',label:'Bishops yes; laity split',pctRight:60},main:{pos:'Right',side:'R',label:'NCC led support',pctRight:80},evan:{pos:'Wrong',side:'W',label:'"Last bastion of seg."',pctRight:15}},
+{num:6,name:'Vietnam war opposition',years:'1965-75',start:1965,end:1975,cat:{pos:'Mixed',side:'M',label:'Spellman to Berrigans',pctRight:50},main:{pos:'Right',side:'R',label:'NCC opposed by 1965',pctRight:75},evan:{pos:'Wrong',side:'W',label:'Pro-war / anti-communist',pctRight:15}},
+{num:7,name:'ERA / feminism',years:'1960s-82',start:1963,end:1982,cat:{pos:'Wrong',side:'W',label:'Schlafly-led opposition',pctRight:30},main:{pos:'Right',side:'R',label:'Endorsed ERA',pctRight:80},evan:{pos:'Wrong',side:'W',label:'STOP ERA backbone',pctRight:10}},
+{num:8,name:'LGBTQ+ rights',years:'1969-now',start:1969,end:2025,cat:{pos:'Wrong',side:'W',label:'Doctrine unchanged',pctRight:35},main:{pos:'Right',side:'R',label:'Denominations affirmed',pctRight:75},evan:{pos:'Wrong',side:'W',label:'38% support (PRRI 2024)',pctRight:15}},
+{num:9,name:'Environment / climate',years:'1970-now',start:1970,end:2025,cat:{pos:'Right',side:'R',label:"Laudato Si' (2015)",pctRight:80},main:{pos:'Right',side:'R',label:'Consistent advocacy',pctRight:80},evan:{pos:'Wrong',side:'W',label:'Cornwall Alliance skeptics',pctRight:20}},
+{num:10,name:'Immigration / refugees',years:'1980s-now',start:1980,end:2025,cat:{pos:'Right',side:'R',label:'USCCB advocacy',pctRight:80},main:{pos:'Right',side:'R',label:'Sanctuary movement',pctRight:75},evan:{pos:'Mixed',side:'M',label:'Leaders vs. laity gap',pctRight:35}},
+{num:11,name:'COVID public health',years:'2020-23',start:2020,end:2023,cat:{pos:'Right',side:'R',label:'Pope endorsed vaccines',pctRight:75},main:{pos:'Right',side:'R',label:'Complied and advocated',pctRight:85},evan:{pos:'Wrong',side:'W',label:'Highest vax refusal rate',pctRight:20}},
+{num:12,name:'BLM / police reform',years:'2013-now',start:2013,end:2025,cat:{pos:'Mixed',side:'M',label:'Hierarchy spoke; laity split',pctRight:50},main:{pos:'Right',side:'R',label:'Denominations supported',pctRight:75},evan:{pos:'Wrong',side:'W',label:'80% said "isolated incidents"',pctRight:15}},
+{num:13,name:'Indigenous rights',years:'Ongoing',start:1492,end:2025,cat:{pos:'Wrong',side:'W',label:'Mission system; 2023 shift',pctRight:25},main:{pos:'Wrong',side:'W',label:'Boarding schools; apologies',pctRight:30},evan:{pos:'Wrong',side:'W',label:'Minimal reckoning',pctRight:10}},
+{num:14,name:'Disability rights',years:'1970s-90',start:1970,end:1990,cat:{pos:'Right',side:'R',label:'Dignity doctrine',pctRight:75},main:{pos:'Mixed',side:'M',label:'Supportive; some complicity',pctRight:60},evan:{pos:'Mixed',side:'M',label:'Mixed; healing theology',pctRight:45}}
 ];
 
 function sideColor(s){return s==='R'?GREEN:s==='W'?RED:AMBER;}
@@ -321,11 +326,11 @@ function sideClass(s){return s==='R'?'cell-right':s==='W'?'cell-wrong':'cell-mix
 // 1. SCORECARD
 (function(){
 const t=document.getElementById('scorecard');
-let html='<thead><tr><th style="width:180px;">Struggle</th><th style="width:60px;">Years</th><th>Roman Catholic</th><th>Mainline Protestant</th><th>Evangelical / Pentecostal</th></tr></thead><tbody>';
+let html='<thead><tr><th style="width:180px;">#&ensp;Struggle</th><th style="width:60px;">Years</th><th>Roman Catholic</th><th>Mainline Protestant</th><th>Evangelical / Pentecostal</th></tr></thead><tbody>';
 let counts={cat:{R:0,W:0,M:0},main:{R:0,W:0,M:0},evan:{R:0,W:0,M:0}};
 struggles.forEach(s=>{
 ['cat','main','evan'].forEach(g=>counts[g][s[g].side]++);
-html+=`<tr><td class="struggle-name">${s.name}</td><td style="font-size:10px;color:var(--text-muted);">${s.years}</td><td><span class="cell ${sideClass(s.cat.side)}">${s.cat.label}</span></td><td><span class="cell ${sideClass(s.main.side)}">${s.main.label}</span></td><td><span class="cell ${sideClass(s.evan.side)}">${s.evan.label}</span></td></tr>`;
+html+=`<tr><td class="struggle-name"><span style="color:var(--text-muted);font-size:10px;margin-right:4px;">${s.num}.</span>${s.name}</td><td style="font-size:10px;color:var(--text-muted);">${s.years}</td><td><span class="cell ${sideClass(s.cat.side)}">${s.cat.label}</span></td><td><span class="cell ${sideClass(s.main.side)}">${s.main.label}</span></td><td><span class="cell ${sideClass(s.evan.side)}">${s.evan.label}</span></td></tr>`;
 });
 html+=`<tr class="totals-row"><td colspan="2" style="font-weight:600;">TOTALS</td><td><span style="color:${GREEN};font-weight:700">${counts.cat.R}R</span> / <span style="color:${RED};font-weight:700">${counts.cat.W}W</span> / <span style="color:${AMBER};font-weight:700">${counts.cat.M}M</span></td><td><span style="color:${GREEN};font-weight:700">${counts.main.R}R</span> / <span style="color:${RED};font-weight:700">${counts.main.W}W</span> / <span style="color:${AMBER};font-weight:700">${counts.main.M}M</span></td><td><span style="color:${GREEN};font-weight:700">${counts.evan.R}R</span> / <span style="color:${RED};font-weight:700">${counts.evan.W}W</span> / <span style="color:${AMBER};font-weight:700">${counts.evan.M}M</span></td></tr></tbody>`;
 t.innerHTML=html;
@@ -347,7 +352,7 @@ html+=`<div class="group-header">${g.name}</div>`;
 struggles.forEach(s=>{
 const d=s[g.key];const start=Math.max(s.start,minY);const end=Math.min(s.end,maxY);
 const bg=sideColor(d.side);const short=s.name.length>20?s.name.substring(0,18)+'..':s.name;
-html+=`<div class="tl-label">${short}</div><div class="tl-row"><div class="tl-bar" style="left:${pct(start)};width:${w(start,end)};background:${bg};" title="${s.name}: ${d.label}">${d.pos[0]}</div></div>`;
+html+=`<div class="tl-label"><span style="color:var(--text-muted);font-size:10px;margin-right:3px;">${s.num}.</span>${short}</div><div class="tl-row"><div class="tl-bar" style="left:${pct(start)};width:${w(start,end)};background:${bg};" title="${s.name}: ${d.label}">${d.pos[0]}</div></div>`;
 });
 });
 html+='</div>';c.innerHTML=html;
@@ -443,7 +448,7 @@ let html='<thead><tr><th style="width:160px;">Struggle</th><th>Catholic</th><th>
 function bar(p){return`<div class="div-bar-wrap"><div class="div-bar-seg" style="width:${p}%;background:${GREEN_L};"></div><div class="div-bar-seg" style="width:${100-p}%;background:${RED_L};"></div></div>`;}
 function lbl(p){return`<span class="div-label">${p}/${100-p}</span>`;}
 struggles.forEach(s=>{
-html+=`<tr><td style="font-size:11px;font-weight:500;">${s.name}</td><td style="width:90px;">${bar(s.cat.pctRight)}</td><td>${lbl(s.cat.pctRight)}</td><td style="width:90px;">${bar(s.main.pctRight)}</td><td>${lbl(s.main.pctRight)}</td><td style="width:90px;">${bar(s.evan.pctRight)}</td><td>${lbl(s.evan.pctRight)}</td></tr>`;
+html+=`<tr><td style="font-size:11px;font-weight:500;"><span style="color:var(--text-muted);font-size:10px;margin-right:3px;">${s.num}.</span>${s.name}</td><td style="width:90px;">${bar(s.cat.pctRight)}</td><td>${lbl(s.cat.pctRight)}</td><td style="width:90px;">${bar(s.main.pctRight)}</td><td>${lbl(s.main.pctRight)}</td><td style="width:90px;">${bar(s.evan.pctRight)}</td><td>${lbl(s.evan.pctRight)}</td></tr>`;
 });
 html+='</tbody>';t.innerHTML=html;
 })();
