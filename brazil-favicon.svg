@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#009C3B"/>
+  <!-- Yellow diamond echoing Brazil flag -->
+  <polygon points="32,12 56,32 32,52 8,32" fill="#FFDF00"/>
+  <!-- Center blue circle -->
+  <circle cx="32" cy="32" r="11" fill="#002776"/>
+  <!-- subtle palm/star -->
+  <g fill="#FFDF00">
+    <circle cx="32" cy="32" r="1.8"/>
+    <circle cx="28" cy="28" r="1"/>
+    <circle cx="36" cy="29" r="0.8"/>
+    <circle cx="29" cy="35" r="0.9"/>
+  </g>
+</svg>
