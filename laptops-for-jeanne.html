@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A little laptop guide for Jeanne</title>
+<meta name="description" content="A handpicked laptop guide for Jeanne from her brother Keith. Good, better, best - with notes, reviews, and a soft push toward a Mac.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:        #FFF6E3;
+    --cream-deep:   #FBEBC8;
+    --paper:        #FFFBF1;
+    --peach:        #FFD9B8;
+    --peach-soft:   #FFE9D6;
+
+    --ink:          #2A1A10;
+    --ink-soft:     #4F3525;
+    --muted:        #8A6B53;
+
+    --mustard:      #E8B23C;
+    --mustard-deep: #C28A12;
+    --tomato:       #E5503A;
+    --tomato-deep:  #B83824;
+    --plum:         #5B2A4D;
+    --forest:       #3F6A4A;
+    --teal:         #2D6A6A;
+
+    --vinyl:        #14110F;
+    --line:         rgba(42,26,16,0.14);
+
+    --radius:       18px;
+    --radius-sm:    12px;
+    --radius-lg:    28px;
+    --shadow-card:  0 1px 0 rgba(42,26,16,0.04), 0 14px 32px -10px rgba(42,26,16,0.18), 0 36px 60px -28px rgba(42,26,16,0.22);
+    --shadow-lift:  0 2px 0 rgba(42,26,16,0.05), 0 22px 50px -14px rgba(42,26,16,0.30);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.65;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(232,178,60,0.10) 0, transparent 30%),
+      radial-gradient(circle at 88% 8%, rgba(229,80,58,0.08) 0, transparent 28%),
+      radial-gradient(circle at 50% 92%, rgba(63,106,74,0.08) 0, transparent 30%);
+    background-attachment: fixed;
+  }
+
+  ::selection { background: var(--mustard); color: var(--ink); }
+
+  /* ===== Confetti / sprinkle background ===== */
+  .sprinkles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  /* ===== Layout ===== */
+  .page {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 36px 28px 80px;
+  }
+  @media (min-width: 720px) {
+    .page { padding: 60px 48px 100px; }
+  }
+
+  /* ===== Stamp / "from Keith" mark ===== */
+  .stamp-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+    gap: 16px;
+  }
+  .stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    background: var(--paper);
+    border: 1.5px dashed var(--tomato);
+    border-radius: 999px;
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--tomato-deep);
+    transform: rotate(-2deg);
+  }
+  .stamp svg { width: 22px; height: 22px; }
+  .date-tag {
+    font-family: 'Caveat', cursive;
+    color: var(--muted);
+    font-size: 22px;
+    transform: rotate(1.5deg);
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: var(--paper);
+    border-radius: var(--radius-lg);
+    padding: 48px 32px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(42,26,16,0.06);
+  }
+  @media (min-width: 720px) {
+    .hero { padding: 72px 64px 64px; }
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background:
+      radial-gradient(circle, var(--mustard) 0%, var(--mustard) 35%, transparent 36%),
+      radial-gradient(circle, var(--vinyl) 0%, var(--vinyl) 8%, transparent 9%);
+    border-radius: 50%;
+    opacity: 0.10;
+  }
+
+  .hi-jeanne {
+    font-family: 'Caveat', cursive;
+    font-size: clamp(48px, 8vw, 88px);
+    color: var(--tomato);
+    line-height: 1;
+    margin-bottom: 12px;
+    transform: rotate(-1.5deg);
+    display: inline-block;
+  }
+  .hi-jeanne .wave {
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: wave 2.6s ease-in-out infinite;
+  }
+  @keyframes wave {
+    0%, 60%, 100% { transform: rotate(0); }
+    10%, 30% { transform: rotate(14deg); }
+    20%, 40% { transform: rotate(-8deg); }
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 400;
+    font-size: clamp(36px, 5.5vw, 64px);
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 22px;
+    letter-spacing: -0.01em;
+    max-width: 780px;
+  }
+  .hero h1 em {
+    color: var(--plum);
+    font-style: italic;
+  }
+  .hero .lede {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin-bottom: 8px;
+  }
+  .hero .lede + .lede { margin-top: 14px; }
+
+  .hero-decor {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 32px;
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: var(--forest);
+  }
+  .hero-decor svg { flex-shrink: 0; }
+
+  /* ===== Sections ===== */
+  .section { margin-top: 64px; }
+  .section-label {
+    display: inline-block;
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    color: var(--mustard-deep);
+    transform: rotate(-1.5deg);
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 4.5vw, 48px);
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 14px;
+    letter-spacing: -0.01em;
+  }
+  .section-title em {
+    color: var(--tomato-deep);
+    font-style: italic;
+  }
+  .section-intro {
+    max-width: 700px;
+    color: var(--ink-soft);
+    margin-bottom: 36px;
+  }
+
+  /* ===== Picks (the three cards) ===== */
+  .picks {
+    display: grid;
+    gap: 28px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 980px) {
+    .picks { grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  }
+
+  .pick {
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: 30px 28px 28px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(42,26,16,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .pick:hover {
+    transform: translateY(-4px) rotate(-0.3deg);
+    box-shadow: var(--shadow-lift);
+  }
+  .pick.good   { border-top: 6px solid var(--forest); }
+  .pick.better { border-top: 6px solid var(--mustard); }
+  .pick.best   { border-top: 6px solid var(--tomato); }
+  .pick.best::after {
+    content: '★ my pick';
+    position: absolute;
+    top: 18px; right: -38px;
+    background: var(--tomato);
+    color: var(--paper);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 44px;
+    transform: rotate(35deg);
+    box-shadow: 0 4px 12px rgba(229,80,58,0.35);
+  }
+
+  .pick-track {
+    font-family: 'Caveat', cursive;
+    font-size: 24px;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .pick-tier {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .pick.good   .pick-tier { color: var(--forest); }
+  .pick.better .pick-tier { color: var(--mustard-deep); }
+  .pick.best   .pick-tier { color: var(--tomato); }
+
+  .pick-art {
+    background: linear-gradient(135deg, var(--peach-soft) 0%, var(--cream-deep) 100%);
+    border-radius: var(--radius-sm);
+    padding: 18px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .pick-art svg { width: 100%; max-width: 220px; height: auto; }
+
+  .pick-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.005em;
+  }
+  .pick-price {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 800;
+    font-size: 30px;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+  .pick-price-note {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .specs {
+    display: grid;
+    gap: 8px;
+    list-style: none;
+    margin-bottom: 22px;
+    padding: 16px 18px;
+    background: var(--cream-deep);
+    border-radius: var(--radius-sm);
+  }
+  .specs li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .specs li::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--mustard-deep);
+    border-radius: 50%;
+    margin-top: 9px;
+    flex-shrink: 0;
+  }
+
+  .pick-why {
+    margin-bottom: 22px;
+  }
+  .pick-why h4 {
+    font-family: 'Caveat', cursive;
+    font-size: 22px;
+    color: var(--plum);
+    margin-bottom: 4px;
+  }
+  .pick-why p {
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  .quotes { margin-bottom: 24px; }
+  .quote {
+    font-size: 14.5px;
+    color: var(--ink);
+    background: var(--paper);
+    border-left: 3px solid var(--mustard);
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .quote .stars {
+    color: var(--mustard-deep);
+    font-style: normal;
+    letter-spacing: 1px;
+    margin-right: 6px;
+    font-size: 13px;
+  }
+  .quote .reviewer {
+    display: block;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--muted);
+    font-size: 12.5px;
+    margin-top: 6px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 16px 22px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15.5px;
+    text-decoration: none;
+    transition: transform 0.15s ease, background 0.15s ease;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover { background: var(--tomato); transform: translateY(-2px); }
+  .pick.best .btn { background: var(--tomato); }
+  .pick.best .btn:hover { background: var(--tomato-deep); }
+  .btn svg { width: 16px; height: 16px; }
+
+  /* ===== Letter from Keith ===== */
+  .letter {
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    box-shadow: var(--shadow-card);
+    margin-top: 64px;
+    border: 1px solid rgba(42,26,16,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 720px) {
+    .letter { padding: 56px 64px; }
+  }
+  .letter::before {
+    content: '';
+    position: absolute;
+    left: -40px; bottom: -40px;
+    width: 180px; height: 180px;
+    background: var(--mustard);
+    border-radius: 50%;
+    opacity: 0.08;
+  }
+  .letter .from {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    color: var(--tomato);
+    margin-bottom: 8px;
+    transform: rotate(-2deg);
+    display: inline-block;
+  }
+  .letter h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    color: var(--ink);
+    margin-bottom: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  .letter h2 em { color: var(--plum); font-style: italic; }
+  .letter p {
+    color: var(--ink-soft);
+    font-size: 17px;
+    margin-bottom: 16px;
+    max-width: 720px;
+  }
+  .letter .signoff {
+    margin-top: 28px;
+    font-family: 'Caveat', cursive;
+    font-size: 32px;
+    color: var(--tomato);
+    transform: rotate(-1.5deg);
+    display: inline-block;
+  }
+
+  /* ===== Mac case (the gentle push) ===== */
+  .mac-case {
+    margin-top: 64px;
+    background: linear-gradient(160deg, var(--plum) 0%, #3D1B33 100%);
+    color: var(--paper);
+    border-radius: var(--radius);
+    padding: 48px 32px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    overflow: hidden;
+  }
+  @media (min-width: 720px) {
+    .mac-case { padding: 60px 64px; }
+  }
+  .mac-case::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 360px; height: 360px;
+    background: var(--mustard);
+    border-radius: 50%;
+    opacity: 0.14;
+  }
+  .mac-case .section-label { color: var(--mustard); }
+  .mac-case .section-title { color: var(--paper); }
+  .mac-case .section-title em { color: var(--mustard); }
+  .mac-case .section-intro { color: rgba(255,251,241,0.85); }
+
+  .reasons {
+    display: grid;
+    gap: 22px;
+    grid-template-columns: 1fr;
+    margin-top: 28px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (min-width: 720px) {
+    .reasons { grid-template-columns: 1fr 1fr; gap: 28px; }
+  }
+  .reason {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .reason-icon {
+    width: 48px; height: 48px;
+    flex-shrink: 0;
+    background: rgba(232,178,60,0.18);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .reason-icon svg { width: 26px; height: 26px; color: var(--mustard); }
+  .reason h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--paper);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .reason p {
+    font-size: 15.5px;
+    color: rgba(255,251,241,0.78);
+    line-height: 1.55;
+  }
+
+  /* ===== Decision helper ===== */
+  .decide {
+    margin-top: 64px;
+    background: var(--paper);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(42,26,16,0.06);
+  }
+  @media (min-width: 720px) {
+    .decide { padding: 56px 64px; }
+  }
+  .decide-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1fr;
+    margin-top: 24px;
+  }
+  @media (min-width: 720px) {
+    .decide-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .decide-row {
+    background: var(--cream-deep);
+    padding: 18px 22px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+  }
+  .decide-row .arrow {
+    font-family: 'Caveat', cursive;
+    color: var(--tomato);
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+  .decide-row .if {
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    flex: 1;
+  }
+  .decide-row .if strong { color: var(--ink); }
+  .decide-row .then {
+    font-family: 'DM Serif Display', serif;
+    color: var(--plum);
+    font-size: 17px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    margin-top: 80px;
+    text-align: center;
+    padding: 40px 20px 0;
+    color: var(--muted);
+    font-size: 14.5px;
+  }
+  footer .heart {
+    font-family: 'Caveat', cursive;
+    font-size: 30px;
+    color: var(--tomato);
+    margin-bottom: 12px;
+  }
+  footer a { color: var(--plum); text-decoration: none; border-bottom: 1px dashed; }
+  footer p { margin-bottom: 8px; }
+
+  /* ===== Vinyl record SVG animation ===== */
+  .spinner { animation: spin 14s linear infinite; transform-origin: center; }
+  @keyframes spin {
+    from { transform: rotate(0); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* small helpers */
+  .tilt-l { display: inline-block; transform: rotate(-2deg); }
+  .tilt-r { display: inline-block; transform: rotate(2deg); }
+</style>
+</head>
+<body>
+
+<!-- Background sprinkles: musical notes and stars -->
+<svg class="sprinkles" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1800" preserveAspectRatio="xMidYMid slice">
+  <g fill="#E8B23C" opacity="0.4">
+    <text x="80" y="160" font-family="serif" font-size="36">♪</text>
+    <text x="1050" y="280" font-family="serif" font-size="44">♫</text>
+    <text x="220" y="780" font-family="serif" font-size="32">♩</text>
+    <text x="980" y="980" font-family="serif" font-size="40">♬</text>
+    <text x="120" y="1380" font-family="serif" font-size="36">♪</text>
+    <text x="1080" y="1620" font-family="serif" font-size="32">♫</text>
+  </g>
+  <g fill="#E5503A" opacity="0.32">
+    <text x="540" y="140" font-family="serif" font-size="22">✦</text>
+    <text x="900" y="540" font-family="serif" font-size="26">✦</text>
+    <text x="380" y="1180" font-family="serif" font-size="20">✦</text>
+    <text x="760" y="1740" font-family="serif" font-size="24">✦</text>
+  </g>
+  <g fill="#3F6A4A" opacity="0.32">
+    <text x="660" y="420" font-family="serif" font-size="30">♬</text>
+    <text x="160" y="1080" font-family="serif" font-size="34">♫</text>
+    <text x="880" y="1340" font-family="serif" font-size="28">♪</text>
+  </g>
+</svg>
+
+<div class="page">
+
+  <!-- ===== Stamp row ===== -->
+  <div class="stamp-row">
+    <span class="stamp">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+      </svg>
+      from Keith, with love
+    </span>
+    <span class="date-tag">May 2026</span>
+  </div>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero">
+    <div class="hi-jeanne">Hey Jeanne! <span class="wave">👋</span></div>
+    <h1>You asked for a laptop recommendation. So I made you a <em>whole little guide.</em></h1>
+    <p class="lede">You said "good, better, best" and I figured the easiest way to actually help you decide is to do the homework for you, put it on a pretty page, and write down what I actually think.</p>
+    <p class="lede">All three of these are on Amazon. Tap the buttons and you can order any of them in about thirty seconds. There's also a short pitch from me about why I'd nudge you toward a Mac, but no pressure - all three picks are good.</p>
+    <div class="hero-decor">
+      <!-- vinyl record -->
+      <svg width="56" height="56" viewBox="0 0 100 100" fill="none">
+        <g class="spinner">
+          <circle cx="50" cy="50" r="46" fill="#14110F"/>
+          <circle cx="50" cy="50" r="46" fill="none" stroke="#3a322c" stroke-width="0.5" stroke-dasharray="2,2"/>
+          <circle cx="50" cy="50" r="38" fill="none" stroke="#3a322c" stroke-width="0.5"/>
+          <circle cx="50" cy="50" r="30" fill="none" stroke="#3a322c" stroke-width="0.5"/>
+          <circle cx="50" cy="50" r="22" fill="#E5503A"/>
+          <circle cx="50" cy="50" r="3" fill="#14110F"/>
+        </g>
+      </svg>
+      <span>three picks, side A through side C</span>
+    </div>
+  </section>
+
+  <!-- ===== The Picks ===== -->
+  <section class="section" id="picks">
+    <span class="section-label">the tracklist</span>
+    <h2 class="section-title">Three picks. <em>Good, better, best.</em></h2>
+    <p class="section-intro">I priced these in May 2026 - Amazon prices wiggle a few bucks day to day, but the picks are solid. Each one is a real laptop I'd be comfortable handing to my sister.</p>
+
+    <div class="picks">
+
+      <!-- ============================ GOOD ============================ -->
+      <article class="pick good">
+        <div class="pick-track">Side A · Track 01</div>
+        <div class="pick-tier">The Workhorse</div>
+
+        <div class="pick-art">
+          <!-- laptop SVG (PC, neutral gray) -->
+          <svg viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lapGray" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#9DA3AB"/>
+                <stop offset="1" stop-color="#6F767F"/>
+              </linearGradient>
+            </defs>
+            <!-- screen body -->
+            <rect x="36" y="18" width="148" height="92" rx="6" fill="url(#lapGray)" stroke="#2A1A10" stroke-width="1.5"/>
+            <rect x="44" y="26" width="132" height="76" rx="3" fill="#1A2A3A"/>
+            <!-- "music wave" on screen -->
+            <g stroke="#E8B23C" stroke-width="1.8" stroke-linecap="round" fill="none">
+              <path d="M58 64 Q72 50 86 64 T114 64 T142 64 T170 64"/>
+              <path d="M58 74 Q72 86 86 74 T114 74 T142 74 T170 74" stroke="#E5503A"/>
+            </g>
+            <!-- base -->
+            <path d="M22 110 L198 110 L210 124 L10 124 Z" fill="#7A828B" stroke="#2A1A10" stroke-width="1.5"/>
+            <rect x="92" y="113" width="36" height="3" rx="1.5" fill="#2A1A10"/>
+          </svg>
+        </div>
+
+        <div class="pick-name">Acer Aspire 5 - 15.6" Touchscreen</div>
+        <div class="pick-price">$549</div>
+        <div class="pick-price-note">often on sale - check current Amazon price</div>
+
+        <ul class="specs">
+          <li>Intel Core i7 (13th gen) - plenty fast for everyday stuff</li>
+          <li>16 GB memory, 512 GB SSD storage</li>
+          <li>15.6" Full HD touchscreen, anti-glare</li>
+          <li>Backlit keyboard, Wi-Fi 6E, USB-C / Thunderbolt 4</li>
+          <li>Windows 11 - familiar territory for you</li>
+        </ul>
+
+        <div class="pick-why">
+          <h4>why this one</h4>
+          <p>If you mostly browse, email, watch YouTube, and dabble in photos, this is the no-fuss workhorse. Big screen, solid specs, and the price leaves money in your pocket. You won't be wowed by it - but you also won't be annoyed by it.</p>
+        </div>
+
+        <div class="quotes">
+          <div class="quote">
+            <span class="stars">★★★★★</span>"Set it up in about ten minutes. Fast, light, screen looks great. For under $600 I couldn't be happier."
+            <span class="reviewer">Verified Amazon reviewer</span>
+          </div>
+          <div class="quote">
+            <span class="stars">★★★★☆</span>"Keyboard feels a touch flimsy but everything works perfectly. My 70-year-old mom uses one and loves it."
+            <span class="reviewer">Verified Amazon reviewer</span>
+          </div>
+        </div>
+
+        <a class="btn" href="https://www.amazon.com/s?k=acer+aspire+5+15.6+i7+16gb+512gb+touchscreen" target="_blank" rel="noopener">
+          See it on Amazon
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- ============================ BETTER ============================ -->
+      <article class="pick better">
+        <div class="pick-track">Side B · Track 02</div>
+        <div class="pick-tier">The Upgrade</div>
+
+        <div class="pick-art">
+          <svg viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lapSilver" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#C5CBD3"/>
+                <stop offset="1" stop-color="#8A929C"/>
+              </linearGradient>
+            </defs>
+            <rect x="36" y="18" width="148" height="92" rx="6" fill="url(#lapSilver)" stroke="#2A1A10" stroke-width="1.5"/>
+            <rect x="44" y="26" width="132" height="76" rx="3" fill="#0F1A24"/>
+            <!-- equalizer bars -->
+            <g fill="#E8B23C">
+              <rect x="60" y="60" width="6" height="18" rx="1"/>
+              <rect x="72" y="50" width="6" height="28" rx="1"/>
+              <rect x="84" y="42" width="6" height="36" rx="1"/>
+              <rect x="96" y="54" width="6" height="24" rx="1"/>
+              <rect x="108" y="36" width="6" height="42" rx="1"/>
+              <rect x="120" y="48" width="6" height="30" rx="1"/>
+              <rect x="132" y="58" width="6" height="20" rx="1"/>
+              <rect x="144" y="44" width="6" height="34" rx="1"/>
+              <rect x="156" y="52" width="6" height="26" rx="1"/>
+            </g>
+            <path d="M22 110 L198 110 L210 124 L10 124 Z" fill="#9AA2AC" stroke="#2A1A10" stroke-width="1.5"/>
+            <rect x="92" y="113" width="36" height="3" rx="1.5" fill="#2A1A10"/>
+          </svg>
+        </div>
+
+        <div class="pick-name">HP Pavilion 15 - Touchscreen, 1 TB</div>
+        <div class="pick-price">$729</div>
+        <div class="pick-price-note">a sweet middle - more storage, nicer build</div>
+
+        <ul class="specs">
+          <li>Intel Core i7 - smooth on everyday tasks for years</li>
+          <li>16 GB memory, <strong>1 TB</strong> SSD (twice the storage)</li>
+          <li>15.6" Full HD touchscreen, anti-glare</li>
+          <li>Up to 11 hours of battery on a charge</li>
+          <li>Cleaner build, better keyboard than the Aspire</li>
+        </ul>
+
+        <div class="pick-why">
+          <h4>why this one</h4>
+          <p>The upgrade you feel. Twice the storage so you'll never have to think about it, a tidier build, and a battery that goes most of a day. If you want the "regular PC" experience but a step nicer, this is the one.</p>
+        </div>
+
+        <div class="quotes">
+          <div class="quote">
+            <span class="stars">★★★★★</span>"Replacement for my old HP after eight years. This one is quieter, faster, and the screen is gorgeous. Easy buy."
+            <span class="reviewer">Verified Amazon reviewer</span>
+          </div>
+          <div class="quote">
+            <span class="stars">★★★★★</span>"Great for streaming, photos, and Zoom calls with the grandkids. Speakers are actually surprisingly nice."
+            <span class="reviewer">Verified Amazon reviewer</span>
+          </div>
+        </div>
+
+        <a class="btn" href="https://www.amazon.com/HP-Pavilion-Touchscreen-Anti-Glare-Processor/dp/B0C4G4L53W" target="_blank" rel="noopener">
+          See it on Amazon
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- ============================ BEST ============================ -->
+      <article class="pick best">
+        <div class="pick-track">Side C · Track 03</div>
+        <div class="pick-tier">The Showstopper</div>
+
+        <div class="pick-art">
+          <svg viewBox="0 0 220 140" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lapBlue" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#A8C5DD"/>
+                <stop offset="1" stop-color="#7DA3C0"/>
+              </linearGradient>
+            </defs>
+            <rect x="30" y="14" width="160" height="98" rx="8" fill="url(#lapBlue)" stroke="#2A1A10" stroke-width="1.5"/>
+            <rect x="38" y="22" width="144" height="82" rx="4" fill="#11141B"/>
+            <!-- apple-ish glow logo (just an abstract dot, not the actual apple) -->
+            <circle cx="110" cy="63" r="14" fill="none" stroke="#E5503A" stroke-width="2.2"/>
+            <circle cx="110" cy="63" r="6" fill="#E8B23C"/>
+            <!-- screen reflection -->
+            <rect x="44" y="28" width="60" height="3" rx="1.5" fill="#22303F" opacity="0.7"/>
+            <path d="M14 112 L206 112 L218 126 L2 126 Z" fill="#C8D6E2" stroke="#2A1A10" stroke-width="1.5"/>
+            <rect x="92" y="115" width="36" height="3" rx="1.5" fill="#2A1A10"/>
+          </svg>
+        </div>
+
+        <div class="pick-name">MacBook Air 15" - M4 chip, Sky Blue</div>
+        <div class="pick-price">$999</div>
+        <div class="pick-price-note">recently $400 off - same M4 that ran $1,399 at launch</div>
+
+        <ul class="specs">
+          <li>Apple M4 chip - blistering, silent, sips battery</li>
+          <li>16 GB unified memory, 256 GB SSD</li>
+          <li>15.3" Liquid Retina display (gorgeous, big)</li>
+          <li><strong>Six-speaker sound system</strong> - actually wonderful for music</li>
+          <li>Up to 18 hours of battery - really 18 hours</li>
+          <li>Fanless: completely silent. Always.</li>
+        </ul>
+
+        <div class="pick-why">
+          <h4>why this one</h4>
+          <p>This is the one I'd buy you if I were buying. The screen is the prettiest on this page. The speakers are a real, audible upgrade - you'll notice the difference the first time you put on a song. It's silent, it never gets hot, and you'll still be happy with it in 2032.</p>
+        </div>
+
+        <div class="quotes">
+          <div class="quote">
+            <span class="stars">★★★★★</span>"Switched from Windows after fifteen years. Wish I'd done it sooner. It just works. The speakers are unreal for a laptop."
+            <span class="reviewer">Verified Amazon reviewer</span>
+          </div>
+          <div class="quote">
+            <span class="stars">★★★★★</span>"My mother is 71 and was scared to switch. Two weeks in she said she'd never go back. The size of the screen and the speakers sold her."
+            <span class="reviewer">Verified Amazon reviewer</span>
+          </div>
+        </div>
+
+        <a class="btn" href="https://www.amazon.com/Apple-2025-MacBook-15-inch-Laptop/dp/B0DZDBWM5B" target="_blank" rel="noopener">
+          See it on Amazon
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== Letter from Keith ===== -->
+  <section class="letter">
+    <div class="from">a quick note, just from me -</div>
+    <h2>If you can stretch the budget, <em>get the Mac.</em> Here's why.</h2>
+    <p>I'm not a Mac fanatic. I use a PC for work most days. But for what you actually do at home - emails, photos, YouTube rabbit holes, music, video calls with the family, the occasional tax document - the MacBook Air is just plainly the nicer thing to live with.</p>
+    <p>Three reasons specifically for you:</p>
+    <p><strong>Music sounds better on it.</strong> You're the person in our family most likely to be listening to something good while doing something else. The six speakers in the Air actually fill a room. Even with no headphones, your kitchen will sound nicer.</p>
+    <p><strong>It plays well with your iPhone.</strong> Photos show up automatically. You can answer texts from the laptop. AirPods just work. If you have an iPhone (you do), the rest of the Apple stuff fits together like Lego.</p>
+    <p><strong>It will outlast the PCs by years.</strong> Macs age slower. The $400 difference between the HP and the Mac stretches across 6-8 years, which is roughly $50 a year for "I love using this thing" - which is a very good deal.</p>
+    <p>If the money matters more than the experience, get the HP - it's a real laptop and you'll be fine. But if you're on the fence, I'd push you toward the Mac every time.</p>
+    <span class="signoff">love you, Keith ✿</span>
+  </section>
+
+  <!-- ===== Mac case (the visual reasons block) ===== -->
+  <section class="mac-case">
+    <span class="section-label">why I'd push you toward the Mac</span>
+    <h2 class="section-title">Six small reasons that <em>add up to a lot.</em></h2>
+    <p class="section-intro">If you decide the Mac is worth the extra two hundred bucks, these are the things you'll actually notice in the first week.</p>
+
+    <div class="reasons">
+
+      <div class="reason">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </div>
+        <div>
+          <h3>The speakers are a love letter to music.</h3>
+          <p>Six-speaker spatial audio system. Most laptops have two tinny speakers. This one fills a room.</p>
+        </div>
+      </div>
+
+      <div class="reason">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><path d="M23 10v4"/></svg>
+        </div>
+        <div>
+          <h3>The battery actually lasts all day.</h3>
+          <p>18 hours, no exaggeration. Plug it in at night, forget the charger exists during the day.</p>
+        </div>
+      </div>
+
+      <div class="reason">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <h3>Zero fan noise. Ever.</h3>
+          <p>The Air has no fan. It's completely silent, even when working hard. PC laptops sound like a hair dryer eventually.</p>
+        </div>
+      </div>
+
+      <div class="reason">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        </div>
+        <div>
+          <h3>Your iPhone and it become friends.</h3>
+          <p>Photos sync. Texts show up. Calls ring on it. AirDrop. The whole Apple thing actually delivers.</p>
+        </div>
+      </div>
+
+      <div class="reason">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h3>No viruses, basically.</h3>
+          <p>Macs are much harder to break with sketchy email links or weird downloads. Peace of mind that's hard to put a price on.</p>
+        </div>
+      </div>
+
+      <div class="reason">
+        <div class="reason-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div>
+          <h3>It will still feel new in 2030.</h3>
+          <p>Apple updates Macs for 7+ years. A PC at this price will be feeling slow in three.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Decision helper ===== -->
+  <section class="decide">
+    <span class="section-label">if you're still on the fence</span>
+    <h2 class="section-title">A simple <em>gut-check</em> guide.</h2>
+    <p class="section-intro">Sometimes it helps to just match what you actually do to what you actually need. Here's how I'd think about it.</p>
+
+    <div class="decide-grid">
+
+      <div class="decide-row">
+        <div class="arrow">→</div>
+        <div class="if">If you mostly do <strong>email, web, YouTube, photos</strong> and want to spend the least</div>
+        <div class="then">Acer Aspire 5</div>
+      </div>
+
+      <div class="decide-row">
+        <div class="arrow">→</div>
+        <div class="if">If you want a <strong>nicer PC</strong> and lots of room for photos, but Windows feels familiar</div>
+        <div class="then">HP Pavilion 15</div>
+      </div>
+
+      <div class="decide-row">
+        <div class="arrow">→</div>
+        <div class="if">If you <strong>love music</strong> and want something beautiful you'll enjoy for a decade</div>
+        <div class="then">MacBook Air 15"</div>
+      </div>
+
+      <div class="decide-row">
+        <div class="arrow">→</div>
+        <div class="if">If you have an <strong>iPhone</strong> and like things that just work together</div>
+        <div class="then">MacBook Air 15"</div>
+      </div>
+
+      <div class="decide-row">
+        <div class="arrow">→</div>
+        <div class="if">If you don't want to think about <strong>antivirus, slowdowns, weird popups</strong> ever again</div>
+        <div class="then">MacBook Air 15"</div>
+      </div>
+
+      <div class="decide-row">
+        <div class="arrow">→</div>
+        <div class="if">If you'd rather <strong>save $450</strong> and still have a perfectly good laptop</div>
+        <div class="then">Acer Aspire 5</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="heart">made with love, by your brother ♥</div>
+    <p>If you want help setting it up after it arrives, just call me. I'll talk you through it.</p>
+    <p style="margin-top:14px;font-size:13px;color:var(--muted);">prices and availability shift on Amazon - tap a button to see the current deal.</p>
+  </footer>
+
+</div>
+
+</body>
+</html>
