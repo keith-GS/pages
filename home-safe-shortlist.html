@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Favicon (must be near top of head for Chrome to discover) -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://keith-gs.github.io/pages/safe-favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://keith-gs.github.io/pages/safe-favicon-192.png">
+<link rel="icon" type="image/svg+xml" href="https://keith-gs.github.io/pages/safe-favicon.svg">
+<link rel="apple-touch-icon" sizes="192x192" href="https://keith-gs.github.io/pages/safe-favicon-192.png">
+
+<title>Home Safe Shortlist - $1M Jewelry & Valuables, Basement Anchored</title>
+<meta name="description" content="Five UL-rated home safes compared for $1M of jewelry, cash, and documents. TL-30x6 sweet spot, installed-cost analysis, partner-level recommendation.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://keith-gs.github.io/pages/home-safe-shortlist.html">
+<meta property="og:title" content="Home Safe Shortlist - $1M Jewelry & Valuables">
+<meta property="og:description" content="Five UL-rated home safes compared. TL-30x6 is the sweet spot for $1M residential coverage. Installed-cost analysis and a recommendation.">
+<meta property="og:image" content="https://keith-gs.github.io/pages/home-safe-shortlist-share.png">
+<meta property="og:image:secure_url" content="https://keith-gs.github.io/pages/home-safe-shortlist-share.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Home Safe Shortlist - $1M jewelry and valuables, five UL-rated options compared with installed cost analysis.">
+<meta property="og:site_name" content="From Keith">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Home Safe Shortlist - $1M Jewelry & Valuables">
+<meta name="twitter:description" content="Five UL-rated home safes compared. TL-30x6 is the sweet spot for $1M residential coverage.">
+<meta name="twitter:image" content="https://keith-gs.github.io/pages/home-safe-shortlist-share.png">
+<meta name="twitter:image:alt" content="Home Safe Shortlist - $1M jewelry and valuables, five UL-rated options compared.">
+
+<meta name="theme-color" content="#0e1014">
+
+<style>
+  :root {
+    --bg: #0e1014;
+    --card: #1a1d24;
+    --card-2: #232730;
+    --border: #2d3340;
+    --text: #e8eaed;
+    --muted: #9aa3b2;
+    --accent: #d4af37;
+    --accent-soft: rgba(212, 175, 55, 0.12);
+    --green: #4ade80;
+    --red: #f87171;
+    --yellow: #fbbf24;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 40px 20px;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  header { margin-bottom: 50px; border-bottom: 1px solid var(--border); padding-bottom: 30px; }
+  h1 { font-size: 2.2em; margin: 0 0 8px 0; font-weight: 600; letter-spacing: -0.02em; }
+  .subtitle { color: var(--muted); font-size: 1.05em; }
+  h2 { font-size: 1.5em; margin: 40px 0 16px 0; font-weight: 600; }
+  h3 { font-size: 1.2em; margin: 0 0 8px 0; font-weight: 600; }
+
+  .tldr {
+    background: var(--accent-soft);
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin: 24px 0 40px 0;
+  }
+  .tldr h2 { margin-top: 0; color: var(--accent); }
+  .tldr p { margin: 8px 0; }
+  .tldr strong { color: var(--text); }
+
+  .insurance-callout {
+    background: var(--card);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .insurance-callout h3 { color: var(--accent); margin-bottom: 12px; }
+  .insurance-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.95em;
+  }
+  .insurance-table th, .insurance-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .insurance-table th { color: var(--muted); font-weight: 500; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .safe-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .safe-card.recommended {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent), 0 8px 30px rgba(212, 175, 55, 0.1);
+  }
+  .recommended-badge {
+    position: absolute;
+    top: -12px;
+    right: 24px;
+    background: var(--accent);
+    color: #0e1014;
+    padding: 6px 14px;
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    border-radius: 6px;
+    text-transform: uppercase;
+  }
+  .safe-image {
+    background: #ffffff;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    overflow: hidden;
+  }
+  .safe-image img {
+    max-width: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .safe-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .safe-title-block .tier {
+    color: var(--muted);
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+  .price-block { text-align: right; }
+  .price { font-size: 1.6em; font-weight: 700; color: var(--accent); }
+  .price-note { color: var(--muted); font-size: 0.85em; margin-top: 2px; }
+
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 20px 0;
+    padding: 16px;
+    background: var(--card-2);
+    border-radius: 8px;
+  }
+  .spec { font-size: 0.9em; }
+  .spec-label { color: var(--muted); font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .spec-value { color: var(--text); font-weight: 500; }
+
+  .pros-cons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
+  @media (max-width: 640px) { .pros-cons { grid-template-columns: 1fr; } }
+  .pros, .cons { background: var(--card-2); padding: 16px; border-radius: 8px; }
+  .pros h4 { color: var(--green); margin: 0 0 10px 0; font-size: 0.95em; }
+  .cons h4 { color: var(--red); margin: 0 0 10px 0; font-size: 0.95em; }
+  .pros ul, .cons ul { margin: 0; padding-left: 20px; }
+  .pros li, .cons li { margin-bottom: 6px; font-size: 0.92em; }
+
+  .links { margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .links a {
+    color: var(--accent);
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.88em;
+    transition: all 0.15s;
+  }
+  .links a:hover { background: var(--accent-soft); border-color: var(--accent); }
+
+  .total-cost-table {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+  }
+  .total-cost-table table { width: 100%; border-collapse: collapse; }
+  .total-cost-table th, .total-cost-table td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .total-cost-table th { color: var(--muted); font-weight: 500; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.05em; }
+  .total-cost-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .total-cost-table tr.total { font-weight: 700; color: var(--accent); }
+  .total-cost-table tr.total td { border-bottom: none; padding-top: 16px; }
+
+  .install-section { margin-top: 40px; }
+  .install-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .install-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .install-card h4 { color: var(--accent); margin: 0 0 8px 0; }
+  .install-card .cost { font-size: 1.3em; font-weight: 600; margin: 8px 0; }
+
+  .partner-take {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.06), rgba(212, 175, 55, 0.02));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    margin: 40px 0;
+  }
+  .partner-take h2 { margin-top: 0; color: var(--accent); }
+  .partner-take p { margin: 12px 0; }
+  .partner-take .signoff { color: var(--muted); font-style: italic; margin-top: 20px; font-size: 0.95em; }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85em; }
+  .rating-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.78em;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-right: 6px;
+  }
+  .rating-tl30x6 { background: rgba(74, 222, 128, 0.15); color: var(--green); border: 1px solid rgba(74, 222, 128, 0.3); }
+  .rating-tl30 { background: rgba(74, 222, 128, 0.1); color: #86efac; border: 1px solid rgba(74, 222, 128, 0.2); }
+  .rating-rsc { background: rgba(251, 191, 36, 0.1); color: var(--yellow); border: 1px solid rgba(251, 191, 36, 0.2); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>Home Safe Shortlist</h1>
+  <div class="subtitle">$1M jewelry, watches, cash, precious metals, documents - basement install with concrete anchoring</div>
+</header>
+
+<div class="tldr">
+  <h2>Bottom Line</h2>
+  <p><strong>Buy the AMSEC CFX352020 AmVaultx6 (TL-30x6).</strong> It is the single best ratio of insurance coverage to dollar in this market. The TL-30x6 rating is what unlocks $500K-$1M+ residential coverage with carriers like Chubb and AIG Private Client. A plain TL-30 caps you around $195K-$375K. A "gun safe" RSC caps you at $25K-$50K regardless of what is inside.</p>
+  <p><strong>All-in budget: $11,500-13,500</strong> (safe + delivery + basement placement + concrete anchoring). The safe is ~1,950 lbs, so basement access matters; get a written quote from a local pro before buying.</p>
+  <p><strong>Before you write a check, call your insurance carrier.</strong> Ask the exact question: "What burglary rating do I need for $1M of scheduled jewelry kept at home?" Different carriers will give different answers. Buy to that spec, not to a rule of thumb.</p>
+</div>
+
+<div class="insurance-callout">
+  <h3>The Insurance Math (this drives the whole decision)</h3>
+  <p>The UL rating on your safe directly caps how much value insurers will write coverage on at home. Underbuy and you are self-insuring the difference. Most people learn this after a loss.</p>
+  <table class="insurance-table">
+    <thead>
+      <tr><th>UL Rating</th><th>What it means</th><th>Typical home coverage cap</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>RSC (Residential Security Container)</td><td>5 min vs basic tools. Most "gun safes."</td><td>$5K-$50K</td></tr>
+      <tr><td>B-Rate / C-Rate</td><td>Thick steel, no UL attack test.</td><td>$10K-$75K</td></tr>
+      <tr><td>TL-15</td><td>15 min vs tools (front only).</td><td>$50K-$150K</td></tr>
+      <tr><td>TL-30</td><td>30 min vs tools (front only).</td><td>$195K standard / $375K with monitored alarm</td></tr>
+      <tr><td><strong>TL-30x6</strong></td><td><strong>30 min vs tools, all six sides.</strong></td><td><strong>$500K-$1M+ residential</strong></td></tr>
+      <tr><td>TRTL-30x6</td><td>Tools AND torch, six sides.</td><td>$1M-$2M+ (overkill for your use case)</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 16px; color: var(--muted); font-size: 0.9em;">Source: Chubb jewelry guidance recommends TL-30/TR-30 minimum for valuable jewelry. Dean Safe industry rule of thumb: TL-30x6 + alarm enables $1M residential coverage. Always confirm with your specific carrier.</p>
+</div>
+
+<h2>The Top 5</h2>
+
+<!-- Safe #1: Entry tier -->
+<div class="safe-card">
+  <div class="safe-image">
+    <img src="https://deansafe.com/cdn/shop/products/AmSec_BFX6024_1_1200x.jpg?v=1679434306" alt="AMSEC BFX6024 gun safe - 60 inch tall residential security container with 2-hour fire rating">
+  </div>
+  <div class="safe-header">
+    <div class="safe-title-block">
+      <div class="tier">Tier 1 - Entry / context only</div>
+      <h3>AMSEC BFX-6024</h3>
+      <div><span class="rating-badge rating-rsc">UL RSC</span> 2-Hour Fire (1200&deg;F)</div>
+    </div>
+    <div class="price-block">
+      <div class="price">~$5,700</div>
+      <div class="price-note">Street; MSRP $7,555</div>
+    </div>
+  </div>
+
+  <div class="specs-grid">
+    <div class="spec"><div class="spec-label">Ext (HxWxD)</div><div class="spec-value">59.25" x 24" x 21"</div></div>
+    <div class="spec"><div class="spec-label">Interior</div><div class="spec-value">8.57 cu ft</div></div>
+    <div class="spec"><div class="spec-label">Weight</div><div class="spec-value">751 lbs</div></div>
+    <div class="spec"><div class="spec-label">Fire</div><div class="spec-value">120 min</div></div>
+    <div class="spec"><div class="spec-label">Made in</div><div class="spec-value">USA (California)</div></div>
+  </div>
+
+  <p>The "premium gun safe" of the lineup. AMSEC's best-selling residential safe with real 3/8" plate door, 4-way locking bolts, and lifetime warranty. <strong>Shown here so you understand what you would be giving up.</strong> This is what most affluent homeowners buy and then discover their insurer caps coverage at $25K-$50K regardless of contents.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Why people pick it</h4>
+      <ul>
+        <li>Solid build for the price</li>
+        <li>2-hour fire rating (real)</li>
+        <li>Lifetime warranty, US-made</li>
+        <li>Light enough that two installers can move it</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Why it is wrong for you</h4>
+      <ul>
+        <li>RSC rating caps insurance coverage hard</li>
+        <li>No UL burglary test - "5 min vs basic tools"</li>
+        <li>Pry attack vulnerability vs composite TL-rated bodies</li>
+        <li>At $1M of contents, this is self-insurance theater</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="https://www.safeandvaultstore.com/collections/amsec-bfx-series-gun-safes" target="_blank">Safe and Vault Store</a>
+    <a href="https://thesafemarket.com/products/amsec-bfx-series" target="_blank">The Safe Market</a>
+    <a href="https://americansecuritysafes.com/" target="_blank">AMSEC official</a>
+  </div>
+</div>
+
+<!-- Safe #2: Hayman MV30 -->
+<div class="safe-card">
+  <div class="safe-image">
+    <img src="https://www.haymansafe.com/wp-content/uploads/2024/11/MV30-2017-closed-front-e1732641694911.png" alt="Hayman MagnaVault MV30 TL-30 high security composite safe, compact form factor">
+  </div>
+  <div class="safe-header">
+    <div class="safe-title-block">
+      <div class="tier">Tier 2 - Entry TL-30</div>
+      <h3>Hayman MV30-2618 MagnaVault</h3>
+      <div><span class="rating-badge rating-tl30">UL TL-30</span> 2-Hour Fire</div>
+    </div>
+    <div class="price-block">
+      <div class="price">~$4,500</div>
+      <div class="price-note">MSRP - real TL rating for the money</div>
+    </div>
+  </div>
+
+  <div class="specs-grid">
+    <div class="spec"><div class="spec-label">Ext (HxWxD)</div><div class="spec-value">28" x 22" x 24"</div></div>
+    <div class="spec"><div class="spec-label">Interior</div><div class="spec-value">~3 cu ft</div></div>
+    <div class="spec"><div class="spec-label">Weight</div><div class="spec-value">~1,100 lbs</div></div>
+    <div class="spec"><div class="spec-label">Fire</div><div class="spec-value">120 min</div></div>
+    <div class="spec"><div class="spec-label">Made in</div><div class="spec-value">USA (Ohio)</div></div>
+  </div>
+
+  <p>Cheapest path to a real UL TL-30 rating. Composite body with high-density concrete and double-layer steel. Hayman is the quiet workhorse brand most pros recommend when budget matters more than badge. <strong>The catch: 3 cubic feet is small.</strong> Fine if your jewelry collection is genuinely "a lot of small stuff" and you don't need document/bullion space.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Strengths</h4>
+      <ul>
+        <li>Real UL TL-30 burglary rating</li>
+        <li>Unlocks ~$195K coverage ($375K with monitored alarm)</li>
+        <li>Compact - easy basement install</li>
+        <li>Composite body resists pry/torch better than steel-only</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Tradeoffs</h4>
+      <ul>
+        <li>Small interior limits what fits as you accumulate</li>
+        <li>TL-30 (not 30x6) caps coverage well below $1M</li>
+        <li>Stock interior - no jewelry-specific drawers/inserts</li>
+        <li>Dial lock standard; electronic upgrade extra</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="https://www.safeandvaultstore.com/collections/burglar-rating-tl-30/hayman" target="_blank">Safe and Vault Store</a>
+    <a href="https://www.haymansafe.com/product-category/tl30/" target="_blank">Hayman official</a>
+    <a href="https://deansafe.com/collections/high-security-tl-30-rated-commercial-jewelry-safe" target="_blank">Dean Safe TL-30 collection</a>
+  </div>
+</div>
+
+<!-- Safe #3: AMSEC CF6528 -->
+<div class="safe-card">
+  <div class="safe-image">
+    <img src="https://deansafe.com/cdn/shop/products/dean-safe-amvault-ce6528-tl15-jewerly-safe-los-angeles-12_3b76009b-702c-4884-8fc8-813a586adfc8_1200x.jpg?v=1567035828" alt="AMSEC CF6528 AmVault TL-30 high security jewelry safe, 72 inch tall, 21 cubic foot interior">
+  </div>
+  <div class="safe-header">
+    <div class="safe-title-block">
+      <div class="tier">Tier 3 - Capacity TL-30 workhorse</div>
+      <h3>AMSEC CF6528 AmVault</h3>
+      <div><span class="rating-badge rating-tl30">UL TL-30</span> 2-Hour Fire (1850&deg;F)</div>
+    </div>
+    <div class="price-block">
+      <div class="price">~$9,800</div>
+      <div class="price-note">Street; MSRP higher</div>
+    </div>
+  </div>
+
+  <div class="specs-grid">
+    <div class="spec"><div class="spec-label">Ext (HxWxD)</div><div class="spec-value">72" x 35" x 29.5"</div></div>
+    <div class="spec"><div class="spec-label">Interior</div><div class="spec-value">21.1 cu ft</div></div>
+    <div class="spec"><div class="spec-label">Weight</div><div class="spec-value">3,359 lbs</div></div>
+    <div class="spec"><div class="spec-label">Door</div><div class="spec-value">6" composite</div></div>
+    <div class="spec"><div class="spec-label">Bolts</div><div class="spec-value">10 x 1.5" chrome</div></div>
+  </div>
+
+  <p>If you want a TL-30 AND a lot of room to grow, this is it. Full-height safe with 21 cubic feet of interior, ten massive locking bolts, and 2-hour fire at 1850&deg;F (better than most). Tested to maintain interior under 350&deg;F for the full duration. <strong>Caveat: 3,359 lbs.</strong> Basement install via narrow stairs may require a specialist crew with a stair-climber dolly, and not every basement floor will take it without spreaders.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Strengths</h4>
+      <ul>
+        <li>Huge interior - room for jewelry, cash, bullion, hard drives, documents, future growth</li>
+        <li>Real UL TL-30 rating, $250K typical coverage</li>
+        <li>1850&deg;F fire rating exceeds most carriers' requirements</li>
+        <li>10 massive 1.5" bolts; very difficult pry attack</li>
+        <li>Long-term-value brand (AMSEC, US-made)</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Tradeoffs</h4>
+      <ul>
+        <li>1.7 tons - installation is non-trivial in a basement</li>
+        <li>TL-30 (not 30x6) - still caps at $250K-$375K range</li>
+        <li>Footprint is large for what you described</li>
+        <li>Pretty utilitarian - not a "showpiece" interior</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="https://deansafe.com/products/amsec-cf-6528-amvault-high-security-safe" target="_blank">Dean Safe</a>
+    <a href="https://maximumsecurity.com/product/amsec-amvault-cf6528-american-security-ul-tl-30-high-security-safe/" target="_blank">Maximum Security</a>
+    <a href="https://safesandmore.com/products/amsec-cf6528-american-security-amvault-tl-30-high-security-safe-ul-listed-tl-30-120-minute-fire-rated-21-1-cubic-feet" target="_blank">Safes and More</a>
+    <a href="https://americansecuritysafes.com/" target="_blank">AMSEC official</a>
+  </div>
+</div>
+
+<!-- Safe #4: AMSEC CFX352020 - RECOMMENDED -->
+<div class="safe-card recommended">
+  <div class="recommended-badge">My Recommendation</div>
+  <div class="safe-image">
+    <img src="https://safesuniverse.com/wp-content/uploads/2021/06/CFX352020-1-1.jpg" alt="AMSEC CFX352020 AmVaultx6 TL-30x6 high security composite safe, 41 inch tall, all six sides UL rated">
+  </div>
+  <div class="safe-header">
+    <div class="safe-title-block">
+      <div class="tier">Tier 4 - The right answer for $1M residential</div>
+      <h3>AMSEC CFX352020 AmVaultx6</h3>
+      <div><span class="rating-badge rating-tl30x6">UL TL-30x6</span> 2-Hour Fire</div>
+    </div>
+    <div class="price-block">
+      <div class="price">~$10,800</div>
+      <div class="price-note">MSRP; ~$6,800 on sale at some dealers</div>
+    </div>
+  </div>
+
+  <div class="specs-grid">
+    <div class="spec"><div class="spec-label">Ext (HxWxD)</div><div class="spec-value">41" x 26" x 29.25"</div></div>
+    <div class="spec"><div class="spec-label">Interior</div><div class="spec-value">8.1 cu ft (35"H x 20"W x 20"D)</div></div>
+    <div class="spec"><div class="spec-label">Weight</div><div class="spec-value">1,946 lbs</div></div>
+    <div class="spec"><div class="spec-label">Burglary</div><div class="spec-value">TL-30 x 6 sides</div></div>
+    <div class="spec"><div class="spec-label">Fire</div><div class="spec-value">120 min</div></div>
+  </div>
+
+  <p><strong>This is the right answer.</strong> The "x6" is the critical detail: this safe is rated TL-30 on all six sides, not just the door. That is what insurance carriers want to see before they will write $500K-$1M+ of jewelry coverage on a single home location. Brown Safe, Graffunder, and Mutual Jewel Vault have comparable ratings but at 1.5-3x the price. AMSEC's CFX line is the sweet spot: bank-vault security pedigree at a price that does not feel ridiculous.</p>
+
+  <p><strong>Interior dimensions (35"H x 20"W x 20"D, 8.1 cu ft) match your "about 2ft by 2ft inside is plenty" target almost exactly.</strong> Plenty of room for organized jewelry trays, cash, bullion, hard drives, and documents without being absurdly oversized. You can add aftermarket jewelry drawers from Casoro, Tann USA, or directly from AMSEC's accessory line.</p>
+
+  <p><strong>At 1,946 lbs it is also the most basement-friendly of the high-security options.</strong> Two professional installers with a stair-climber can place this in most basements. Anchored with 4-5 epoxy concrete anchors to a 4000+ PSI floor, it is genuinely immovable.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Why this wins</h4>
+      <ul>
+        <li><strong>TL-30x6 unlocks $500K-$1M+ residential insurance coverage</strong></li>
+        <li>2-hour fire rating for documents and hard drives</li>
+        <li>Right size for your use case (8 cu ft is plenty for jewelry-dense)</li>
+        <li>Weight is high enough to be theft-resistant, low enough to install in a basement</li>
+        <li>AMSEC = mainstream serviceable brand; locksmiths everywhere know it</li>
+        <li>Best $/insurance-dollar in the market right now</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Honest tradeoffs</h4>
+      <ul>
+        <li>Stock interior is utilitarian - budget $400-1,200 for jewelry inserts</li>
+        <li>Smaller than the CF6528 - if collection grows big, may outgrow</li>
+        <li>Pricing varies a lot by dealer; shop 3 quotes</li>
+        <li>Still requires monitored alarm to maximize coverage with most carriers</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="https://deansafe.com/products/amsec-amvaultx6-cxf-352020-high-security-safes" target="_blank">Dean Safe</a>
+    <a href="https://maximumsecurity.com/product/amsec-amvault-cfx352020-american-security-ul-tl-30x6-high-security-safe/" target="_blank">Maximum Security</a>
+    <a href="https://americansecuritysafes.com/product/cfx-352020-high-security-safe/" target="_blank">AMSEC official spec page</a>
+    <a href="https://www.westcoastsafes.com/shop/american-security-cfx352020-tl-30x6/" target="_blank">West Coast Safes</a>
+  </div>
+</div>
+
+<!-- Safe #5: Brown Safe Gem 2418 -->
+<div class="safe-card">
+  <div class="safe-image" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; min-height: 280px;">
+    <img src="https://www.brownsafe.com/avada/wp-content/uploads/2017/07/Gem-Sizes_2418.jpg" alt="Brown Safe Gem 2418 luxury jewelry safe exterior - high gloss painted finish" style="max-height: 280px;">
+    <img src="https://www.brownsafe.com/avada/wp-content/uploads/2017/07/luxury-jewelry-safe-Tiffany.jpg" alt="Brown Safe Gem 2418 interior - Ultrasuede lined jewelry drawers, hardwood, LED lighting" style="max-height: 280px;">
+  </div>
+  <div class="safe-header">
+    <div class="safe-title-block">
+      <div class="tier">Tier 5 - Luxury jewelry experience</div>
+      <h3>Brown Safe Gem 2418 (TL-15 COM)</h3>
+      <div><span class="rating-badge rating-tl30">UL TL-15 COM</span> Fire-rated composite</div>
+    </div>
+    <div class="price-block">
+      <div class="price">$8,100 - $16,000+</div>
+      <div class="price-note">Base $5,876, jewelry-rated COM $8,098, Elite/ballistic $12K+</div>
+    </div>
+  </div>
+
+  <div class="specs-grid">
+    <div class="spec"><div class="spec-label">Ext (HxWxD)</div><div class="spec-value">24" x 18" x ~22"</div></div>
+    <div class="spec"><div class="spec-label">Interior</div><div class="spec-value">~3 cu ft</div></div>
+    <div class="spec"><div class="spec-label">Weight</div><div class="spec-value">~800-1,400 lbs</div></div>
+    <div class="spec"><div class="spec-label">Lock</div><div class="spec-value">Biometric standard</div></div>
+    <div class="spec"><div class="spec-label">Made in</div><div class="spec-value">USA (California)</div></div>
+  </div>
+
+  <p>The "experience" option. Hand-crafted in San Diego, Ultrasuede-lined jewelry drawers, hardwood necklace racks, LED lighting, biometric entry, mirror. If your partner uses this daily and the act of opening it should feel like opening a Tiffany box, this is the safe. <strong>The catch: the base Gem 2418 is only 1/2" steel door / 1/4" body and is not UL TL-rated.</strong> You need to spec up to the <strong>Gem TL-15 COM 2418 ($8,098)</strong> or higher to get a real burglary rating, and even then it is TL-15, not TL-30x6.</p>
+
+  <p>Bottom line: <strong>buy this if jewelry-display is the priority and you are okay with $195K-$375K insurance coverage</strong>, or pair it with a second TL-30x6 safe for the cash/bullion/documents bulk. The Gem is the watch-collector's flex - it is not the right answer if maximizing insurable value is the goal.</p>
+
+  <div class="pros-cons">
+    <div class="pros">
+      <h4>Strengths</h4>
+      <ul>
+        <li>Best-in-class jewelry organization (custom drawers, watch storage)</li>
+        <li>Beautiful daily-use experience</li>
+        <li>Biometric lock standard</li>
+        <li>Highly customizable - color, hardware, ballistic upgrade</li>
+        <li>US hand-crafted (San Diego); 12-16 week lead time</li>
+      </ul>
+    </div>
+    <div class="cons">
+      <h4>Tradeoffs</h4>
+      <ul>
+        <li>Base model is NOT UL TL-rated - read fine print</li>
+        <li>Even spec'd up, it is TL-15 not TL-30x6</li>
+        <li>Premium pricing; you are paying for craft, not security-per-dollar</li>
+        <li>3 cu ft - smaller than CFX352020 at higher cost</li>
+        <li>Long lead time</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="links">
+    <a href="https://www.brownsafe.com/jewelry-safes/index.html" target="_blank">Brown Safe Jewelry Safes</a>
+    <a href="https://www.brownsafe.com/jewelry-safes/specifications-2418.html" target="_blank">Gem 2418 specs</a>
+    <a href="https://www.brownsafe.com/Specifications/Gem/GemSeries_PriceSheet.pdf" target="_blank">Gem Series price sheet (PDF)</a>
+    <a href="https://shop.brownsafe.com/products/gem-safe-2418" target="_blank">Brown Safe shop</a>
+  </div>
+</div>
+
+<h2>Installation, Delivery, Anchoring</h2>
+
+<div class="install-section">
+  <p>For a 1,500-3,500 lb safe going into a basement, you are not hiring two guys with a hand truck from a moving company. You want a professional safe-mover (most safe dealers have an in-house crew or partner with one). Get a written quote with a stair fee disclosed up front.</p>
+
+  <div class="install-grid">
+    <div class="install-card">
+      <h4>Standard Delivery</h4>
+      <div class="cost">$300 - $600</div>
+      <p style="margin: 0; color: var(--muted); font-size: 0.9em;">Ground-floor garage drop-off. Most dealers offer "free shipping" but it means curbside.</p>
+    </div>
+    <div class="install-card">
+      <h4>White-Glove Placement</h4>
+      <div class="cost">$200 - $500</div>
+      <p style="margin: 0; color: var(--muted); font-size: 0.9em;">Inside placement, level, position in final spot. Add to standard delivery.</p>
+    </div>
+    <div class="install-card">
+      <h4>Basement Stair Fee</h4>
+      <div class="cost">$300 - $1,200</div>
+      <p style="margin: 0; color: var(--muted); font-size: 0.9em;">Charged per flight, per number of stairs, by weight. Heavier = more. NYC end of range higher.</p>
+    </div>
+    <div class="install-card">
+      <h4>Concrete Anchoring</h4>
+      <div class="cost">$150 - $400</div>
+      <p style="margin: 0; color: var(--muted); font-size: 0.9em;">4-5 epoxy anchors into the slab. Gold standard for $1M contents. Need 4000+ PSI concrete.</p>
+    </div>
+    <div class="install-card">
+      <h4>Floor Reinforcement (if needed)</h4>
+      <div class="cost">$0 - $800</div>
+      <p style="margin: 0; color: var(--muted); font-size: 0.9em;">Most basement slabs handle 2,000-3,500 lbs fine. Older floors may need spreader plates.</p>
+    </div>
+    <div class="install-card">
+      <h4>Monitored Alarm Tie-In</h4>
+      <div class="cost">$200 - $600 + monthly</div>
+      <p style="margin: 0; color: var(--muted); font-size: 0.9em;">Required by most insurers to unlock max coverage. Vibration sensor on safe + central station monitoring.</p>
+    </div>
+  </div>
+
+  <div class="total-cost-table">
+    <h3 style="margin-top: 0;">All-In Cost for the Recommendation (AMSEC CFX352020)</h3>
+    <table>
+      <thead>
+        <tr><th>Line Item</th><th class="num">Low</th><th class="num">High</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Safe (CFX352020)</td><td class="num">$6,800</td><td class="num">$10,800</td></tr>
+        <tr><td>Delivery + white-glove placement</td><td class="num">$500</td><td class="num">$1,100</td></tr>
+        <tr><td>Basement stair fee</td><td class="num">$300</td><td class="num">$1,200</td></tr>
+        <tr><td>Concrete anchoring (epoxy)</td><td class="num">$200</td><td class="num">$400</td></tr>
+        <tr><td>Aftermarket jewelry interior (optional)</td><td class="num">$400</td><td class="num">$1,200</td></tr>
+        <tr><td>Alarm tie-in (one-time)</td><td class="num">$200</td><td class="num">$600</td></tr>
+        <tr class="total"><td>Total installed, typical</td><td class="num">$8,400</td><td class="num">$15,300</td></tr>
+      </tbody>
+    </table>
+    <p style="color: var(--muted); font-size: 0.9em; margin-top: 16px; margin-bottom: 0;">Realistic budget: <strong style="color: var(--text);">$11,500 - $13,500 all-in.</strong> NYC pricing tends toward the high end of the install range due to labor rates and access constraints. Suburban/single-family basement installs typically come in $1,500-3,000 cheaper.</p>
+  </div>
+</div>
+
+<div class="partner-take">
+  <h2>My Take</h2>
+
+  <p><strong>If this were my decision, I'd buy the AMSEC CFX352020 today and call my insurance broker before I bought it.</strong> Here is why:</p>
+
+  <p><strong>The rating matters more than the brand.</strong> A $25K Brown Safe Gem in TL-15 is a worse insurance asset than an $11K AMSEC CFX352020 in TL-30x6. Pretty interior, lower insurable value. The luxury jewelry-safe market trades on craftsmanship and aesthetics; insurance carriers trade on UL ratings. Buy to the rating.</p>
+
+  <p><strong>"Bank-level" is a real category, and you do not need it.</strong> True bank-vault safes are TRTL-30x6 (tool AND torch resistant) and start at $25K-$50K. For $1M of jewelry kept in a private home with a monitored alarm and a properly anchored TL-30x6, you are well past the carrier's risk threshold. Spending more on burglary rating from here is diminishing returns.</p>
+
+  <p><strong>Three things that quietly matter more than which safe you pick:</strong></p>
+  <ol>
+    <li><strong>Monitored central-station alarm with vibration/seismic sensor on the safe itself.</strong> Most carriers double or triple your coverage cap when this is in place. Cost: $25-60/month.</li>
+    <li><strong>A current jewelry appraisal (within 3 years) for every piece on a scheduled rider.</strong> Without scheduled riders, your homeowner's policy probably caps jewelry at $1,500-5,000 total. Schedule everything.</li>
+    <li><strong>Don't put it in the obvious place.</strong> A 2,000 lb safe in the middle of a basement is great. A 2,000 lb safe behind a bookcase, in a utility closet, or in a finished room that does not look like the "safe room" is much better. Conceal first, anchor second.</li>
+  </ol>
+
+  <p><strong>One more thing - get the appraisal done first.</strong> If the collection is actually $1M, schedule it. If it is $400K with sentimental value that feels like $1M, that changes the math significantly (the CF6528 or even Hayman MV30 might be enough). Knowing the real number lets you buy the right safe instead of over-buying out of caution or under-buying out of cost shock.</p>
+
+  <div class="signoff">- Claude, Chief of Staff</div>
+</div>
+
+<h2>Quick Action List</h2>
+<ol>
+  <li><strong>Call your insurance broker this week.</strong> Ask: "For $X of scheduled jewelry kept at home, what UL safe rating do you require for full coverage?" Get the answer in writing.</li>
+  <li><strong>Get a current appraisal</strong> if you don't have one from the last 3 years. Most jewelers do appraisals for $50-150 per piece, or charge ~1% of value for the full collection.</li>
+  <li><strong>Request 3 quotes</strong> for the CFX352020 from regional safe dealers (Dean Safe, Maximum Security, AMSEC dealer locator). Prices vary $2K-4K on the same safe.</li>
+  <li><strong>Confirm basement access</strong> with the dealer's install crew BEFORE ordering. Send them photos of the stairs and basement door dimensions. Get the stair fee in writing.</li>
+  <li><strong>Confirm slab</strong> can hold ~2,000 lbs. Most modern basements are fine. Older NYC brownstone basements with brick floors are not - you'd need a steel spreader plate.</li>
+  <li><strong>Schedule alarm install</strong> for the same day or week. Tell the alarm company you want vibration/seismic sensing on the safe and central station monitoring.</li>
+</ol>
+
+<footer>
+  <p>Compiled May 15, 2026. Pricing from current US online dealer listings; subject to change. Insurance coverage caps are industry rules of thumb - your carrier's exact requirements override anything in this document. Always verify UL rating, fire rating, and dealer return policy before purchase. No affiliate relationships with any vendor listed.</p>
+
+  <p><strong>Primary sources:</strong>
+    <a href="https://www.chubb.com/content/dam/aem-chubb-global/amc/pdf/chubb-prs-jewelry-04-2023-ada.pdf" target="_blank" style="color: var(--accent);">Chubb jewelry insurance guide</a> |
+    <a href="https://deansafe.com/collections/high-security-tl-30x6-rated-commercial-jewelry-safes" target="_blank" style="color: var(--accent);">Dean Safe TL-30x6 collection</a> |
+    <a href="https://americansecuritysafes.com/a-tl-rated-safe-guide/" target="_blank" style="color: var(--accent);">AMSEC TL rating guide</a> |
+    <a href="https://www.homeadvisor.com/cost/safety-and-security/install-a-security-safe/" target="_blank" style="color: var(--accent);">HomeAdvisor safe install cost data</a> |
+    <a href="https://www.outdoorlife.com/gear/best-home-safes/" target="_blank" style="color: var(--accent);">Outdoor Life 2026 home safe roundup</a>
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
