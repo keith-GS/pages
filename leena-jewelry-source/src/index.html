@@ -98,6 +98,17 @@
 
   .disclaimer{text-align:center;margin-top:28px;font-size:11px;letter-spacing:0.18em;color:rgba(245,239,230,0.45);text-transform:uppercase;font-weight:300}
 
+  /* ---------- SEARCH ---------- */
+  .search-row{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:24px 0 10px;border-bottom:1px solid var(--line)}
+  .search-wrap{position:relative;flex:1;max-width:520px}
+  .search-wrap .search-icon{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:18px;pointer-events:none}
+  .search-wrap input{width:100%;background:rgba(8,7,6,0.6);border:1px solid var(--line-strong);color:var(--paper);padding:12px 38px 12px 40px;font-family:'Inter',sans-serif;font-size:13px;font-weight:300;letter-spacing:0.04em;transition:border-color .25s ease}
+  .search-wrap input::placeholder{color:rgba(245,239,230,0.4);font-style:italic;font-family:'Lora',serif}
+  .search-wrap input:focus{outline:none;border-color:var(--gold)}
+  .search-clear{position:absolute;right:8px;top:50%;transform:translateY(-50%);background:transparent;border:none;color:var(--paper-3);font-size:20px;cursor:pointer;padding:2px 8px;line-height:1}
+  .search-clear:hover{color:var(--gold)}
+  .search-result-count{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(245,239,230,0.55);white-space:nowrap}
+
   /* ---------- TOOLBAR ---------- */
   .toolbar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;padding:28px 0;border-bottom:1px solid var(--line)}
   .filters{display:flex;gap:6px;flex-wrap:wrap}
@@ -321,6 +332,14 @@
 </section>
 
 <div class="container">
+  <div class="search-row">
+    <div class="search-wrap">
+      <span class="search-icon" aria-hidden="true">&#x2315;</span>
+      <input type="search" id="search-input" placeholder="Search by name, stone, motif, era, story..." autocomplete="off">
+      <button class="search-clear" id="search-clear" type="button" aria-label="Clear search" style="display:none">&times;</button>
+    </div>
+    <span class="search-result-count" id="search-result-count"></span>
+  </div>
   <div class="toolbar">
     <div class="filters" id="filters" role="tablist" aria-label="Filter by type">
       <button class="chip active" data-filter="all">All Pieces</button>
@@ -406,9 +425,41 @@ __CATALOG_JSON__
     return !!(ANNO[piece.id] && ANNO[piece.id]._removed === true);
   }
   let SHOW_HIDDEN = false;
+  let SEARCH_QUERY = '';
+  let CURRENT_FILTER = 'all';
+
+  function pieceSearchHaystack(p){
+    // All the strings worth matching against in an instant-search
+    const parts = [];
+    parts.push(p.name || '', p.type || '', p.subtype || '', p.category || '');
+    parts.push(p.era_estimate || '', p.region_origin || '');
+    parts.push(p.metal?.type || '', p.metal?.color || '', p.metal?.hallmarks_observed || '');
+    (p.stones || []).forEach(s => {
+      parts.push(s.stone || '', s.cut || '', s.color || '', s.notes || '');
+      if(s.count_estimate) parts.push(String(s.count_estimate));
+      if(s.carat_total_estimate) parts.push(String(s.carat_total_estimate));
+    });
+    (p.design_motifs || []).forEach(m => parts.push(String(m)));
+    parts.push(p.condition || '');
+    if(p.dimensions) Object.values(p.dimensions).forEach(v => parts.push(String(v)));
+    if(p.provenance) parts.push(p.provenance.acquired_from || '', p.provenance.gift_from || '', p.provenance.notes || '');
+    parts.push(p.story || '');
+    (p.occasions_worn || []).forEach(o => parts.push(String(o)));
+    (p.tags || []).forEach(t => parts.push(String(t)));
+    if(p.valuation?.source_notes) parts.push(p.valuation.source_notes);
+    // Annotation fields (Leena's notes saved to localStorage)
+    const ann = ANNO[p.id] || {};
+    parts.push(ann.story || '', ann.occasions || '', ann.origin || '', ann.gift_from || '', ann.notes || '');
+    return parts.join(' \n ').toLowerCase();
+  }
+
   function visiblePieces(){
-    if(SHOW_HIDDEN) return CATALOG.pieces;
-    return CATALOG.pieces.filter(p => !isHidden(p));
+    let base = SHOW_HIDDEN ? CATALOG.pieces : CATALOG.pieces.filter(p => !isHidden(p));
+    if(SEARCH_QUERY){
+      const q = SEARCH_QUERY.toLowerCase();
+      base = base.filter(p => pieceSearchHaystack(p).includes(q));
+    }
+    return base;
   }
   // Dashboard math always uses the non-hidden set, regardless of view toggle.
   function metricsPieces(){
@@ -466,10 +517,21 @@ __CATALOG_JSON__
 
   // ---------- GRID ----------
   function renderGrid(filter){
+    if(filter) CURRENT_FILTER = filter;
     const grid = document.getElementById('grid');
     grid.innerHTML = '';
     const all = visiblePieces();
-    const filtered = (filter && filter !== 'all') ? all.filter(p=> p.type === filter) : all;
+    const filtered = (CURRENT_FILTER && CURRENT_FILTER !== 'all') ? all.filter(p=> p.type === CURRENT_FILTER) : all;
+
+    // Update the search result count
+    const countEl = document.getElementById('search-result-count');
+    if(countEl){
+      if(SEARCH_QUERY){
+        countEl.textContent = `${filtered.length} of ${CATALOG.pieces.length} match "${SEARCH_QUERY}"`;
+      } else {
+        countEl.textContent = '';
+      }
+    }
     filtered.forEach(p=>{
       const card = document.createElement('div');
       card.className = 'card' + (isHidden(p) ? ' hidden-piece' : '');
@@ -732,7 +794,40 @@ __CATALOG_JSON__
     hiddenToggle.addEventListener('change', ()=>{
       SHOW_HIDDEN = hiddenToggle.checked;
       renderFilters();
-      renderGrid('all');
+      renderGrid();
+    });
+  }
+
+  // Instant search - debounced for snappiness on large catalogs
+  const searchInput = document.getElementById('search-input');
+  const searchClear = document.getElementById('search-clear');
+  let searchDebounce = null;
+  if(searchInput){
+    searchInput.addEventListener('input', (e)=>{
+      const v = e.target.value;
+      if(searchClear) searchClear.style.display = v ? 'block' : 'none';
+      clearTimeout(searchDebounce);
+      searchDebounce = setTimeout(()=>{
+        SEARCH_QUERY = v.trim();
+        renderGrid();
+      }, 80);
+    });
+    searchInput.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){
+        e.target.value = '';
+        SEARCH_QUERY = '';
+        if(searchClear) searchClear.style.display = 'none';
+        renderGrid();
+      }
+    });
+  }
+  if(searchClear){
+    searchClear.addEventListener('click', ()=>{
+      if(searchInput) searchInput.value = '';
+      SEARCH_QUERY = '';
+      searchClear.style.display = 'none';
+      renderGrid();
+      searchInput?.focus();
     });
   }
 
