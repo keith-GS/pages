@@ -1,0 +1,975 @@
+{
+  "$schema_version": "1.0",
+  "collection": {
+    "owner": "Leena Punjabi",
+    "curator": "Keith Smith",
+    "title": "The Punjabi Collection",
+    "subtitle": "A private archive of heritage and contemporary jewelry",
+    "established": "2026-05-15",
+    "last_updated": "2026-05-18",
+    "valuation_disclaimer": "All valuations below are conservative web-research estimates pending formal in-person appraisal by a GIA-certified gemologist. Replacement values shown are intended for insurance scheduling and are subject to revision."
+  },
+  "pieces": [
+    {
+      "id": "piece-01",
+      "slug": "citrine-diamond-chandelier-earrings",
+      "name": "Citrine and Diamond Chandelier Earrings",
+      "type": "earrings",
+      "subtype": "chandelier / shoulder-duster",
+      "category": "heritage Indian, formal",
+      "era_estimate": "contemporary, traditional Indian workmanship",
+      "region_origin": "India (likely Jaipur or Mumbai workshop tradition)",
+      "metal": {
+        "type": "white gold or rhodium-plated silver (pending hallmark inspection)",
+        "color": "white",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "citrine",
+          "count_estimate": "30-40",
+          "cut": "marquise (predominant), pear (accents)",
+          "carat_total_estimate": "12.0-18.0 ct total",
+          "color": "honey to golden yellow",
+          "notes": "Marquise-cut citrines form the structural drops; pear-cut citrines anchor the central rosettes."
+        },
+        {
+          "stone": "diamond or diamond simulant",
+          "count_estimate": "150-250 small accents",
+          "cut": "round brilliant pav\u00e9",
+          "carat_total_estimate": "1.5-3.0 ct total (pending stone-type confirmation)",
+          "color": "near-colorless",
+          "notes": "Pav\u00e9 halos surround each citrine and form the connective scrollwork."
+        }
+      ],
+      "design_motifs": [
+        "floral rosette",
+        "scrollwork drop",
+        "Mughal-inspired symmetry"
+      ],
+      "dimensions": {
+        "length_mm_estimate": "85-95",
+        "drop_mm_estimate": "70-80"
+      },
+      "condition": "excellent",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 4500,
+        "retail_replacement_range_low": 3000,
+        "retail_replacement_range_high": 6500,
+        "fair_market_usd": 2200,
+        "insurance_recommended_usd": 5000,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Conservative web comp estimate based on similar chandelier earrings in white metal with citrine and diamond accents from independent Indian designers and small luxury houses. Pending stone-type verification (genuine diamond vs simulant) and metal assay - actual replacement value could shift materially in either direction."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-01-earrings-citrine-a.jpg",
+          "alt": "Citrine chandelier earrings, front view showing pav\u00e9 diamond and marquise citrine work",
+          "type": "hero",
+          "order": 1
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-01-earrings-citrine-b.jpg",
+          "alt": "Citrine chandelier earrings, side angle showing depth and articulation",
+          "type": "side",
+          "order": 2
+        }
+      ],
+      "tags": [
+        "earrings",
+        "citrine",
+        "diamond",
+        "white-metal",
+        "formal",
+        "heritage"
+      ],
+      "created_at": "2026-05-15",
+      "updated_at": "2026-05-15"
+    },
+    {
+      "id": "piece-02",
+      "slug": "ruby-seed-pearl-art-deco-necklace",
+      "name": "Ruby and Seed Pearl Gold Necklace",
+      "type": "necklace",
+      "subtype": "bib / collar plaque on chain",
+      "category": "heritage Indian, Mughal-revival / Art Deco",
+      "era_estimate": "mid-20th century or earlier (architectural cut-work suggests pre-1960 craftsmanship)",
+      "region_origin": "India (Mughal-revival tradition; possibly Hyderabad or Jaipur)",
+      "metal": {
+        "type": "yellow gold (likely 18k or 22k - pending hallmark)",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "ruby",
+          "count_estimate": "20-30",
+          "cut": "round/cabochon (small accents)",
+          "carat_total_estimate": "1.0-2.5 ct total",
+          "color": "pinkish red",
+          "notes": "Small round rubies set as flower-center accents and rhythmic punctuation along the architectural panels."
+        },
+        {
+          "stone": "seed pearl",
+          "count_estimate": "100-200",
+          "cut": "natural seed",
+          "carat_total_estimate": null,
+          "color": "creamy white",
+          "notes": "Seed pearls outline the cut-work panels and form the floral fans - a signature of late Mughal-revival Indian work."
+        }
+      ],
+      "design_motifs": [
+        "Mughal jali (lattice)",
+        "Art Deco fan",
+        "butterfly",
+        "central floral medallion"
+      ],
+      "dimensions": {
+        "chain_length_mm_estimate": "420-460",
+        "centerpiece_width_mm_estimate": "100-120",
+        "centerpiece_drop_mm_estimate": "55-65"
+      },
+      "condition": "very good - some seed pearl loss possible; close inspection recommended",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input. Heirloom characteristics suggest possible family origin."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 8500,
+        "retail_replacement_range_low": 5500,
+        "retail_replacement_range_high": 14000,
+        "fair_market_usd": 4500,
+        "insurance_recommended_usd": 10000,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Indian heritage necklaces with seed-pearl and ruby cut-work command meaningful premiums when craftsmanship is hand-executed and pieces are older than 50 years. If this is genuinely mid-20th-century or earlier with 22k gold and natural seed pearls, the upper end of the range is conservative. A specialist in Indian antique jewelry (e.g., Sotheby's Mumbai or Bonhams' Indian sales) should evaluate."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-02-necklace-ruby-a.jpg",
+          "alt": "Ruby and seed pearl gold necklace, full view on chain",
+          "type": "hero",
+          "order": 1
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-02-necklace-ruby-b.jpg",
+          "alt": "Ruby and seed pearl gold necklace, alternate angle showing centerpiece detail",
+          "type": "detail",
+          "order": 2
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-02-necklace-ruby-c-group.jpg",
+          "alt": "Ruby and seed pearl gold necklace shown in collection context with matching pieces",
+          "type": "context",
+          "order": 3
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-02-necklace-ruby-d-group.jpg",
+          "alt": "Ruby and seed pearl gold necklace alternate context view with companion pieces",
+          "type": "context",
+          "order": 4
+        }
+      ],
+      "tags": [
+        "necklace",
+        "ruby",
+        "seed-pearl",
+        "yellow-gold",
+        "heritage",
+        "Mughal",
+        "Art-Deco"
+      ],
+      "created_at": "2026-05-15",
+      "updated_at": "2026-05-17"
+    },
+    {
+      "id": "piece-03",
+      "slug": "ruby-briolette-maang-tikka",
+      "name": "Ruby Briolette Maang Tikka",
+      "type": "maang tikka",
+      "subtype": "single-drop forehead pendant",
+      "category": "heritage Indian, bridal",
+      "era_estimate": "contemporary or 20th century (style is timeless)",
+      "region_origin": "India (Polki / Mughal-revival tradition)",
+      "metal": {
+        "type": "yellow gold with white gold accent setting (likely 18k or 22k - pending hallmark)",
+        "color": "yellow with white accent",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "ruby (briolette drop)",
+          "count_estimate": "1",
+          "cut": "faceted briolette / pear drop",
+          "carat_total_estimate": "5.0-9.0 ct (single stone)",
+          "color": "pinkish red, translucent",
+          "notes": "The centerpiece. Translucency and color saturation suggest possibly natural ruby or pink tourmaline / rubellite - identification pending."
+        },
+        {
+          "stone": "diamond",
+          "count_estimate": "15-25",
+          "cut": "round and small pav\u00e9",
+          "carat_total_estimate": "0.3-0.6 ct total",
+          "color": "near-colorless",
+          "notes": "Pav\u00e9 set in the white-gold central plaque."
+        },
+        {
+          "stone": "ruby (accents)",
+          "count_estimate": "3-5",
+          "cut": "round",
+          "carat_total_estimate": "0.2-0.4 ct total",
+          "color": "pinkish red",
+          "notes": "Small round rubies clustered at the top of the central plaque."
+        },
+        {
+          "stone": "emerald (accents)",
+          "count_estimate": "2-4",
+          "cut": "square / step",
+          "carat_total_estimate": "0.1-0.2 ct total",
+          "color": "green",
+          "notes": "Tiny emerald squares flanking the central diamond plaque - classic Indian color-pairing detail."
+        },
+        {
+          "stone": "seed pearl",
+          "count_estimate": "5",
+          "cut": "natural seed",
+          "carat_total_estimate": null,
+          "color": "creamy white",
+          "notes": "Trefoil cluster framing the briolette drop."
+        }
+      ],
+      "design_motifs": [
+        "bridal maang tikka",
+        "central diamond plaque",
+        "polki/Mughal revival",
+        "briolette drop"
+      ],
+      "dimensions": {
+        "chain_length_mm_estimate": "150-180",
+        "centerpiece_width_mm_estimate": "20-25",
+        "drop_total_mm_estimate": "60-75"
+      },
+      "condition": "excellent",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input. Possibly bridal or family ceremonial piece."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 3800,
+        "retail_replacement_range_low": 2500,
+        "retail_replacement_range_high": 7500,
+        "fair_market_usd": 1800,
+        "insurance_recommended_usd": 4500,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Maang tikka with multi-stone work (diamond plaque + ruby briolette + emerald and pearl accents) typically commands a premium when stones are genuine. The central drop is the high-leverage variable: if confirmed as a natural ruby of 5+ carats, the upper bound rises substantially. If rubellite or pink tourmaline, the figure shown stands."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-03-tikka-ruby-a.jpg",
+          "alt": "Ruby briolette maang tikka, front view showing central diamond plaque and faceted ruby drop",
+          "type": "hero",
+          "order": 1
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-03-tikka-ruby-b.jpg",
+          "alt": "Ruby briolette maang tikka, side angle showing depth and chain",
+          "type": "side",
+          "order": 2
+        }
+      ],
+      "tags": [
+        "maang-tikka",
+        "ruby",
+        "diamond",
+        "emerald",
+        "pearl",
+        "yellow-gold",
+        "bridal",
+        "heritage"
+      ],
+      "created_at": "2026-05-15",
+      "updated_at": "2026-05-15"
+    },
+    {
+      "id": "piece-04",
+      "slug": "diamond-pearl-chandelier-earrings",
+      "name": "Diamond and Pearl Chandelier Earrings",
+      "type": "earrings",
+      "subtype": "chandelier / drop",
+      "category": "heritage Indian, formal",
+      "era_estimate": "contemporary, traditional Indian workmanship",
+      "region_origin": "India",
+      "metal": {
+        "type": "white gold or rhodium-plated silver (pending hallmark inspection)",
+        "color": "white",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "diamond or diamond simulant",
+          "count_estimate": "60-100 small pav\u00e9 stones",
+          "cut": "round brilliant pav\u00e9",
+          "carat_total_estimate": "1.5-3.0 ct total (pending stone-type confirmation)",
+          "color": "near-colorless",
+          "notes": "Pav\u00e9-set in a triangular chevron grid forming the chandelier body."
+        },
+        {
+          "stone": "pearl",
+          "count_estimate": "6-8 large baroque drops + smaller pearls per pair",
+          "cut": "baroque / drop",
+          "carat_total_estimate": null,
+          "color": "creamy white, high luster",
+          "notes": "Substantial baroque pearls suspended from the diamond panel. Saltwater or freshwater - pending gem-lab examination."
+        }
+      ],
+      "design_motifs": [
+        "chandelier chevron",
+        "pearl drop fringe"
+      ],
+      "dimensions": {
+        "length_mm_estimate": "55-75",
+        "drop_mm_estimate": "45-60"
+      },
+      "condition": "excellent",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 3800,
+        "retail_replacement_range_low": 2200,
+        "retail_replacement_range_high": 6500,
+        "fair_market_usd": 1900,
+        "insurance_recommended_usd": 4500,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Comp basis: similar diamond + baroque pearl chandelier earrings from independent Indian jewelers. Variance driven by stone-type confirmation (genuine diamond vs simulant) and pearl quality (natural vs cultured, saltwater vs freshwater)."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-04-earrings-pearl-chandelier-a.jpg",
+          "alt": "Diamond and pearl chandelier earrings, full view",
+          "type": "hero",
+          "order": 1
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-04-earrings-pearl-chandelier-b.jpg",
+          "alt": "Diamond and pearl chandelier earrings, detail showing pearl drops",
+          "type": "detail",
+          "order": 2
+        }
+      ],
+      "tags": [
+        "earrings",
+        "diamond",
+        "pearl",
+        "white-metal",
+        "formal",
+        "heritage"
+      ],
+      "created_at": "2026-05-17",
+      "updated_at": "2026-05-17"
+    },
+    {
+      "id": "piece-05",
+      "slug": "emerald-polki-necklace-set",
+      "name": "Emerald and Polki Diamond Bridal Set",
+      "type": "necklace",
+      "subtype": "polki bridal collar with matching earrings",
+      "category": "heritage Indian, bridal",
+      "era_estimate": "contemporary, traditional Mughal-revival workmanship",
+      "region_origin": "India (Jaipur or Hyderabad polki tradition)",
+      "metal": {
+        "type": "yellow gold (likely 22k - pending hallmark) with white-gold or silver-backed polki settings",
+        "color": "yellow with white accent",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "polki diamond (uncut/rose-cut)",
+          "count_estimate": "80-120 across necklace + earrings",
+          "cut": "polki / flat uncut",
+          "carat_total_estimate": "10.0-18.0 ct total (pending exam)",
+          "color": "champagne to near-colorless",
+          "notes": "Hand-cut uncut diamonds set in gold foil backing - signature Mughal-revival polki technique."
+        },
+        {
+          "stone": "emerald",
+          "count_estimate": "60-100 graduated drop beads + accents",
+          "cut": "tumbled bead",
+          "carat_total_estimate": "25-50 ct total bead weight",
+          "color": "deep green",
+          "notes": "Emerald beads form the bottom fringe of the necklace and accent the earrings. Likely natural emerald with typical inclusions - origin (Zambian / Colombian) pending gem-lab."
+        },
+        {
+          "stone": "pearl",
+          "count_estimate": "20-40 small accents",
+          "cut": "seed",
+          "carat_total_estimate": null,
+          "color": "white",
+          "notes": "Small seed pearls used as architectural punctuation."
+        }
+      ],
+      "design_motifs": [
+        "polki bridal collar",
+        "emerald bead fringe",
+        "matching pair earrings",
+        "drawstring back"
+      ],
+      "dimensions": {
+        "necklace_width_mm_estimate": "140-180",
+        "necklace_drop_mm_estimate": "70-90",
+        "earring_drop_mm_estimate": "55-70"
+      },
+      "condition": "excellent",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input. Style and quality consistent with a commissioned bridal set."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 22000,
+        "retail_replacement_range_low": 14000,
+        "retail_replacement_range_high": 45000,
+        "fair_market_usd": 11000,
+        "insurance_recommended_usd": 28000,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Polki bridal sets command meaningful premiums - uncut diamonds are increasingly rare and labor-intensive to source, and emerald bead fringe at this density implies significant material cost. Comp range reflects: low end (commercial polki with simulant emeralds), mid (genuine natural emerald + polki uncut diamonds), high end (heirloom-grade with documented provenance). A specialist (Sotheby's Mumbai, Bonhams Indian sale) should evaluate. This is plausibly the most valuable piece in the collection so far."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-05-emerald-polki-set-a.jpg",
+          "alt": "Emerald and polki diamond bridal set, necklace with matching earrings laid out",
+          "type": "hero",
+          "order": 1
+        }
+      ],
+      "tags": [
+        "necklace",
+        "earrings",
+        "set",
+        "polki",
+        "emerald",
+        "diamond",
+        "yellow-gold",
+        "bridal",
+        "heritage"
+      ],
+      "created_at": "2026-05-17",
+      "updated_at": "2026-05-17"
+    },
+    {
+      "id": "piece-07",
+      "slug": "ruby-cabochon-diamond-bangle",
+      "name": "Ruby Cabochon and Diamond Bangle",
+      "type": "bangle",
+      "subtype": "hinged bangle with central floral motif",
+      "category": "heritage Indian, formal",
+      "era_estimate": "contemporary or 20th century (style is classic Mughal-revival)",
+      "region_origin": "India",
+      "metal": {
+        "type": "yellow gold (likely 18k or 22k - pending hallmark)",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "ruby (cabochon)",
+          "count_estimate": "2 main cabochons",
+          "cut": "oval cabochon",
+          "carat_total_estimate": "3.0-6.0 ct total (two stones)",
+          "color": "pinkish-red, translucent",
+          "notes": "Two oval ruby cabochons in petal frames forming the central yin-yang motif. Could be ruby, rubellite, or pink tourmaline - identification pending."
+        },
+        {
+          "stone": "diamond",
+          "count_estimate": "60-100 small accents",
+          "cut": "round and rose-cut",
+          "carat_total_estimate": "1.0-2.0 ct total",
+          "color": "near-colorless to champagne",
+          "notes": "Pav\u00e9 and rose-cut diamonds set into the floral frame and along the inner band."
+        }
+      ],
+      "design_motifs": [
+        "yin-yang ruby twin-cabochon centerpiece",
+        "petal frame",
+        "diamond-set inner band"
+      ],
+      "dimensions": {
+        "inner_diameter_mm_estimate": "55-62",
+        "centerpiece_width_mm_estimate": "32-38"
+      },
+      "condition": "excellent",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 5500,
+        "retail_replacement_range_low": 3500,
+        "retail_replacement_range_high": 11000,
+        "fair_market_usd": 2800,
+        "insurance_recommended_usd": 7000,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Bangle valuation pivots on (a) gold content and weight, (b) ruby identification (natural ruby of 2+ct each commands a sharp premium over rubellite), and (c) total diamond carat. Comp range based on similar Mughal-revival ruby-and-diamond bangles from independent Indian jewelers."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-07-bangle-ruby-cabochon-a.jpg",
+          "alt": "Ruby cabochon and diamond bangle, full view",
+          "type": "hero",
+          "order": 1
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-07-bangle-ruby-cabochon-b.jpg",
+          "alt": "Ruby cabochon and diamond bangle, close-up of centerpiece",
+          "type": "detail",
+          "order": 2
+        }
+      ],
+      "tags": [
+        "bangle",
+        "bracelet",
+        "ruby",
+        "diamond",
+        "yellow-gold",
+        "heritage"
+      ],
+      "created_at": "2026-05-17",
+      "updated_at": "2026-05-17"
+    },
+    {
+      "id": "piece-08",
+      "slug": "gold-bangle-star-set-diamonds",
+      "name": "Gold Bangle with Star-Set Diamonds",
+      "type": "bangle",
+      "subtype": "wide gold band with bezel-set diamond accents",
+      "category": "contemporary, day-wear",
+      "era_estimate": "contemporary",
+      "region_origin": "India or Middle East (style is broadly continental)",
+      "metal": {
+        "type": "yellow gold (likely 18k or 22k - pending hallmark)",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "diamond",
+          "count_estimate": "10-14 stones distributed around the band",
+          "cut": "round brilliant, bezel/star-set",
+          "carat_total_estimate": "0.5-1.5 ct total",
+          "color": "near-colorless",
+          "notes": "Bezel-set diamonds distributed in a constellation pattern around the band, framed by milgrain detail."
+        }
+      ],
+      "design_motifs": [
+        "constellation diamond placement",
+        "milgrain edging",
+        "wide gold band"
+      ],
+      "dimensions": {
+        "inner_diameter_mm_estimate": "58-65",
+        "band_width_mm_estimate": "8-12"
+      },
+      "condition": "excellent",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input. Versatile day piece - stackable."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 3500,
+        "retail_replacement_range_low": 2200,
+        "retail_replacement_range_high": 6500,
+        "fair_market_usd": 1800,
+        "insurance_recommended_usd": 4500,
+        "confidence": "medium",
+        "status": "pending_appraisal",
+        "source_notes": "Plain-gold-with-diamond-accent bangles trade primarily on gold weight and content. At 22k and ~25g, the gold floor alone is ~$2,000-$2,500 at current spot. Diamonds add roughly the same again on top. Higher karat (24k) would push the floor higher."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-08-bangle-gold-stars-a.jpg",
+          "alt": "Gold bangle with star-set diamonds, in hand",
+          "type": "hero",
+          "order": 1
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-08-bangle-gold-stars-b.jpg",
+          "alt": "Gold bangle with star-set diamonds, top-down view",
+          "type": "side",
+          "order": 2
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-08-bangle-gold-stars-c.jpg",
+          "alt": "Gold bangle with star-set diamonds, 3/4 angle showing band depth",
+          "type": "detail",
+          "order": 3
+        }
+      ],
+      "tags": [
+        "bangle",
+        "bracelet",
+        "diamond",
+        "yellow-gold",
+        "day-wear",
+        "contemporary"
+      ],
+      "created_at": "2026-05-17",
+      "updated_at": "2026-05-17"
+    },
+    {
+      "id": "piece-09",
+      "slug": "ruby-cabochon-cluster-earrings",
+      "name": "Ruby Cabochon Cluster Earrings",
+      "type": "earrings",
+      "subtype": "clip / stud cluster",
+      "category": "heritage Indian, formal",
+      "era_estimate": "contemporary or 20th century",
+      "region_origin": "India",
+      "metal": {
+        "type": "yellow gold (likely 18k or 22k - pending hallmark)",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "ruby (cabochon)",
+          "count_estimate": "2 (one per earring)",
+          "cut": "oval cabochon",
+          "carat_total_estimate": "1.5-3.0 ct total (pair)",
+          "color": "pinkish-red",
+          "notes": "Oval ruby cabochon centerpiece, matching companion to piece-07 (ruby cabochon bangle) - possibly part of a parure."
+        },
+        {
+          "stone": "diamond",
+          "count_estimate": "30-50 small accents per pair",
+          "cut": "round and rose-cut",
+          "carat_total_estimate": "0.5-1.0 ct total",
+          "color": "near-colorless",
+          "notes": "Floral cluster of small diamonds framing each cabochon."
+        }
+      ],
+      "design_motifs": [
+        "floral cluster",
+        "ruby cabochon centerpiece",
+        "matching companion to piece-07"
+      ],
+      "dimensions": {
+        "height_mm_estimate": "15-22",
+        "width_mm_estimate": "14-20"
+      },
+      "condition": "excellent",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input. May be from the same set as piece-07 (ruby cabochon bangle)."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 2200,
+        "retail_replacement_range_low": 1400,
+        "retail_replacement_range_high": 4500,
+        "fair_market_usd": 1100,
+        "insurance_recommended_usd": 2800,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Cluster earrings comp basis: similar ruby-and-diamond cluster earrings from independent Indian jewelers. If confirmed as a matched parure with piece-07, the combined set valuation should reflect a set premium of approximately 15-20%."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-09-earrings-ruby-cluster-a.jpg",
+          "alt": "Ruby cabochon cluster earrings, pair",
+          "type": "hero",
+          "order": 1
+        }
+      ],
+      "tags": [
+        "earrings",
+        "ruby",
+        "diamond",
+        "yellow-gold",
+        "cluster",
+        "heritage"
+      ],
+      "created_at": "2026-05-17",
+      "updated_at": "2026-05-17"
+    },
+    {
+      "id": "piece-10",
+      "slug": "oura-ring-gen3",
+      "name": "Oura Ring Gen 3",
+      "type": "ring",
+      "subtype": "wearable tech",
+      "category": "contemporary, daily-wear (not heritage)",
+      "era_estimate": "2024-2026 (Oura Gen 3 era)",
+      "region_origin": "Finland (Oura HQ)",
+      "metal": {
+        "type": "titanium with PVD coating",
+        "color": "stealth black",
+        "estimated_weight_g": 6,
+        "hallmarks_observed": "OURA Gen 3 Size 12"
+      },
+      "stones": [],
+      "design_motifs": [
+        "smart wearable",
+        "health tracking",
+        "Oura"
+      ],
+      "dimensions": {
+        "ring_size_us": "12",
+        "band_width_mm_estimate": "8"
+      },
+      "condition": "good - daily wear",
+      "provenance": {
+        "acquired_from": "Oura",
+        "acquired_when": "2024-2026",
+        "gift_from": null,
+        "notes": "Keith's daily wellness tracker. Added during sync-pipeline testing."
+      },
+      "story": "",
+      "occasions_worn": [
+        "every day"
+      ],
+      "valuation": {
+        "retail_replacement_usd": 399,
+        "retail_replacement_range_low": 299,
+        "retail_replacement_range_high": 549,
+        "fair_market_usd": 150,
+        "insurance_recommended_usd": 400,
+        "confidence": "high",
+        "status": "self_estimated",
+        "source_notes": "Oura Ring Gen 3 retail $299-$549 depending on finish. Brilliant Stealth model approximately $399. Subscription required for full feature use; not factored into hardware replacement value."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-10-oura-ring-a.jpg",
+          "alt": "Oura Ring Gen 3 - inscription view showing Size 12",
+          "type": "hero",
+          "order": 1
+        },
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-10-oura-ring-b.jpg",
+          "alt": "Oura Ring Gen 3 - profile view on dark background",
+          "type": "side",
+          "order": 2
+        }
+      ],
+      "tags": [
+        "ring",
+        "wearable",
+        "tech",
+        "titanium",
+        "daily",
+        "test-piece"
+      ],
+      "created_at": "2026-05-18",
+      "updated_at": "2026-05-18"
+    },
+    {
+      "id": "piece-11",
+      "slug": "blue-cabochon-drop-earrings",
+      "name": "Blue Cabochon Drop Earrings",
+      "type": "earrings",
+      "subtype": "drop / cluster",
+      "category": "contemporary, day-wear",
+      "era_estimate": "contemporary",
+      "region_origin": "(pending Leena's input)",
+      "metal": {
+        "type": "yellow gold (pending hallmark inspection)",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "kyanite or moonstone (translucent blue-grey cabochon)",
+          "count_estimate": "2 main cabochons",
+          "cut": "round cabochon",
+          "carat_total_estimate": "3.0-6.0 ct total (pair)",
+          "color": "translucent blue-grey",
+          "notes": "Stone identification pending - appearance suggests kyanite, moonstone, or labradorite. Round button-shaped cabochon set on a chain drop."
+        },
+        {
+          "stone": "pearl (accent)",
+          "count_estimate": "2 small drops",
+          "cut": "small round",
+          "carat_total_estimate": null,
+          "color": "white",
+          "notes": "Tiny pearl drop hanging below each cabochon."
+        }
+      ],
+      "design_motifs": [
+        "gold cluster top",
+        "cabochon drop",
+        "small pearl accent"
+      ],
+      "dimensions": {
+        "drop_total_mm_estimate": "30-40",
+        "cabochon_diameter_mm_estimate": "8-12"
+      },
+      "condition": "excellent",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 320,
+        "retail_replacement_range_low": 180,
+        "retail_replacement_range_high": 750,
+        "fair_market_usd": 150,
+        "insurance_recommended_usd": 400,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Comp basis: contemporary cabochon drop earrings in gold from independent designers. Wide range driven by stone identification (moonstone < kyanite < labradorite at upper end) and gold karat/weight. Light day-wear piece."
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-11-earrings-blue-cabochon-a.jpg",
+          "alt": "Blue cabochon drop earrings, pair view",
+          "type": "hero",
+          "order": 1
+        }
+      ],
+      "tags": [
+        "earrings",
+        "cabochon",
+        "kyanite",
+        "moonstone",
+        "yellow-gold",
+        "drop",
+        "day-wear"
+      ],
+      "created_at": "2026-05-18",
+      "updated_at": "2026-05-18"
+    }
+  ]
+}
