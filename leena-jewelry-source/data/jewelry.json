@@ -1118,6 +1118,79 @@
       ],
       "created_at": "2026-05-18",
       "updated_at": "2026-05-18"
+    },
+    {
+      "id": "piece-14",
+      "slug": "ana-luisa-gold-claw-wrap-ring",
+      "name": "Ana Luisa Gold Claw Wrap Ring",
+      "type": "ring",
+      "subtype": "wrap",
+      "category": "contemporary",
+      "era_estimate": "contemporary (pending review)",
+      "region_origin": "(pending Leena's input)",
+      "metal": {
+        "type": "yellow metal (pending hallmark)",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "diamond",
+          "count_estimate": null,
+          "cut": null,
+          "carat_total_estimate": null,
+          "color": null,
+          "notes": ""
+        }
+      ],
+      "design_motifs": [
+        "claw tips",
+        "bypass design",
+        "minimalist"
+      ],
+      "dimensions": {},
+      "condition": "good",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 95,
+        "retail_replacement_range_low": 65,
+        "retail_replacement_range_high": 150,
+        "fair_market_usd": 47,
+        "insurance_recommended_usd": 114,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Contemporary gold-tone wrap ring with pointed claw terminals by Ana Luisa brand. Features a small bezel-set diamond accent and clean modern aesthetic with Celtic-inspired detail at center. (AI-identified - confirm with Leena and appraiser.)"
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-14-ana-luisa-gold-claw-wrap-ring.jpg",
+          "alt": "Ana Luisa Gold Claw Wrap Ring",
+          "type": "hero",
+          "order": 1
+        }
+      ],
+      "tags": [
+        "ring",
+        "diamond"
+      ],
+      "created_at": "2026-05-18",
+      "updated_at": "2026-05-18"
     }
   ]
 }
