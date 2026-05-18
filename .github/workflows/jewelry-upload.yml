@@ -43,7 +43,7 @@ jobs:
         run: npm install -g staticrypt
 
       - name: Install Python deps
-        run: pip install requests Pillow imagehash
+        run: pip install requests Pillow imagehash pillow_heif
 
       - name: Determine batch_id
         id: batch
