@@ -1125,6 +1125,88 @@
       ],
       "created_at": "2026-05-18",
       "updated_at": "2026-05-18"
+    },
+    {
+      "id": "piece-16",
+      "slug": "gold-sunburst-medallion-maang-tikka-with-diamond-cluster-cen",
+      "name": "Gold Sunburst Medallion Maang Tikka with Diamond Cluster Center",
+      "type": "maang tikka",
+      "subtype": "single-drop medallion tikka with radial sunburst design",
+      "category": "heritage Indian, formal/bridal",
+      "era_estimate": "late 20th century to contemporary - the clean geometric radial lines and machine-precision symmetry suggest post-1970s manufacture, possibly 1980s-2000s Indian goldsmith work",
+      "region_origin": "India (likely North Indian tradition - Rajasthan or Gujarat); the sunburst/surya motif is pan-Indian but the execution style and chain type suggest contemporary Indian jeweler production",
+      "metal": {
+        "type": "yellow gold, likely 22k given Indian provenance (hallmark verification recommended); the warm saturation and lack of tarnish consistent with high-karat gold",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "none visible in image"
+      },
+      "stones": [
+        {
+          "stone": "diamond or diamond simulant (CZ)",
+          "count_estimate": "7-9 small stones in central cluster arrangement",
+          "cut": "round brilliant, pav\u00e9-set cluster",
+          "carat_total_estimate": "0.15-0.30 ctw if genuine diamonds",
+          "color": "white/colorless",
+          "notes": "central flower/cluster formation; could be genuine diamonds or quality CZ - requires loupe inspection to confirm"
+        }
+      ],
+      "design_motifs": [
+        "Surya (sun) radial sunburst medallion with fluted gold rays",
+        "central diamond flower cluster reminiscent of traditional tikka bindis",
+        "twisted rope border encircling the medallion perimeter",
+        "architectural spoke-work creating depth and light play"
+      ],
+      "dimensions": {
+        "centerpiece_width_mm_estimate": "28-35",
+        "drop_mm_estimate": "35-45",
+        "chain_length_mm_estimate": "250-350"
+      },
+      "condition": "excellent - appears unworn or minimally worn, no visible scratches or damage",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 2800,
+        "retail_replacement_range_low": 800,
+        "retail_replacement_range_high": 4500,
+        "fair_market_usd": 1400,
+        "insurance_recommended_usd": 3400,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Valuation hinges on gold purity and diamond authenticity. At floor (14k gold with CZ), comparable contemporary Indian jewelry retails $600-1000. At ceiling (22k gold, genuine VS diamonds, quality goldsmith work), similar maang tikkas from established Indian jewelers (Tanishq, TBZ, Kalyan) retail $3500-5000. The sunburst design is classic but not rare - value driven primarily by metal weight and stone authenticity. Chain appears to be substantial box/rolo link which adds gold weight. Recommend weighing and acid-testing the metal, plus diamond verification. (AI-identified from a single photo - confirm with Leena and appraiser.)"
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-16-gold-sunburst-medallion-maang-tikka-with-diamond-c.jpg",
+          "alt": "Gold Sunburst Medallion Maang Tikka with Diamond Cluster Center",
+          "type": "hero",
+          "order": 1
+        }
+      ],
+      "tags": [
+        "architectural",
+        "central",
+        "diamond",
+        "maang tikka",
+        "surya",
+        "twisted"
+      ],
+      "created_at": "2026-05-18",
+      "updated_at": "2026-05-18"
     }
   ]
 }
