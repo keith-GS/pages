@@ -59,9 +59,10 @@ CANONICAL_SALT = "a6421d3f8512a52b21f45d4a0dd7508b"
 # ---------------------------------------------------------------------------
 
 def fetch_manifest() -> dict:
+    """Always pull the RAW manifest (with files array), not the summary."""
     r = requests.get(
         f"{WORKER_BASE}/jewelry-status",
-        params={"batch_id": BATCH_ID},
+        params={"batch_id": BATCH_ID, "raw": "1"},
         headers={"x-gs-jewelry-secret": SECRET, "Origin": "https://keith-gs.github.io"},
         timeout=30,
     )
