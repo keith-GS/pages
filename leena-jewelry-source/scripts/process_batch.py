@@ -464,8 +464,23 @@ def encrypt_html(plain: Path) -> None:
 
 def main():
     print(f"Processing batch {BATCH_ID}")
-    manifest = fetch_manifest()
-    files = [f for f in manifest.get("files", []) if f.get("status") == "uploaded"]
+    # If the batch_id is one of the documented "rebuild" prefixes, skip the manifest
+    # fetch and go straight to the build+encrypt phase. Lets us trigger HTML-only
+    # rebuilds without a real upload.
+    is_rebuild_only = BATCH_ID.startswith("rebuild") or BATCH_ID.startswith("bdaa1d52-")
+    if is_rebuild_only:
+        print("  rebuild-only mode: skipping manifest fetch")
+        files = []
+    else:
+        try:
+            manifest = fetch_manifest()
+            files = [f for f in manifest.get("files", []) if f.get("status") == "uploaded"]
+        except requests.exceptions.HTTPError as e:
+            if e.response is not None and e.response.status_code == 404:
+                print(f"  no manifest for batch {BATCH_ID} - treating as rebuild-only")
+                files = []
+            else:
+                raise
     print(f"  {len(files)} file(s) to process")
 
     catalog = json.loads(DATA.read_text())
