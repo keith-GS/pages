@@ -113,6 +113,16 @@
   .add-photos-cta:hover{background:var(--paper);color:var(--ink);border-color:var(--paper);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,169,110,0.25)}
   .add-photos-cta span{font-size:16px;font-weight:300;line-height:1;color:var(--ink)}
 
+  .upload-status{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border:1px solid var(--gold);color:var(--gold);font-size:11px;letter-spacing:0.22em;text-transform:uppercase;background:rgba(201,169,110,0.06)}
+  .upload-status .upload-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(201,169,110,0.7);animation:pulse 1.8s ease-in-out infinite}
+  .upload-status.processing{color:var(--gold-soft);border-color:var(--gold-soft)}
+  .upload-status.success{color:#7ad28a;border-color:#7ad28a}
+  .upload-status.error{color:#d27a7a;border-color:#d27a7a}
+  .upload-status.success .upload-dot{background:#7ad28a;animation:none}
+  .upload-status.error .upload-dot{background:#d27a7a;animation:none}
+  .add-photos-cta input{cursor:pointer}
+  .add-photos-cta{cursor:pointer}
+
   .sync-btn{position:relative;padding-left:30px}
   .sync-btn .sync-dot{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(201,169,110,0.6)}
   .sync-btn.idle .sync-dot{animation:pulse 2.4s ease-in-out infinite}
@@ -320,13 +330,14 @@
       <span>Show hidden</span>
     </label>
     <div class="tools">
-      <a class="tool-btn solid add-photos-cta" href="https://drive.google.com/drive/folders/1W-wMPGMCqxTMgh6TPQ-Yj4Rqk8Igg2HX" target="_blank" rel="noopener" title="Add new photos via Google Drive">
-        <span aria-hidden="true">&#43;</span>&nbsp;&nbsp;Add Photos
-      </a>
-      <button class="tool-btn sync-btn" id="sync-btn" title="Pull new photos from Drive into the collection">
-        <span class="sync-dot" aria-hidden="true"></span>
-        <span class="sync-label">Sync New Photos</span>
-      </button>
+      <label class="tool-btn solid add-photos-cta" title="Upload jewelry photos - any number at once">
+        <input type="file" id="upload-input" accept="image/*,.heic,.heif" multiple style="display:none">
+        <span aria-hidden="true">&#43;</span>&nbsp;&nbsp;Upload Photos
+      </label>
+      <div class="upload-status" id="upload-status" style="display:none">
+        <span class="upload-dot"></span>
+        <span class="upload-label">Uploading...</span>
+      </div>
       <button class="tool-btn" id="export-btn" title="Export annotations as JSON">Export Notes</button>
       <button class="tool-btn" id="print-btn" title="Open print-friendly insurance schedule">Insurance Schedule</button>
     </div>
@@ -725,53 +736,77 @@ __CATALOG_JSON__
     });
   }
 
-  // ---------- SYNC NEW PHOTOS ----------
-  const SYNC_ENDPOINT = 'https://goodstream-ops-webhooks.good-stream.workers.dev/jewelry-sync';
+  // ---------- DIRECT UPLOAD ----------
+  const UPLOAD_ENDPOINT = 'https://goodstream-ops-webhooks.good-stream.workers.dev/jewelry-upload';
+  const STATUS_ENDPOINT = 'https://goodstream-ops-webhooks.good-stream.workers.dev/jewelry-status';
   const SYNC_SECRET = '__JEWELRY_SYNC_SECRET__';
-  const syncBtn = document.getElementById('sync-btn');
-  const syncLabel = syncBtn?.querySelector('.sync-label');
+  const uploadInput = document.getElementById('upload-input');
+  const uploadStatus = document.getElementById('upload-status');
+  const uploadLabel = uploadStatus?.querySelector('.upload-label');
 
-  function setSyncState(state, label){
-    if(!syncBtn) return;
-    syncBtn.classList.remove('idle','busy','success','error');
-    syncBtn.classList.add(state);
-    if(label && syncLabel) syncLabel.textContent = label;
+  function setUploadState(state, label){
+    if(!uploadStatus) return;
+    uploadStatus.style.display = state === 'idle' ? 'none' : 'inline-flex';
+    uploadStatus.classList.remove('processing','success','error');
+    if(state !== 'idle') uploadStatus.classList.add(state);
+    if(label && uploadLabel) uploadLabel.textContent = label;
   }
 
-  setSyncState('idle','Sync New Photos');
+  async function pollStatus(batchId, maxMinutes = 20){
+    const deadline = Date.now() + maxMinutes * 60 * 1000;
+    while(Date.now() < deadline){
+      try{
+        const r = await fetch(`${STATUS_ENDPOINT}?batch_id=${batchId}`, {
+          headers: {'x-gs-jewelry-secret': SYNC_SECRET}
+        });
+        if(r.ok){
+          const data = await r.json();
+          if(data.status === 'complete') return data;
+          if(data.status === 'error') throw new Error('processing error');
+        }
+      } catch(e){ /* keep polling */ }
+      await new Promise(r => setTimeout(r, 8000));
+    }
+    throw new Error('timed out');
+  }
 
-  async function triggerSync(){
-    setSyncState('busy','Syncing...');
+  async function handleUpload(files){
+    if(!files || files.length === 0) return;
+    setUploadState('processing', `Uploading ${files.length} photo${files.length===1?'':'s'}...`);
+    const fd = new FormData();
+    for(const f of files) fd.append('files', f);
     try{
-      const resp = await fetch(SYNC_ENDPOINT, {
+      const r = await fetch(UPLOAD_ENDPOINT, {
         method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          'x-gs-jewelry-secret': SYNC_SECRET
-        },
-        body: JSON.stringify({
-          source: 'page-button',
-          note: 'Triggered from Punjabi Collection page at ' + new Date().toISOString()
-        })
+        headers: {'x-gs-jewelry-secret': SYNC_SECRET},
+        body: fd
       });
-      const data = await resp.json().catch(()=>({ok:false}));
-      if(resp.ok && data.ok){
-        setSyncState('success','Sync queued');
-        showToast('Sync started - new pieces appear in 1-3 minutes');
-        setTimeout(()=> setSyncState('idle','Sync New Photos'), 6000);
-      } else {
-        setSyncState('error','Sync failed');
-        showToast('Sync trigger failed - try again in a moment');
-        setTimeout(()=> setSyncState('idle','Sync New Photos'), 6000);
+      const data = await r.json();
+      if(!r.ok || !data.ok) throw new Error(data.error || 'upload failed');
+
+      setUploadState('processing', `${data.files_received} uploaded - processing`);
+      showToast(`${data.files_received} photo(s) safely stored. Processing in background.`);
+
+      try{
+        await pollStatus(data.batch_id);
+        setUploadState('success', 'Done - reloading');
+        showToast('New pieces added. Refreshing page...');
+        setTimeout(()=> location.reload(), 1500);
+      } catch (pollErr){
+        setUploadState('error', 'Processing took too long');
+        showToast('Photos uploaded safely. Page may take a few minutes to update - refresh to check.');
       }
     } catch (e){
-      setSyncState('error','Network error');
-      showToast('Network error - try again');
-      setTimeout(()=> setSyncState('idle','Sync New Photos'), 6000);
+      setUploadState('error', 'Upload failed');
+      showToast('Upload failed - try again. Photos NOT lost; nothing was stored.');
+      setTimeout(()=> setUploadState('idle'), 6000);
     }
   }
 
-  syncBtn?.addEventListener('click', triggerSync);
+  uploadInput?.addEventListener('change', (e)=>{
+    handleUpload(e.target.files);
+    e.target.value = ''; // allow re-selecting same file later
+  });
 
   // ---------- INIT ----------
   renderDashboard();
