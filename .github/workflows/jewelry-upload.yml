@@ -1,0 +1,85 @@
+name: Jewelry Upload Processor
+
+# Triggered by the Cloudflare Worker /jewelry-upload endpoint via repository_dispatch.
+# Drains the R2 batch, processes images, updates the catalog, pushes the live page.
+
+on:
+  repository_dispatch:
+    types: [jewelry-upload]
+  workflow_dispatch:
+    inputs:
+      batch_id:
+        description: 'Batch ID to process (manual test)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install system deps (libheif for HEIC->JPEG)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libheif-examples imagemagick jq
+
+      - name: Install StatiCrypt
+        run: npm install -g staticrypt
+
+      - name: Install Python deps
+        run: pip install requests Pillow imagehash
+
+      - name: Determine batch_id
+        id: batch
+        run: |
+          if [ -n "${{ github.event.client_payload.batch_id }}" ]; then
+            echo "id=${{ github.event.client_payload.batch_id }}" >> $GITHUB_OUTPUT
+          elif [ -n "${{ github.event.inputs.batch_id }}" ]; then
+            echo "id=${{ github.event.inputs.batch_id }}" >> $GITHUB_OUTPUT
+          else
+            echo "No batch_id" && exit 1
+          fi
+
+      - name: Run jewelry pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          JEWELRY_SYNC_SECRET: ${{ secrets.JEWELRY_SYNC_SECRET }}
+          JEWELRY_COLLECTION_PASSWORD: ${{ secrets.JEWELRY_COLLECTION_PASSWORD }}
+          BATCH_ID: ${{ steps.batch.outputs.id }}
+          WORKER_BASE: https://goodstream-ops-webhooks.good-stream.workers.dev
+          REPO_PREFIX: leena-jewelry-source
+        run: |
+          python3 leena-jewelry-source/scripts/process_batch.py
+
+      - name: Commit and push catalog + images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add leena-jewelry-source/ leena-jewelry/
+          git diff --staged --quiet || git commit -m "Process jewelry upload batch ${{ steps.batch.outputs.id }}"
+          git push
+
+      - name: Mark batch complete in Worker
+        if: success()
+        run: |
+          curl -sS -X POST \
+            -H "Content-Type: application/json" \
+            -H "x-gs-jewelry-secret: ${{ secrets.JEWELRY_SYNC_SECRET }}" \
+            -d "{\"batch_id\":\"${{ steps.batch.outputs.id }}\",\"summary\":{\"batch_id\":\"${{ steps.batch.outputs.id }}\",\"status\":\"complete\",\"completed_at\":\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}}" \
+            "https://goodstream-ops-webhooks.good-stream.workers.dev/jewelry-batch-mark"
