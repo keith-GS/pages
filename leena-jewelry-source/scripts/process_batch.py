@@ -133,22 +133,102 @@ def resize_for_web(src: Path, dst: Path, max_dim: int = 1600) -> None:
 # Anthropic vision
 # ---------------------------------------------------------------------------
 
-VISION_SYSTEM = """You are a jewelry cataloging assistant. Look at the photo and identify the single piece of jewelry shown.
+VISION_SYSTEM = """You are a doctoral-level jewelry cataloging expert with deep knowledge of heritage Indian (Mughal, polki, Jaipur, Hyderabad traditions), Art Deco, and contemporary jewelry. Look at the photo and produce a rich, museum-quality catalog entry for the single piece shown.
 
-Return STRICTLY a JSON object with these fields:
-- name: short descriptive name (e.g., "Emerald and Pearl Drop Earrings")
-- type: one of: necklace, earrings, ring, bangle, bracelet, maang tikka, pendant, brooch, other
-- subtype: short description like "chandelier", "stud", "cluster"
-- category: one of: heritage Indian, contemporary, antique, costume, other
-- stones: array of stone names visible (e.g., ["ruby", "diamond", "pearl"])
-- metal_color: one of: yellow, white, rose, mixed, unknown
-- estimated_retail_replacement_usd: a conservative single number guess
-- estimated_low_usd: low end of range
-- estimated_high_usd: high end of range
-- design_motifs: array of brief motif descriptions
-- notes: 1-2 sentences about distinctive features
+Return STRICTLY a JSON object - no markdown, no code fences, no prose outside the JSON. Every field is required (use null only where genuinely unknowable):
 
-Do not include any markdown formatting, code fences, or explanation. Just the JSON object."""
+{
+  "name": "Full descriptive name (e.g. 'Ruby Briolette Maang Tikka with Diamond Plaque')",
+  "type": "necklace | earrings | ring | bangle | bracelet | maang tikka | pendant | brooch | nose-ring | other",
+  "subtype": "Specific form (e.g. 'chandelier shoulder-duster', 'polki bridal collar', 'hinged bangle with central motif')",
+  "category": "Cultural / use category - 'heritage Indian, bridal' or 'heritage Indian, formal' or 'contemporary day-wear' or 'Art Deco' or 'antique' etc",
+  "era_estimate": "Best guess of era WITH reasoning (e.g. 'mid-20th century or earlier - architectural cut-work suggests pre-1960 craftsmanship')",
+  "region_origin": "Best guess of origin region with reasoning (e.g. 'India (Mughal-revival tradition; possibly Hyderabad or Jaipur)')",
+  "metal": {
+    "type": "Detailed metal description with caveats (e.g. 'yellow gold (likely 22k - pending hallmark)' or 'white gold or rhodium-plated silver (pending hallmark inspection)')",
+    "color": "yellow | white | rose | mixed",
+    "estimated_weight_g": null,
+    "hallmarks_observed": "not yet documented OR a specific mark if visible"
+  },
+  "stones": [
+    {
+      "stone": "Identified stone (e.g. 'ruby', 'polki diamond (uncut)', 'seed pearl', 'emerald', 'citrine')",
+      "count_estimate": "Range like '60-100 small pavé stones' or 'single 5-9 ct briolette'",
+      "cut": "Specific cut (e.g. 'round brilliant pavé', 'marquise', 'briolette/pear drop', 'polki/flat uncut', 'cabochon')",
+      "carat_total_estimate": "Range like '1.5-3.0 ct total' or 'single 5.0-9.0 ct stone'",
+      "color": "Descriptive color (e.g. 'pinkish red translucent', 'near-colorless', 'creamy white high luster')",
+      "notes": "1-2 sentences describing how this stone is used and any distinctive features (e.g. 'Pavé halos surround each citrine and form the connective scrollwork.')"
+    }
+    // Include ONE entry per stone TYPE present. If there are 3 stone types in the piece, the array has 3 entries.
+  ],
+  "design_motifs": [
+    "Specific named motifs (e.g. 'Mughal jali (lattice)', 'Art Deco fan', 'butterfly central medallion', 'yin-yang ruby twin-cabochon centerpiece', 'sunburst with rope border')"
+    // 2-5 entries typically
+  ],
+  "dimensions": {
+    "length_mm_estimate": "Range if applicable like '85-95'",
+    "drop_mm_estimate": "Range if applicable like '70-80'",
+    "width_mm_estimate": "Range if applicable",
+    "chain_length_mm_estimate": "If a chain/necklace",
+    "centerpiece_width_mm_estimate": "If a centerpiece is visible",
+    "inner_diameter_mm_estimate": "If a bangle/ring"
+    // Use only the fields that apply to this type of piece. Omit irrelevant ones entirely.
+  },
+  "condition": "excellent | very good | good | fair | poor - plus a clause if any visible wear",
+  "estimated_retail_replacement_usd": <integer>,
+  "estimated_low_usd": <integer - conservative floor>,
+  "estimated_high_usd": <integer - upper bound if quality assumptions check out>,
+  "estimated_fair_market_usd": <integer - typically ~50% of retail replacement>,
+  "estimated_insurance_recommended_usd": <integer - typically ~120% of retail replacement>,
+  "valuation_notes": "2-3 sentences explaining your valuation reasoning: what comps you considered, which variables would shift the range (stone authenticity, metal purity, provenance), and any standout features that influenced the estimate. Reference Sotheby's / Bonhams / independent Indian jewelers as comp bases where relevant."
+}
+
+Guidelines for quality:
+- For heritage Indian pieces, hypothesize era and origin actively - 'Mughal-revival', 'late 19th century or earlier' is more useful than '(pending Leena's input)'.
+- For each visible stone TYPE produce ONE detailed entry with all five sub-fields populated where possible.
+- Design motifs should be richly descriptive (a museum catalog level), not generic ('floral' is bad, 'central Mughal jali medallion with seed-pearl outlined fan motifs' is good).
+- Dimensions are estimates from the image - just provide reasonable ranges.
+- Be specific in valuation_notes about WHY (which stones drive value, what shifts upper/lower bound).
+- ASSUME conservative authenticity in your range (low end = simulant/costume; high end = genuine, heirloom-grade).
+
+CRITICAL - RECOGNIZE SPECIFIC HERITAGE INDIAN PIECE TYPES BY NAME. The collector is Indian-American and values precise classification. If you see any of these features, identify the piece type explicitly:
+
+- MAANG TIKKA: forehead ornament. A pendant on a chain with a hook designed to attach at the hairline, with the pendant hanging on the forehead between/above the eyes. Often single-drop with a central medallion. The chain runs across the top of the head. THIS IS A MAANG TIKKA, NOT a 'pendant on chain' or 'forehead piece'.
+
+- JHUMKA: bell-shaped Indian earrings with a domed/conical body, often with pearl or bead fringe hanging from the rim. A signature South-Asian form.
+
+- MATHA PATTI: ornate forehead piece with multiple chains, broader coverage than a maang tikka, often spans most of the forehead. Bridal context.
+
+- MANGALSUTRA: black-bead necklace with gold pendants - married Hindu woman's traditional piece. Distinctive small black bead chains.
+
+- POLKI: uncut/rose-cut diamond technique. Flat-cut diamonds set in gold foil backing. Often appears in bridal sets with emerald or pearl drops. Recognize by the FLAT cut and the gold-foil-backed setting, not by stone count.
+
+- KUNDAN: glass-paste-and-gold technique with gold foil between stone settings. Often paired with polki.
+
+- BAJU BAND / BAZUBAND: armlet, worn on upper arm. Cuff-shaped, often with central plaque.
+
+- HAATH PHOOL: hand harness - bracelet connected by chains to a ring.
+
+- NATH: nose ring, especially the large hoop variety for bridal use.
+
+- BANGLE styles to distinguish:
+  - Plain bangle (round, gold)
+  - Kada (heavier, often patterned)
+  - Polki bangle (uncut diamond inlay)
+  - Hinged bangle with central motif (the openable kind)
+
+- THUSHI / KOLHAPURI SAJ / TEMPLE JEWELRY: Maharashtrian/South Indian regional styles - chunky gold, religious motifs.
+
+If you cannot tell whether something is heritage Indian, also actively consider Art Deco, Edwardian, Victorian, and contemporary Western fine jewelry. But default to recognizing Indian heritage forms when the visual cues are present (gold-foil settings, traditional motifs, paisley/jali/peacock work, multi-chain construction).
+
+Pricing guidance for common heritage Indian forms (USD retail replacement, conservative midpoints):
+- Polki bridal set (necklace + earrings): $15,000-50,000
+- Single polki necklace alone: $5,000-25,000
+- Maang tikka with diamond/ruby/emerald work: $1,500-8,000
+- Jhumka earrings (pair, traditional 22k gold with stones): $1,000-5,000
+- Plain 22k gold bangle (~25g): $2,500-3,500 (gold floor + workmanship)
+- Heritage gold-and-seed-pearl necklace with cut-work: $4,000-15,000+ if 22k and pre-1960
+- Daily-wear cabochon earrings: $200-800"""
 
 
 def identify_piece(jpeg_path: Path) -> dict:
@@ -200,42 +280,84 @@ def next_piece_id(catalog: dict) -> str:
 
 
 def build_piece_entry(piece_id: str, image_filename: str, vision: dict) -> dict:
-    slug_root = vision.get("name", "piece").lower().replace(" ", "-").replace("/", "-")
+    name = vision.get("name", "New piece")
+    slug_root = name.lower().replace(" ", "-").replace("/", "-").replace(",", "")
+    slug_root = "".join(c for c in slug_root if c.isalnum() or c == "-")[:60]
+
+    # Stones: vision returns array of {stone, count_estimate, cut, carat_total_estimate, color, notes}
+    raw_stones = vision.get("stones", []) or []
+    stones = []
+    for s in raw_stones:
+        if isinstance(s, str):
+            # Legacy / fallback: just a name string
+            stones.append({"stone": s, "count_estimate": None, "cut": None, "carat_total_estimate": None, "color": None, "notes": ""})
+        else:
+            stones.append({
+                "stone": s.get("stone") or "stone",
+                "count_estimate": s.get("count_estimate"),
+                "cut": s.get("cut"),
+                "carat_total_estimate": s.get("carat_total_estimate"),
+                "color": s.get("color"),
+                "notes": s.get("notes", ""),
+            })
+
+    # Metal
+    metal_in = vision.get("metal", {}) or {}
+    metal = {
+        "type": metal_in.get("type") or f"{metal_in.get('color') or 'unknown'} metal (pending hallmark)",
+        "color": metal_in.get("color") or "unknown",
+        "estimated_weight_g": metal_in.get("estimated_weight_g"),
+        "hallmarks_observed": metal_in.get("hallmarks_observed") or "not yet documented",
+    }
+
+    # Pricing
+    retail = int(vision.get("estimated_retail_replacement_usd", 0) or 0)
+    low = int(vision.get("estimated_low_usd", 0) or 0)
+    high = int(vision.get("estimated_high_usd", 0) or 0)
+    fair = int(vision.get("estimated_fair_market_usd") or (retail * 0.5))
+    insurance = int(vision.get("estimated_insurance_recommended_usd") or (retail * 1.2))
+    valuation_notes = vision.get("valuation_notes") or vision.get("notes") or ""
+
+    # Tags: type + every stone name + every motif
+    tag_set = set()
+    if vision.get("type"): tag_set.add(vision["type"])
+    for s in stones:
+        if s.get("stone"):
+            tag_set.add(s["stone"].split(" ")[0].lower())  # first word of stone
+    for m in vision.get("design_motifs", []) or []:
+        tag_set.add(m.split(" ")[0].lower())
+    tags = sorted(tag_set)
+
     return {
         "id": piece_id,
-        "slug": slug_root[:60],
-        "name": vision.get("name", "New piece"),
-        "type": vision.get("type", "other"),
-        "subtype": vision.get("subtype", ""),
-        "category": vision.get("category", ""),
-        "era_estimate": "contemporary (pending review)",
-        "region_origin": "(pending Leena's input)",
-        "metal": {
-            "type": f"{vision.get('metal_color', 'unknown')} metal (pending hallmark)",
-            "color": vision.get("metal_color", "unknown"),
-            "estimated_weight_g": None,
-            "hallmarks_observed": "not yet documented",
-        },
-        "stones": [{"stone": s, "count_estimate": None, "cut": None, "carat_total_estimate": None, "color": None, "notes": ""} for s in vision.get("stones", [])],
-        "design_motifs": vision.get("design_motifs", []),
-        "dimensions": {},
-        "condition": "good",
+        "slug": slug_root,
+        "name": name,
+        "type": vision.get("type") or "other",
+        "subtype": vision.get("subtype") or "",
+        "category": vision.get("category") or "",
+        "era_estimate": vision.get("era_estimate") or "contemporary (pending review)",
+        "region_origin": vision.get("region_origin") or "(pending Leena's input)",
+        "metal": metal,
+        "stones": stones,
+        "design_motifs": vision.get("design_motifs", []) or [],
+        "dimensions": vision.get("dimensions", {}) or {},
+        "condition": vision.get("condition") or "good",
         "provenance": {"acquired_from": None, "acquired_when": None, "gift_from": None, "notes": "Awaiting Leena's input."},
         "story": "",
         "occasions_worn": [],
         "valuation": {
-            "retail_replacement_usd": int(vision.get("estimated_retail_replacement_usd", 0) or 0),
-            "retail_replacement_range_low": int(vision.get("estimated_low_usd", 0) or 0),
-            "retail_replacement_range_high": int(vision.get("estimated_high_usd", 0) or 0),
-            "fair_market_usd": int((vision.get("estimated_retail_replacement_usd", 0) or 0) * 0.5),
-            "insurance_recommended_usd": int((vision.get("estimated_retail_replacement_usd", 0) or 0) * 1.2),
+            "retail_replacement_usd": retail,
+            "retail_replacement_range_low": low,
+            "retail_replacement_range_high": high,
+            "fair_market_usd": fair,
+            "insurance_recommended_usd": insurance,
             "confidence": "low",
             "status": "pending_appraisal",
-            "source_notes": vision.get("notes", "") + " (AI-identified - confirm with Leena and appraiser.)",
+            "source_notes": (valuation_notes + " (AI-identified from a single photo - confirm with Leena and appraiser.)").strip(),
         },
         "appraisal": {"appraised": False, "gemologist": None, "organization": None, "certification_number": None, "date": None, "document_url": None},
-        "images": [{"src": f"images/{VAULT}/{image_filename}", "alt": vision.get("name", "Jewelry piece"), "type": "hero", "order": 1}],
-        "tags": [vision.get("type", "other")] + vision.get("stones", []),
+        "images": [{"src": f"images/{VAULT}/{image_filename}", "alt": name, "type": "hero", "order": 1}],
+        "tags": tags,
         "created_at": time.strftime("%Y-%m-%d"),
         "updated_at": time.strftime("%Y-%m-%d"),
     }
