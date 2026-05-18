@@ -85,11 +85,38 @@ def fetch_file(filename: str) -> bytes:
 # ---------------------------------------------------------------------------
 
 def convert_to_jpeg(src: Path, dst: Path) -> None:
-    if src.suffix.lower() in {".heic", ".heif"}:
-        subprocess.check_call(["heif-convert", "-q", "92", str(src), str(dst)])
+    """Robust HEIC/HEIF -> JPEG using pillow_heif, with libheif as fallback.
+
+    pillow_heif handles iPhone Live Photos and auxiliary image references that
+    older versions of `heif-convert` choke on with
+    "Too many auxiliary image references".
+    """
+    suffix = src.suffix.lower()
+    if suffix in {".heic", ".heif", ".avif"}:
+        try:
+            import pillow_heif  # type: ignore
+            from PIL import Image
+            pillow_heif.register_heif_opener()
+            img = Image.open(str(src))
+            # Convert to RGB and save as JPEG
+            if img.mode not in {"RGB", "L"}:
+                img = img.convert("RGB")
+            img.save(str(dst), "JPEG", quality=92, optimize=True)
+            return
+        except Exception as e:
+            print(f"    pillow_heif fallback to heif-convert: {e}")
+            subprocess.check_call(["heif-convert", "-q", "92", str(src), str(dst)])
+            return
     else:
-        # Use ImageMagick to normalize/optimize
-        subprocess.check_call(["convert", str(src), "-quality", "88", str(dst)])
+        # Use Pillow for everything else
+        try:
+            from PIL import Image
+            img = Image.open(str(src))
+            if img.mode not in {"RGB", "L"}:
+                img = img.convert("RGB")
+            img.save(str(dst), "JPEG", quality=88, optimize=True)
+        except Exception:
+            subprocess.check_call(["convert", str(src), "-quality", "88", str(dst)])
 
 
 def resize_for_web(src: Path, dst: Path, max_dim: int = 1600) -> None:
