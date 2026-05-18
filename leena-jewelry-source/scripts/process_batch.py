@@ -368,10 +368,10 @@ def build_html() -> Path:
 
 
 def encrypt_html(plain: Path) -> None:
-    """Run staticrypt over the built HTML, write into OUT_HTML."""
+    """Run staticrypt over the built HTML, inject OG/favicon meta into the
+    encrypted wrapper head, write into OUT_HTML."""
     work = Path("/tmp/encrypt-work")
     work.mkdir(exist_ok=True)
-    # Copy source into work dir, run staticrypt, output to OUT_HTML
     work_src = work / "source.html"
     work_src.write_bytes(plain.read_bytes())
     salt_config = work / ".staticrypt.json"
@@ -388,9 +388,74 @@ def encrypt_html(plain: Path) -> None:
         "--remember", "90",
         "-d", str(work / "out"),
     ], cwd=str(work))
-    encrypted = work / "out" / "source.html"
-    OUT_HTML.write_bytes(encrypted.read_bytes())
-    plain.unlink()  # remove the un-encrypted intermediate
+    encrypted_path = work / "out" / "source.html"
+
+    # Inject OG / Twitter / favicon meta into the encrypted wrapper's <head>.
+    # These tags live in the OUTER (unencrypted) wrapper - that's the whole
+    # point: link previewers (iMessage, Slack, LinkedIn) need them BEFORE the
+    # password is entered.
+    import re, html as html_mod
+    BASE = "https://keith-gs.github.io/pages/leena-jewelry"
+    meta = {
+        "title": "The Punjabi Collection",
+        "description": "A private archive of heritage and contemporary jewelry, curated for Leena.",
+        "og_image": f"{BASE}/leena-jewelry-share.png",
+        "favicon_32": f"{BASE}/favicon-32.png",
+        "favicon_192": f"{BASE}/favicon-192.png",
+        "favicon_svg": f"{BASE}/favicon.svg",
+        "site_name": "The Punjabi Collection",
+        "twitter_card": "summary_large_image",
+        "canonical": f"{BASE}/",
+        "theme_color": "#0a0908",
+    }
+    def esc(s: str) -> str:
+        return html_mod.escape(s, quote=True)
+    parts = []
+    if meta.get("favicon_32"):
+        parts.append(f'<link rel="icon" type="image/png" sizes="32x32" href="{esc(meta["favicon_32"])}">')
+    if meta.get("favicon_192"):
+        parts.append(f'<link rel="icon" type="image/png" sizes="192x192" href="{esc(meta["favicon_192"])}">')
+        parts.append(f'<link rel="apple-touch-icon" sizes="192x192" href="{esc(meta["favicon_192"])}">')
+    if meta.get("favicon_svg"):
+        parts.append(f'<link rel="icon" type="image/svg+xml" href="{esc(meta["favicon_svg"])}">')
+    parts.append(f'<meta property="og:type" content="website">')
+    parts.append(f'<meta property="og:url" content="{esc(meta["canonical"])}">')
+    parts.append(f'<meta property="og:title" content="{esc(meta["title"])}">')
+    parts.append(f'<meta property="og:description" content="{esc(meta["description"])}">')
+    parts.append(f'<meta property="og:image" content="{esc(meta["og_image"])}">')
+    parts.append(f'<meta property="og:image:secure_url" content="{esc(meta["og_image"])}">')
+    parts.append(f'<meta property="og:image:type" content="image/png">')
+    parts.append(f'<meta property="og:image:width" content="1200">')
+    parts.append(f'<meta property="og:image:height" content="630">')
+    parts.append(f'<meta property="og:image:alt" content="{esc(meta["title"])} - {esc(meta["description"])}">')
+    parts.append(f'<meta property="og:site_name" content="{esc(meta["site_name"])}">')
+    parts.append(f'<meta name="twitter:card" content="{esc(meta["twitter_card"])}">')
+    parts.append(f'<meta name="twitter:title" content="{esc(meta["title"])}">')
+    parts.append(f'<meta name="twitter:description" content="{esc(meta["description"])}">')
+    parts.append(f'<meta name="twitter:image" content="{esc(meta["og_image"])}">')
+    parts.append(f'<meta name="twitter:image:alt" content="{esc(meta["title"])}">')
+    parts.append(f'<meta name="theme-color" content="{esc(meta["theme_color"])}">')
+    parts.append(f'<meta name="description" content="{esc(meta["description"])}">')
+    injection = "\n        <!-- OG / favicon meta -->\n        " + "\n        ".join(parts) + "\n"
+
+    raw = encrypted_path.read_text(encoding="utf-8")
+    viewport_re = re.compile(r'(<meta\s+name="viewport"[^>]*>\s*)', re.IGNORECASE)
+    m = viewport_re.search(raw)
+    if m:
+        raw = raw[:m.end()] + injection + raw[m.end():]
+    else:
+        raw = re.sub(r'(<head[^>]*>\s*)', r'\1' + injection, raw, count=1, flags=re.IGNORECASE)
+
+    # Override staticrypt's default <title> with our own so browser tabs show the right thing
+    raw = re.sub(
+        r'<title>[^<]*</title>',
+        f'<title>{esc(meta["title"])}</title>',
+        raw, count=1, flags=re.IGNORECASE,
+    )
+
+    OUT_HTML.write_text(raw, encoding="utf-8")
+    plain.unlink()
+    print(f"Encrypted + OG-injected: {OUT_HTML}")
 
 
 # ---------------------------------------------------------------------------
