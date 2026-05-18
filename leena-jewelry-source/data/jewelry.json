@@ -1052,6 +1052,88 @@
       ],
       "created_at": "2026-05-18",
       "updated_at": "2026-05-18"
+    },
+    {
+      "id": "piece-13",
+      "slug": "kyanite-coin-drop-earrings-with-pearl-accent",
+      "name": "Kyanite Coin Drop Earrings with Pearl Accent",
+      "type": "earrings",
+      "subtype": "drop",
+      "category": "contemporary",
+      "era_estimate": "contemporary (pending review)",
+      "region_origin": "(pending Leena's input)",
+      "metal": {
+        "type": "yellow metal (pending hallmark)",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "kyanite",
+          "count_estimate": null,
+          "cut": null,
+          "carat_total_estimate": null,
+          "color": null,
+          "notes": ""
+        },
+        {
+          "stone": "seed pearl",
+          "count_estimate": null,
+          "cut": null,
+          "carat_total_estimate": null,
+          "color": null,
+          "notes": ""
+        }
+      ],
+      "design_motifs": [
+        "coin-shaped beads",
+        "floral bead cap",
+        "minimalist drop"
+      ],
+      "dimensions": {},
+      "condition": "good",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 85,
+        "retail_replacement_range_low": 50,
+        "retail_replacement_range_high": 120,
+        "fair_market_usd": 42,
+        "insurance_recommended_usd": 102,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Delicate artisan-style earrings featuring flat coin-shaped blue kyanite beads with characteristic striations, accented with gold-tone floral bead caps and small seed pearl dangles on French hook wires. (AI-identified - confirm with Leena and appraiser.)"
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-13-kyanite-coin-drop-earrings-with-pearl-accent.jpg",
+          "alt": "Kyanite Coin Drop Earrings with Pearl Accent",
+          "type": "hero",
+          "order": 1
+        }
+      ],
+      "tags": [
+        "earrings",
+        "kyanite",
+        "seed pearl"
+      ],
+      "created_at": "2026-05-18",
+      "updated_at": "2026-05-18"
     }
   ]
 }
