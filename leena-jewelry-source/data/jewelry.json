@@ -1134,6 +1134,79 @@
       ],
       "created_at": "2026-05-18",
       "updated_at": "2026-05-18"
+    },
+    {
+      "id": "piece-14",
+      "slug": "gold-filigree-jhumka-earrings-with-pearl-drops",
+      "name": "Gold Filigree Jhumka Earrings with Pearl Drops",
+      "type": "earrings",
+      "subtype": "jhumka",
+      "category": "heritage Indian",
+      "era_estimate": "contemporary (pending review)",
+      "region_origin": "(pending Leena's input)",
+      "metal": {
+        "type": "yellow metal (pending hallmark)",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "not yet documented"
+      },
+      "stones": [
+        {
+          "stone": "pearl",
+          "count_estimate": null,
+          "cut": null,
+          "carat_total_estimate": null,
+          "color": null,
+          "notes": ""
+        }
+      ],
+      "design_motifs": [
+        "dome-shaped bell",
+        "filigree scrollwork",
+        "pearl fringe"
+      ],
+      "dimensions": {},
+      "condition": "good",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 850,
+        "retail_replacement_range_low": 600,
+        "retail_replacement_range_high": 1200,
+        "fair_market_usd": 425,
+        "insurance_recommended_usd": 1020,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Traditional South Indian style jhumka earrings featuring intricate gold filigree work with small pearl drops along the bottom edge. The craftsmanship suggests handmade artisan work. (AI-identified - confirm with Leena and appraiser.)"
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-14-gold-filigree-jhumka-earrings-with-pearl-drops.jpg",
+          "alt": "Gold Filigree Jhumka Earrings with Pearl Drops",
+          "type": "hero",
+          "order": 1
+        }
+      ],
+      "tags": [
+        "earrings",
+        "pearl"
+      ],
+      "created_at": "2026-05-18",
+      "updated_at": "2026-05-18"
     }
   ]
 }
