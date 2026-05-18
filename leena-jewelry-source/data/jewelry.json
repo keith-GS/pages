@@ -1043,6 +1043,88 @@
       ],
       "created_at": "2026-05-18",
       "updated_at": "2026-05-18"
+    },
+    {
+      "id": "piece-15",
+      "slug": "gold-sunburst-maang-tikka-with-diamond-cluster-center",
+      "name": "Gold Sunburst Maang Tikka with Diamond Cluster Center",
+      "type": "maang tikka",
+      "subtype": "single-drop radial sunburst medallion with head chain",
+      "category": "heritage Indian, formal/bridal",
+      "era_estimate": "late 20th century to contemporary - the clean geometric radial cut-work and uniform ray spacing suggest modern machine-assisted craftsmanship, likely post-1980",
+      "region_origin": "India (North Indian tradition, possibly Jaipur or Delhi workshop) - classic maang tikka form with Indo-Western sunburst motif popular in modern bridal collections",
+      "metal": {
+        "type": "Yellow gold, likely 18k or 22k based on warm saturated color; hallmark verification recommended",
+        "color": "yellow",
+        "estimated_weight_g": null,
+        "hallmarks_observed": "none visible in image"
+      },
+      "stones": [
+        {
+          "stone": "Diamond (or diamond simulant)",
+          "count_estimate": "7-9 small round stones in cluster arrangement",
+          "cut": "round brilliant",
+          "carat_total_estimate": "0.15-0.35 ctw",
+          "color": "white/colorless",
+          "notes": "Central pav\u00e9 or bezel-set cluster forming the eye of the sunburst; stones appear bright but image resolution prevents confirmation of authenticity versus CZ"
+        }
+      ],
+      "design_motifs": [
+        "Radial sunburst/solar disc with elongated ray spokes",
+        "Central diamond cluster medallion eye",
+        "Twisted rope or scalloped outer border frame",
+        "Traditional bismarck/box-link head chain"
+      ],
+      "dimensions": {
+        "centerpiece_width_mm_estimate": "28-35",
+        "drop_mm_estimate": "35-45",
+        "chain_length_mm_estimate": "300-400"
+      },
+      "condition": "very good - appears well-preserved with no visible damage or wear",
+      "provenance": {
+        "acquired_from": null,
+        "acquired_when": null,
+        "gift_from": null,
+        "notes": "Awaiting Leena's input."
+      },
+      "story": "",
+      "occasions_worn": [],
+      "valuation": {
+        "retail_replacement_usd": 2200,
+        "retail_replacement_range_low": 450,
+        "retail_replacement_range_high": 3500,
+        "fair_market_usd": 1100,
+        "insurance_recommended_usd": 2650,
+        "confidence": "low",
+        "status": "pending_appraisal",
+        "source_notes": "Value driven primarily by gold content (estimated 8-12g if 22k) and diamond authenticity. Low estimate assumes gold-plated base with CZ simulants (~$450); high estimate reflects solid 22k gold with natural VS-clarity diamonds (~$3,500). The sunburst motif is a popular contemporary bridal style seen at retailers like Tanishq and Kalyan; comparable pieces at Indian fine jewelers range $1,800-3,000 USD. Provenance and hallmark verification would significantly tighten this range. (AI-identified from a single photo - confirm with Leena and appraiser.)"
+      },
+      "appraisal": {
+        "appraised": false,
+        "gemologist": null,
+        "organization": null,
+        "certification_number": null,
+        "date": null,
+        "document_url": null
+      },
+      "images": [
+        {
+          "src": "images/vault-cf06bbaf0851b3c2e8b95afa52530ffe/piece-15-gold-sunburst-maang-tikka-with-diamond-cluster-cen.jpg",
+          "alt": "Gold Sunburst Maang Tikka with Diamond Cluster Center",
+          "type": "hero",
+          "order": 1
+        }
+      ],
+      "tags": [
+        "central",
+        "diamond",
+        "maang tikka",
+        "radial",
+        "traditional",
+        "twisted"
+      ],
+      "created_at": "2026-05-18",
+      "updated_at": "2026-05-18"
     }
   ]
 }
