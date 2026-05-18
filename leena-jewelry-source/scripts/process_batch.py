@@ -245,12 +245,20 @@ def build_piece_entry(piece_id: str, image_filename: str, vision: dict) -> dict:
 # ---------------------------------------------------------------------------
 
 def build_html() -> Path:
-    """Inline jewelry.json into the template, copy images alongside."""
+    """Inline jewelry.json + jewelry-sync secret into the template."""
     template = SRC_HTML.read_text()
     data_text = DATA.read_text()
     if "__CATALOG_JSON__" not in template:
         raise SystemExit("Template missing __CATALOG_JSON__ placeholder")
     rendered = template.replace("__CATALOG_JSON__", data_text)
+
+    # CRITICAL: substitute the jewelry-sync secret so the upload UI can auth to the Worker.
+    # The secret lives inside the encrypted page body - only visible after unlock.
+    secret = os.environ.get("JEWELRY_SYNC_SECRET", "")
+    if not secret:
+        raise SystemExit("JEWELRY_SYNC_SECRET env var missing - upload UI would fail auth.")
+    rendered = rendered.replace("__JEWELRY_SYNC_SECRET__", secret)
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     plain_html = OUT_DIR / "_built.html"
     plain_html.write_text(rendered)
