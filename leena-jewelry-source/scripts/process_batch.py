@@ -322,10 +322,32 @@ def main():
             print(f"    convert failed: {e}")
             continue
 
+        # Anthropic's image limit is 5MB AND recommends <1568x1568 pixels.
+        # iPhone photos routinely exceed both - downscale to a vision-safe size
+        # BEFORE sending. This is a separate intermediate; the on-page image
+        # is still rendered from the larger source via resize_for_web later.
+        vision_path = work_dir / (Path(fname).stem + ".vision.jpg")
+        try:
+            resize_for_web(jpeg_path, vision_path, max_dim=1400)
+            # Belt and suspenders - if still over 4.8MB, hammer it harder
+            if vision_path.stat().st_size > 4_800_000:
+                resize_for_web(jpeg_path, vision_path, max_dim=1000)
+        except Exception as e:
+            print(f"    pre-vision resize failed: {e}")
+            vision_path = jpeg_path  # fall back to original
+
         # Identify via Claude vision
         try:
-            vision = identify_piece(jpeg_path)
+            vision = identify_piece(vision_path)
             print(f"    identified: {vision.get('name')}")
+        except requests.exceptions.HTTPError as e:
+            body = ""
+            try:
+                body = e.response.text[:500]
+            except Exception:
+                pass
+            print(f"    vision failed: {e}  body={body}")
+            continue
         except Exception as e:
             print(f"    vision failed: {e}")
             continue
