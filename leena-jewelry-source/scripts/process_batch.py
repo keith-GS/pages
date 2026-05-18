@@ -135,53 +135,26 @@ def resize_for_web(src: Path, dst: Path, max_dim: int = 1600) -> None:
 
 VISION_SYSTEM = """You are a doctoral-level jewelry cataloging expert with deep knowledge of heritage Indian (Mughal, polki, Jaipur, Hyderabad traditions), Art Deco, and contemporary jewelry. Look at the photo and produce a rich, museum-quality catalog entry for the single piece shown.
 
-Return STRICTLY a JSON object - no markdown, no code fences, no prose outside the JSON. Every field is required (use null only where genuinely unknowable):
+Return STRICTLY a JSON object - no markdown, no code fences, NO COMMENTS (JSON does not allow // or /* */ comments), no prose outside the JSON. Every field is required (use null only where genuinely unknowable).
 
-{
-  "name": "Full descriptive name (e.g. 'Ruby Briolette Maang Tikka with Diamond Plaque')",
-  "type": "necklace | earrings | ring | bangle | bracelet | maang tikka | pendant | brooch | nose-ring | other",
-  "subtype": "Specific form (e.g. 'chandelier shoulder-duster', 'polki bridal collar', 'hinged bangle with central motif')",
-  "category": "Cultural / use category - 'heritage Indian, bridal' or 'heritage Indian, formal' or 'contemporary day-wear' or 'Art Deco' or 'antique' etc",
-  "era_estimate": "Best guess of era WITH reasoning (e.g. 'mid-20th century or earlier - architectural cut-work suggests pre-1960 craftsmanship')",
-  "region_origin": "Best guess of origin region with reasoning (e.g. 'India (Mughal-revival tradition; possibly Hyderabad or Jaipur)')",
-  "metal": {
-    "type": "Detailed metal description with caveats (e.g. 'yellow gold (likely 22k - pending hallmark)' or 'white gold or rhodium-plated silver (pending hallmark inspection)')",
-    "color": "yellow | white | rose | mixed",
-    "estimated_weight_g": null,
-    "hallmarks_observed": "not yet documented OR a specific mark if visible"
-  },
-  "stones": [
-    {
-      "stone": "Identified stone (e.g. 'ruby', 'polki diamond (uncut)', 'seed pearl', 'emerald', 'citrine')",
-      "count_estimate": "Range like '60-100 small pavé stones' or 'single 5-9 ct briolette'",
-      "cut": "Specific cut (e.g. 'round brilliant pavé', 'marquise', 'briolette/pear drop', 'polki/flat uncut', 'cabochon')",
-      "carat_total_estimate": "Range like '1.5-3.0 ct total' or 'single 5.0-9.0 ct stone'",
-      "color": "Descriptive color (e.g. 'pinkish red translucent', 'near-colorless', 'creamy white high luster')",
-      "notes": "1-2 sentences describing how this stone is used and any distinctive features (e.g. 'Pavé halos surround each citrine and form the connective scrollwork.')"
-    }
-    // Include ONE entry per stone TYPE present. If there are 3 stone types in the piece, the array has 3 entries.
-  ],
-  "design_motifs": [
-    "Specific named motifs (e.g. 'Mughal jali (lattice)', 'Art Deco fan', 'butterfly central medallion', 'yin-yang ruby twin-cabochon centerpiece', 'sunburst with rope border')"
-    // 2-5 entries typically
-  ],
-  "dimensions": {
-    "length_mm_estimate": "Range if applicable like '85-95'",
-    "drop_mm_estimate": "Range if applicable like '70-80'",
-    "width_mm_estimate": "Range if applicable",
-    "chain_length_mm_estimate": "If a chain/necklace",
-    "centerpiece_width_mm_estimate": "If a centerpiece is visible",
-    "inner_diameter_mm_estimate": "If a bangle/ring"
-    // Use only the fields that apply to this type of piece. Omit irrelevant ones entirely.
-  },
-  "condition": "excellent | very good | good | fair | poor - plus a clause if any visible wear",
-  "estimated_retail_replacement_usd": <integer>,
-  "estimated_low_usd": <integer - conservative floor>,
-  "estimated_high_usd": <integer - upper bound if quality assumptions check out>,
-  "estimated_fair_market_usd": <integer - typically ~50% of retail replacement>,
-  "estimated_insurance_recommended_usd": <integer - typically ~120% of retail replacement>,
-  "valuation_notes": "2-3 sentences explaining your valuation reasoning: what comps you considered, which variables would shift the range (stone authenticity, metal purity, provenance), and any standout features that influenced the estimate. Reference Sotheby's / Bonhams / independent Indian jewelers as comp bases where relevant."
-}
+REQUIRED FIELDS:
+- name: full descriptive name (e.g. "Ruby Briolette Maang Tikka with Diamond Plaque")
+- type: one of "necklace", "earrings", "ring", "bangle", "bracelet", "maang tikka", "pendant", "brooch", "nose-ring", "other"
+- subtype: specific form (e.g. "chandelier shoulder-duster", "polki bridal collar", "hinged bangle with central motif")
+- category: cultural/use category (e.g. "heritage Indian, bridal", "heritage Indian, formal", "contemporary day-wear", "Art Deco", "antique")
+- era_estimate: best guess of era WITH reasoning (e.g. "mid-20th century or earlier - architectural cut-work suggests pre-1960 craftsmanship")
+- region_origin: best guess of origin region with reasoning (e.g. "India (Mughal-revival tradition; possibly Hyderabad or Jaipur)")
+- metal: an object with these keys: type (detailed description with hallmark caveat), color ("yellow"|"white"|"rose"|"mixed"), estimated_weight_g (null), hallmarks_observed (string)
+- stones: array of stone objects, ONE PER STONE TYPE present. Each object has: stone, count_estimate, cut, carat_total_estimate, color, notes (each is a string or null)
+- design_motifs: array of specific named motif strings, 2-5 entries typically (e.g. "Mughal jali lattice", "central butterfly medallion", "yin-yang ruby twin-cabochon centerpiece")
+- dimensions: object with whichever applies of: length_mm_estimate, drop_mm_estimate, width_mm_estimate, chain_length_mm_estimate, centerpiece_width_mm_estimate, inner_diameter_mm_estimate (each a string range like "55-75"). Omit fields that don't apply.
+- condition: short string like "excellent", "very good", "good - some visible wear"
+- estimated_retail_replacement_usd: integer
+- estimated_low_usd: integer (conservative floor)
+- estimated_high_usd: integer (upper bound if quality assumptions check out)
+- estimated_fair_market_usd: integer (typically ~50% of retail replacement)
+- estimated_insurance_recommended_usd: integer (typically ~120% of retail replacement)
+- valuation_notes: 2-3 sentences explaining valuation reasoning - which comps, which variables shift the range (stone authenticity, metal purity, provenance), standout features. Reference Sotheby's / Bonhams / independent Indian jewelers as comp bases where relevant.
 
 Guidelines for quality:
 - For heritage Indian pieces, hypothesize era and origin actively - 'Mughal-revival', 'late 19th century or earlier' is more useful than '(pending Leena's input)'.
@@ -262,6 +235,12 @@ def identify_piece(jpeg_path: Path) -> dict:
         if txt.startswith("json"):
             txt = txt[4:]
         txt = txt.strip("` \n")
+    # Strip JSON-illegal comments if the model emitted them
+    import re
+    txt = re.sub(r"//[^\n]*", "", txt)
+    txt = re.sub(r"/\*.*?\*/", "", txt, flags=re.DOTALL)
+    # Trim trailing commas which JSON also rejects
+    txt = re.sub(r",(\s*[}\]])", r"\1", txt)
     return json.loads(txt)
 
 
