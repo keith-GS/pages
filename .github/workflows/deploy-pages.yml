@@ -1,9 +1,13 @@
-# Deploy GitHub Pages with a concurrency queue.
+# Deploy GitHub Pages with a concurrency queue + backend-rejection retry.
 # Added 2026-07-06 to stop "Deployment failed, try again later" collisions:
 # publishes push multiple files as separate commits within seconds (Contents API,
 # one commit per file), and the built-in branch-deploy rejected overlapping deploys.
 # With this workflow + Pages build_type=workflow, bursts collapse: in-flight deploys
-# are superseded and only the latest commit deploys. See MIMB session 2026-07-06.
+# are superseded and only the latest commit deploys.
+# The retry exists because GitHub's Pages backend also intermittently rejects
+# SOLO deploys with "Deployment failed, try again later" (observed 2026-07-06
+# 13:36 UTC, no concurrent run) - one 90s-backoff retry before failing the run.
+# See MIMB session 2026-07-06.
 name: Deploy Pages
 on:
   push:
@@ -30,4 +34,11 @@ jobs:
         with:
           path: .
       - id: deployment
+        uses: actions/deploy-pages@v4
+        continue-on-error: true
+      - name: Backoff before retry
+        if: steps.deployment.outcome == 'failure'
+        run: sleep 90
+      - id: deployment-retry
+        if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v4
