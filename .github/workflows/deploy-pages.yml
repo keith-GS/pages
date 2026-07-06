@@ -1,0 +1,33 @@
+# Deploy GitHub Pages with a concurrency queue.
+# Added 2026-07-06 to stop "Deployment failed, try again later" collisions:
+# publishes push multiple files as separate commits within seconds (Contents API,
+# one commit per file), and the built-in branch-deploy rejected overlapping deploys.
+# With this workflow + Pages build_type=workflow, bursts collapse: in-flight deploys
+# are superseded and only the latest commit deploys. See MIMB session 2026-07-06.
+name: Deploy Pages
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4
