@@ -9,6 +9,6 @@ a{display:inline-block;margin-top:14px;padding:10px 18px;background:#d97757;colo
 (function(){var s=new URLSearchParams(location.search).get('s')||'';
 if(/^session_[A-Za-z0-9]{10,40}$/.test(s)) s='cse_'+s.slice(8);
 if(!/^cse_[A-Za-z0-9]{10,40}$/.test(s)){document.getElementById('m').textContent='That link is missing a valid session id.';document.getElementById('b').style.display='none';return;}
-var u='claude://claude.ai/cowork/'+s;document.getElementById('b').href=u;location.href=u;
+var u='claude://claude.ai/cowork/'+s;document.getElementById('b').href=u;var t0=Date.now();window.addEventListener('blur',function(){if(Date.now()-t0<8000)setTimeout(function(){try{window.close()}catch(e){}},400);});location.href=u;
 })();
 </script></body></html>
